@@ -1,0 +1,582 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: 'AI Reliability Infrastructure',
+    period: 'Current work',
+    summary:
+      'Designing a reliability layer for enterprise AI systems that wraps standard LLM endpoints with prompt optimization, schema enforcement, evaluation, and post-training feedback loops.',
+    details: [
+      'Drop-in API design for production language model workflows',
+      'Evaluation and regression monitoring across changing model/provider behavior',
+      'Infrastructure that closes the loop between deployment data and training updates',
+    ],
+  },
+  {
+    title: 'Model Distillation and Compression',
+    period: 'Applied ML systems',
+    summary:
+      'Building end-to-end pipelines for distilling large models into smaller, faster ones while preserving practical performance.',
+    details: [
+      'Forward-KL distillation, on-policy training, and structured pruning',
+      'Benchmarking across reasoning and embedding tasks',
+      'Deployment-focused tradeoff analysis across size, latency, and quality',
+    ],
+  },
+  {
+    title: 'Survey Accuracy and Election Data',
+    period: 'CES 2006–2022',
+    summary:
+      'Constructed a multi-year evaluation pipeline for the Cooperative Election Study to measure where nonprobability samples succeed and where weighting regimes break down.',
+    details: [
+      'Integrated external benchmarks from CPS, MIT Election Lab, FEC, and related sources',
+      'Compared matching, post-stratification, and raking under shared evaluation metrics',
+      'Modeled long-run error trends with an emphasis on measurement quality',
+    ],
+  },
+  {
+    title: 'fMRI Analysis Pipelines',
+    period: 'Neuroimaging research',
+    summary:
+      'Designed BIDS-compliant workflows for pre/post intervention studies focused on cognitive control, decision-making, and behavioral change.',
+    details: [
+      'Built event timing systems and resolved alignment issues between behavioral and imaging logs',
+      'Specified GLM analyses across stop-signal, delay discounting, and craving regulation tasks',
+      'Created analysis pipelines intended to be measurable, reproducible, and extensible',
+    ],
+  },
+];
+
+const publications = [
+  {
+    title: 'Accuracy in Matched Survey Samples (CES 2006–2022)',
+    venue: 'Working paper',
+    year: '2026',
+    blurb:
+      'Examines how nonprobability matched samples perform across weighting schemes, with a focus on long-term trends in error and the limits of post-stratification.',
+  },
+  {
+    title: 'More papers and writing forthcoming',
+    venue: 'Placeholder',
+    year: '—',
+    blurb:
+      'This section can expand into papers, essays, talks, or technical notes once the final list is ready.',
+  },
+];
+
+const writing = [
+  'Essays about belief formation, changing norms, and how people navigate systems larger than themselves.',
+  'Technical writing on AI systems, evaluation, model behavior, and measurement.',
+  'Occasional reflections on interfaces, product design, and making complex systems usable without hiding how they work.',
+];
+
+const now = [
+  'Building enterprise AI systems focused on reliability, evaluation, and inference performance.',
+  'Thinking about distillation, pruning, and deployment loops that improve models over time.',
+  'Writing and collecting notes for longer-form essays and research-adjacent pieces.',
+];
+---
+
+<Layout
+  title="JD Pruett — digital faceprint"
+  description="Prototype personal website for JD Pruett: AI systems, measurement, data infrastructure, research, and writing."
+>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <a class="wordmark" href="#top">JD Pruett</a>
+        <p class="sidebar-blurb">
+          Engineer and researcher working on AI systems, measurement, and applied data
+          infrastructure.
+        </p>
+
+        <nav class="section-nav" aria-label="Section navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#writing">Writing</a>
+          <a href="#personal">Personal</a>
+        </nav>
+
+        <div class="sidebar-links">
+          <a href="https://github.com/jdpru" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="mailto:hello@example.com">Email</a>
+        </div>
+
+        <p class="sidebar-note">Prototype in progress. Content can be tightened once the structure feels right.</p>
+      </div>
+    </aside>
+
+    <main class="content" id="top">
+      <section class="hero card">
+        <div class="hero-copy">
+          <p class="eyebrow">Digital faceprint</p>
+          <h1>Building systems that make complex processes measurable, interpretable, and reliable.</h1>
+          <p class="lede">
+            I work across AI deployment, evaluation infrastructure, large-scale measurement,
+            and research pipelines. Most of what I build lives at the boundary between theory,
+            engineering, and real-world operational messiness.
+          </p>
+          <div class="hero-links">
+            <a href="#projects">View projects</a>
+            <a href="#publications">Publications + writing</a>
+          </div>
+        </div>
+
+        <div class="portrait-card" aria-hidden="true">
+          <svg viewBox="0 0 220 220" class="portrait" role="img">
+            <title>Minimal portrait sketch</title>
+            <rect x="10" y="10" width="200" height="200" rx="28" class="paper" />
+            <path d="M76 81c0-24 18-41 36-41s34 15 34 39c0 15-5 25-13 34 21 11 34 31 38 54" />
+            <path d="M53 168c4-28 23-49 53-57" />
+            <path d="M93 82c5-8 12-12 22-12 8 0 16 4 21 12" />
+            <path d="M92 95c-2 3-2 7 0 10" />
+            <path d="M132 95c2 3 2 7 0 10" />
+            <path d="M101 124c8 7 22 7 30 0" />
+            <path d="M83 65c10-13 25-20 42-18 10 2 18 7 25 14" />
+            <path d="M72 70c1-9 6-16 13-23" />
+            <path d="M150 67c7 4 12 10 16 19" />
+            <path d="M71 162c15 10 58 15 90 1" />
+          </svg>
+          <p>Prototype sketch block inspired by the hand-drawn feel of jamie-wong.com.</p>
+        </div>
+      </section>
+
+      <section class="section card" id="about">
+        <div class="section-heading">
+          <p class="section-label">About</p>
+          <h2>Engineer, researcher, and builder</h2>
+        </div>
+        <div class="prose two-column">
+          <div>
+            <p>
+              I am an engineer and researcher working on AI systems, measurement, and applied
+              data infrastructure. My work focuses on making language models more reliable in
+              real-world settings.
+            </p>
+            <p>
+              I currently build systems for enterprise AI deployment, including model
+              distillation pipelines, evaluation frameworks, and inference infrastructure
+              designed to improve performance over time.
+            </p>
+          </div>
+          <div>
+            <p>
+              In parallel, I have worked extensively with large-scale survey data and
+              neuroimaging research, building pipelines that combine statistical modeling, data
+              engineering, and careful measurement design.
+            </p>
+            <p>
+              Across these areas, the common thread is an interest in systems that make hard
+              processes observable, testable, and dependable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card" id="projects">
+        <div class="section-heading">
+          <p class="section-label">Projects</p>
+          <h2>Selected work</h2>
+        </div>
+        <div class="project-grid">
+          {projects.map((project) => (
+            <article class="project-card">
+              <div class="project-header">
+                <h3>{project.title}</h3>
+                <span>{project.period}</span>
+              </div>
+              <p>{project.summary}</p>
+              <ul>
+                {project.details.map((detail) => (
+                  <li>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section card" id="publications">
+        <div class="section-heading">
+          <p class="section-label">Publications</p>
+          <h2>Research and writing in progress</h2>
+        </div>
+        <div class="list-stack">
+          {publications.map((item) => (
+            <article class="list-item">
+              <div class="list-topline">
+                <h3>{item.title}</h3>
+                <span>{item.year}</span>
+              </div>
+              <p class="meta">{item.venue}</p>
+              <p>{item.blurb}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section split-section" id="writing">
+        <article class="card">
+          <div class="section-heading compact">
+            <p class="section-label">Writing</p>
+            <h2>What I want this site to hold</h2>
+          </div>
+          <ul class="soft-list">
+            {writing.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="section-heading compact">
+            <p class="section-label">Now</p>
+            <h2>Current focus</h2>
+          </div>
+          <ul class="soft-list">
+            {now.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </article>
+      </section>
+
+      <section class="section card" id="personal">
+        <div class="section-heading">
+          <p class="section-label">Personal</p>
+          <h2>Beyond the technical work</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Outside of work, I am interested in writing, especially essays that sit somewhere
+            between cultural observation and personal narrative. I keep circling back to
+            questions about how people form beliefs, how norms move, and how individuals learn
+            to navigate systems larger than themselves.
+          </p>
+          <p>
+            I also spend a lot of time thinking about interfaces and product design: how to make
+            technically complex systems usable without smoothing over the parts that actually
+            matter.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .page-shell {
+    width: min(calc(100% - 3rem), var(--content-width));
+    margin: 0 auto;
+    padding: 2.5rem 0 4rem;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    padding-top: 1rem;
+  }
+
+  .sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1rem 0.5rem 1rem 0;
+  }
+
+  .wordmark {
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .sidebar-blurb,
+  .sidebar-note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .section-nav,
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .section-nav a,
+  .sidebar-links a {
+    width: fit-content;
+    font-size: 0.98rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid rgba(221, 210, 200, 0.85);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .eyebrow,
+  .section-label,
+  .meta,
+  .project-header span,
+  .list-topline span {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  ul {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.35rem, 4vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 12ch;
+  }
+
+  .lede {
+    margin-bottom: 1.35rem;
+    max-width: 64ch;
+    color: #2b2521;
+    font-size: 1.02rem;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.72rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text);
+  }
+
+  .hero-links a:first-child {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .portrait-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: calc(var(--radius) - 6px);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--rule);
+  }
+
+  .portrait-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .portrait {
+    width: 100%;
+    height: auto;
+    stroke: var(--text);
+    stroke-width: 3.2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .portrait .paper {
+    fill: #fffdf8;
+    stroke: rgba(221, 210, 200, 0.95);
+  }
+
+  .section {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading.compact {
+    margin-bottom: 1rem;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.6rem, 2vw, 2.3rem);
+    letter-spacing: -0.02em;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .prose p:last-child,
+  .project-card p,
+  .list-item p:last-child,
+  .soft-list {
+    margin-bottom: 0;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    padding: 1.2rem;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.52);
+  }
+
+  .project-header,
+  .list-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .project-card h3,
+  .list-item h3 {
+    margin-bottom: 0.45rem;
+    font-size: 1.06rem;
+  }
+
+  .project-card ul,
+  .soft-list {
+    padding-left: 1.15rem;
+  }
+
+  .project-card li,
+  .soft-list li {
+    margin-bottom: 0.55rem;
+    color: #2c2622;
+  }
+
+  .list-stack {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-item {
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .list-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .split-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .split-section .card {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  @media (max-width: 1080px) {
+    .page-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+      padding-top: 0;
+    }
+
+    .sidebar-inner {
+      padding-right: 0;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.5rem;
+    }
+
+    .section-nav,
+    .sidebar-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.2rem;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .hero,
+    .project-grid,
+    .split-section,
+    .two-column {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      max-width: 13ch;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page-shell {
+      width: min(calc(100% - 1.25rem), var(--content-width));
+      padding-top: 1rem;
+      gap: 1.25rem;
+    }
+
+    .hero,
+    .section,
+    .split-section .card {
+      padding: 1.25rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+</style>
