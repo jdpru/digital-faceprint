@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/site';
+---
+
+<Layout
+  title="Projects — JD Pruett"
+  description="Projects by JD Pruett across AI systems, measurement, survey data, and neuroimaging."
+  active="projects"
+>
+  <section class="section">
+    <p class="eyebrow">Projects</p>
+    <h1>Selected projects</h1>
+    <p class="lede">
+      A mix of AI systems work, measurement infrastructure, survey analysis, and neuroimaging
+      research. The common theme is building machinery that makes difficult processes more legible
+      and dependable.
+    </p>
+  </section>
+
+  <section class="section plain-list-wrap">
+    <div class="plain-list">
+      {projects.map((project) => (
+        <article class="plain-item">
+          <div class="item-head">
+            <h2>{project.title}</h2>
+            <span class="period">{project.period}</span>
+          </div>
+          <p class="body-large">{project.summary}</p>
+          <ul class="detail-list">
+            {project.details.map((detail) => (
+              <li>{detail}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

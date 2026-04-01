@@ -1,17 +1,29 @@
 ---
+import NavIcons from '../components/NavIcons.astro';
+import { site } from '../data/site';
+
 interface Props {
   title?: string;
   description?: string;
+  active?: 'home' | 'projects' | 'publications' | 'personal';
 }
 
 const {
   title = 'JD Pruett — engineer, researcher, builder',
   description = 'Personal site for JD Pruett. AI systems, measurement, data infrastructure, research, and writing.',
+  active = 'home',
 } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'About', key: 'home' },
+  { href: '/projects/', label: 'Projects', key: 'projects' },
+  { href: '/publications/', label: 'Publications', key: 'publications' },
+  { href: '/personal/', label: 'Personal', key: 'personal' },
+] as const;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="theme-root">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -20,56 +32,330 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --text: #171b22;
+        --muted: #647083;
+        --rule: #e6ebf2;
+        --accent: #346dcb;
+        --accent-soft: rgba(52, 109, 203, 0.12);
+        --content-width: 980px;
+        --sidebar-width: 168px;
+        --transition-fast: 180ms ease;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.68;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
+      }
+
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+
+      p,
+      ul,
+      ol {
+        margin-top: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        color: var(--text);
+        letter-spacing: -0.025em;
+      }
+
+      h1 {
+        font-size: clamp(2.35rem, 4vw, 4.1rem);
+        line-height: 1.04;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+        line-height: 1.12;
+        margin-bottom: 0.8rem;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        line-height: 1.28;
+        margin-bottom: 0.3rem;
+      }
+
+      ::selection {
+        background: var(--accent-soft);
+      }
+
+      .site-shell {
+        width: min(calc(100% - 3rem), var(--content-width));
+        margin: 0 auto;
+        padding: 2.75rem 0 4rem;
+        display: grid;
+        grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+        gap: 3rem;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        padding-top: 0.4rem;
+      }
+
+      .sidebar-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .wordmark {
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .wordmark:hover {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .sidebar-blurb {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .section-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+
+      .section-nav a {
+        width: fit-content;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .section-nav a.active,
+      .section-nav a:hover {
+        color: var(--accent);
+      }
+
+      .content {
+        min-width: 0;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: page-enter 420ms cubic-bezier(.2,.7,.2,1) forwards;
+      }
+
+      .eyebrow {
+        margin-bottom: 0.85rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        font-size: 0.72rem;
+      }
+
+      .lede,
+      .body-large {
+        font-size: 1.03rem;
+        color: #293241;
+        max-width: 64ch;
+      }
+
+      .section {
+        padding: 0 0 2.65rem;
+        margin: 0 0 2.65rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .section:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .section-heading {
+        margin-bottom: 1.2rem;
+      }
+
+      .section-label,
+      .meta,
+      .period {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.72rem;
+      }
+
+      .text-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+      }
+
+      .plain-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .plain-item {
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .plain-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .item-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .detail-list {
+        margin: 0.75rem 0 0;
+        padding-left: 1.1rem;
+      }
+
+      .detail-list li,
+      .soft-list li {
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+      }
+
+      .soft-list {
+        margin: 0;
+        padding-left: 1.05rem;
+      }
+
+      .jump-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--accent);
+      }
+
+      .jump-link::after {
+        content: '→';
+        transition: transform var(--transition-fast);
+      }
+
+      .jump-link:hover {
+        text-decoration: none;
+      }
+
+      .jump-link:hover::after {
+        transform: translateX(3px);
+      }
+
+      @keyframes page-enter {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .site-shell {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          width: min(calc(100% - 1.75rem), var(--content-width));
+          padding-top: 1.4rem;
+        }
+
+        .sidebar {
+          position: static;
+        }
+
+        .sidebar-inner {
+          gap: 0.9rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid var(--rule);
+        }
+
+        .section-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 0.9rem 1rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .text-columns,
+        .item-head {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        h1 {
+          font-size: 2.45rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <slot />
+    <div class="site-shell">
+      <aside class="sidebar">
+        <div class="sidebar-inner">
+          <a class="wordmark" href="/">{site.name}</a>
+          <p class="sidebar-blurb">{site.role}</p>
+
+          <nav class="section-nav" aria-label="Primary navigation">
+            {navItems.map((item) => (
+              <a href={item.href} class={active === item.key ? 'active' : ''}>{item.label}</a>
+            ))}
+          </nav>
+
+          <NavIcons
+            github={site.github}
+            linkedin={site.linkedin}
+            twitter={site.twitter}
+            email={site.email}
+          />
+        </div>
+      </aside>
+
+      <main class="content">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --bg: #fcfaf5;
-    --surface: rgba(255, 255, 255, 0.74);
-    --text: #171412;
-    --muted: #6a625d;
-    --rule: #ddd2c8;
-    --accent: #d2683c;
-    --accent-soft: #f2dfd4;
-    --shadow: 0 12px 30px rgba(37, 26, 18, 0.06);
-    --radius: 18px;
-    --content-width: 1220px;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-      radial-gradient(circle at top left, rgba(210, 104, 60, 0.08), transparent 28%),
-      linear-gradient(180deg, #fffdf9 0%, var(--bg) 100%);
-    color: var(--text);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    line-height: 1.65;
-  }
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
-  }
-
-  ::selection {
-    background: var(--accent-soft);
-  }
-</style>
