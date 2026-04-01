@@ -3,4 +3,5 @@ dist/
 .astro/
 .vercel/
 .env
-irregular-inclination/
+.DS_Store
+.vercel
