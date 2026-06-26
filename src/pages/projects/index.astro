@@ -1,39 +1,36 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { projects } from '../../data/site';
+import { work } from '../../data/site';
 ---
 
 <Layout
-  title="Projects — JD Pruett"
-  description="Projects by JD Pruett across AI systems, measurement, survey data, and neuroimaging."
-  active="projects"
+  title="Projects & papers — JD Pruett"
+  description="Projects and papers across survey methodology, neuroscience, and machine learning."
 >
-  <section class="section">
-    <p class="eyebrow">Projects</p>
-    <h1>Selected projects</h1>
-    <p class="lede">
-      A mix of AI systems work, measurement infrastructure, survey analysis, and neuroimaging
-      research. The common theme is building machinery that makes difficult processes more legible
-      and dependable.
-    </p>
-  </section>
+  <main class="wrap">
+    <section class="subhero">
+      <span class="eyebrow">Selected work</span>
+      <h1>Projects &amp; <em>papers</em></h1>
+      <p>Where survey methods, neuroscience, and machine learning meet — usually with code attached.</p>
+    </section>
 
-  <section class="section plain-list-wrap">
-    <div class="plain-list">
-      {projects.map((project) => (
-        <article class="plain-item">
-          <div class="item-head">
-            <h2>{project.title}</h2>
-            <span class="period">{project.period}</span>
+    <div class="projects">
+      {work.map((w) => (
+        <article class="prow">
+          <div>
+            <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
           </div>
-          <p class="body-large">{project.summary}</p>
-          <ul class="detail-list">
-            {project.details.map((detail) => (
-              <li>{detail}</li>
+          <h2>{w.title}</h2>
+          <p>{w.summary}</p>
+          <div class="prow__links">
+            {w.links.map((l) => (
+              l.href
+                ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+                : <a class="dead">{l.label}</a>
             ))}
-          </ul>
+          </div>
         </article>
       ))}
     </div>
-  </section>
+  </main>
 </Layout>

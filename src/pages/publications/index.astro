@@ -1,46 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { publications, writing } from '../../data/site';
+import { publications } from '../../data/site';
 ---
 
 <Layout
   title="Publications — JD Pruett"
-  description="Publications and writing by JD Pruett."
-  active="publications"
+  description="Papers and technical writing by JD Pruett."
 >
-  <section class="section">
-    <p class="eyebrow">Publications</p>
-    <h1>Research and writing</h1>
-    <p class="lede">
-      Papers, technical notes, and essays. Right now this is still selective, but the structure is
-      here for a fuller bibliography and a writing archive.
-    </p>
-  </section>
+  <main class="wrap">
+    <section class="subhero">
+      <span class="eyebrow">Publications</span>
+      <h1>Papers &amp; <em>technical writing</em></h1>
+      <p>A selective list for now — the structure is here for a fuller bibliography over time.</p>
+    </section>
 
-  <section class="section">
-    <div class="plain-list">
-      {publications.map((item) => (
-        <article class="plain-item">
-          <div class="item-head">
-            <h2>{item.title}</h2>
-            <span class="period">{item.year}</span>
+    <div class="publist">
+      {publications.map((p) => (
+        <article class="pubrow">
+          <div>
+            <span class="venue">{p.venue}</span>
+            <h2>{p.title}</h2>
+            <p class="blurb">{p.blurb}</p>
           </div>
-          <p class="meta">{item.venue}</p>
-          <p class="body-large">{item.blurb}</p>
+          <div class="year">{p.year}</div>
         </article>
       ))}
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-heading">
-      <p class="section-label">Writing directions</p>
-      <h2>What else belongs here</h2>
-    </div>
-    <ul class="soft-list body-large">
-      {writing.map((item) => (
-        <li>{item}</li>
-      ))}
-    </ul>
-  </section>
+  </main>
 </Layout>

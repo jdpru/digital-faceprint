@@ -1,0 +1,99 @@
+---
+import { site } from '../data/site';
+
+// Split the lede so the trailing fragment can be italicised.
+const { lede, ledeEmphasis } = site;
+const idx = ledeEmphasis ? lede.indexOf(ledeEmphasis) : -1;
+const ledeHead = idx >= 0 ? lede.slice(0, idx) : lede;
+const ledeTail = idx >= 0 ? lede.slice(idx) : '';
+---
+
+<header class="hero wrap">
+  <div class="hero__grid">
+    <div class="hero__text">
+      <div class="eyebrow">{site.eyebrow}</div>
+      <h1 set:html={site.name.replace(' ', '&nbsp;')} />
+      <p class="lede">{ledeHead}<span class="ital">{ledeTail}</span></p>
+      <div class="hero__meta">
+        {site.chips.map((chip) => <span class="chip">{chip}</span>)}
+      </div>
+    </div>
+
+    <div class="portrait" id="portrait">
+      <div class="portrait__inner" id="portraitInner">
+        <img src={site.portrait.src} alt={site.portrait.alt} />
+        <div class="portrait__tint"></div>
+        <span class="pupil" id="pupilL"></span>
+        <span class="pupil" id="pupilR"></span>
+      </div>
+      <div class="portrait__frame"></div>
+      <div class="portrait__cap"><b>↳</b> {site.portrait.caption}</div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // The one cool thing: eyes follow the cursor + subtle parallax.
+  (function () {
+    const portrait = document.getElementById('portrait');
+    const inner = document.getElementById('portraitInner');
+    const pupilL = document.getElementById('pupilL');
+    const pupilR = document.getElementById('pupilR');
+    if (!portrait || !inner || !pupilL || !pupilR) return;
+
+    const eyes = [
+      { el: pupilL, fx: 0.456, fy: 0.372 },
+      { el: pupilR, fx: 0.587, fy: 0.374 },
+    ];
+    function place() {
+      eyes.forEach((e) => {
+        e.el.style.left = e.fx * 100 + '%';
+        e.el.style.top = e.fy * 100 + '%';
+      });
+    }
+    place();
+    window.addEventListener('resize', place);
+
+    // Respect reduced-motion: leave pupils centred, no animation loop.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    const cur = { ix: 0, iy: 0 };
+
+    window.addEventListener('mousemove', (ev) => {
+      mx = ev.clientX;
+      my = ev.clientY;
+    });
+
+    function loop() {
+      const r = portrait.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dxp = (mx - cx) / window.innerWidth;
+      const dyp = (my - cy) / window.innerHeight;
+      const tx = Math.max(-1, Math.min(1, dxp)) * 9;
+      const ty = Math.max(-1, Math.min(1, dyp)) * 9;
+      cur.ix += (tx - cur.ix) * 0.08;
+      cur.iy += (ty - cur.iy) * 0.08;
+      inner.style.transform = `translate(${cur.ix.toFixed(2)}px,${cur.iy.toFixed(2)}px)`;
+
+      eyes.forEach((e) => {
+        const ex = r.left + e.fx * r.width;
+        const ey = r.top + e.fy * r.height;
+        const dx = mx - ex;
+        const dy = my - ey;
+        const dist = Math.hypot(dx, dy) || 1;
+        const max = r.width * 0.011;
+        const ux = dx / dist;
+        const uy = dy / dist;
+        const amt = Math.min(1, dist / 260) * max;
+        e.el.style.transform =
+          `translate(${(-50 + (ux * amt) / r.width * 100).toFixed(2)}%,` +
+          `${(-50 + (uy * amt) / r.height * 100).toFixed(2)}%)`;
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+</script>

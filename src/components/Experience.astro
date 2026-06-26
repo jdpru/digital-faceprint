@@ -1,0 +1,37 @@
+---
+import { experience } from '../data/site';
+---
+
+<div class="cv">
+  {experience.map((entry) => (
+    <div class="entry">
+      <button class="entry__head" aria-expanded="false">
+        <span class="entry__yr">{entry.years}</span>
+        <span>
+          <span class="entry__role">{entry.role}</span>
+          <span class="entry__org">{entry.org}<span class="place">{entry.place}</span></span>
+        </span>
+        <span class="entry__toggle">+</span>
+      </button>
+      <div class="entry__body"><div class="entry__bodyin"><div class="entry__bodypad">
+        <div class="entry__desc">
+          {entry.description.map((p) => <p>{p}</p>)}
+          <div class="entry__tags">
+            {entry.tags.map((tag) => <span>{tag}</span>)}
+          </div>
+        </div>
+      </div></div></div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll('.entry__head').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const entry = btn.closest('.entry');
+      if (!entry) return;
+      const open = entry.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+</script>

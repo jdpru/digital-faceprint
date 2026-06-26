@@ -1,217 +1,104 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PortraitSketch from '../components/PortraitSketch.astro';
-import { now, projects, publications, personal, writing } from '../data/site';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import { site, education, work, writing } from '../data/site';
+
+const selectedWork = work.slice(0, 4);
 ---
 
-<Layout
-  title="JD Pruett — digital faceprint"
-  description="Personal site for JD Pruett: AI systems, measurement, data infrastructure, research, and writing."
-  active="home"
->
-  <section class="hero section">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Digital faceprint</p>
-        <h1>Building systems that make complex processes measurable, interpretable, and reliable.</h1>
-        <p class="lede">
-          I work across AI deployment, evaluation infrastructure, large-scale measurement,
-          and research pipelines. Most of what I build lives at the boundary between theory,
-          engineering, and real-world operational messiness.
-        </p>
-        <div class="hero-links">
-          <a class="jump-link" href="/projects/">Projects</a>
-          <a class="jump-link" href="/publications/">Publications</a>
-          <a class="jump-link" href="/personal/">Personal</a>
+<Layout>
+  <Hero />
+
+  <main class="wrap">
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-body">
+        <div class="about-side">
+          <span class="eyebrow muted">About</span>
+          <div style="margin-top:18px;">
+            {site.about.facts.map((f) => (
+              <><span class="k">{f.k}</span>{f.v}</>
+            ))}
+          </div>
+        </div>
+        <div class="prose">
+          {site.about.prose.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="sec-head">
+        <div><span class="eyebrow">01 — Experience</span></div>
+        <div>
+          <h2>An interactive résumé</h2>
+          <p class="lead">Roles across research, philanthropy, and the field. <em>Expand any line</em> to read more.</p>
         </div>
       </div>
 
-      <div class="portrait-wrap">
-        <PortraitSketch />
-        <p class="portrait-note">
-          Sketch based loosely on your public profile photo, simplified into an original line drawing.
-        </p>
+      <Experience />
+
+      <div class="edu">
+        <div><span class="eyebrow muted">Education</span></div>
+        <div class="edu__list">
+          {education.map((e) => (
+            <div class="edu__item">
+              <div class="edu__deg">{e.degree}
+                <span class="thesis">Thesis — <em>{e.thesis}</em>{e.award && <> · <span class="award">{e.award}</span></>}</span>
+              </div>
+              <div class="edu__meta">{e.school} · {e.gpa}<br />{e.year}</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="section-heading">
-      <p class="section-label">About</p>
-      <h2>Engineer, researcher, and builder</h2>
-    </div>
-
-    <div class="text-columns">
-      <div>
-        <p>
-          I am an engineer and researcher working on AI systems, measurement, and applied data
-          infrastructure. My work focuses on making language models more reliable in real-world
-          settings.
-        </p>
-        <p>
-          I currently build systems for enterprise AI deployment, including model distillation
-          pipelines, evaluation frameworks, and inference infrastructure designed to improve
-          performance over time.
-        </p>
+    <!-- SELECTED WORK -->
+    <section id="work">
+      <div class="sec-head">
+        <div><span class="eyebrow">02 — Selected work</span></div>
+        <div>
+          <h2>Projects &amp; papers</h2>
+          <p class="lead">Where survey methods, neuroscience, and machine learning meet — usually with code attached.</p>
+          <a class="sec-head__more" href="/projects/">All projects &amp; papers →</a>
+        </div>
       </div>
-      <div>
-        <p>
-          In parallel, I have worked extensively with large-scale survey data and neuroimaging
-          research, building pipelines that combine statistical modeling, data engineering, and
-          careful measurement design.
-        </p>
-        <p>
-          Across these areas, the common thread is an interest in systems that make hard processes
-          observable, testable, and dependable.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <section class="section home-preview">
-    <div class="section-heading compact-row">
-      <div>
-        <p class="section-label">Selected work</p>
-        <h2>Recent projects</h2>
-      </div>
-      <a class="jump-link" href="/projects/">See all projects</a>
-    </div>
-
-    <div class="plain-list">
-      {projects.slice(0, 2).map((project) => (
-        <article class="plain-item">
-          <div class="item-head">
-            <h3>{project.title}</h3>
-            <span class="period">{project.period}</span>
-          </div>
-          <p>{project.summary}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section home-preview">
-    <div class="section-heading compact-row">
-      <div>
-        <p class="section-label">Publications</p>
-        <h2>Writing and research</h2>
-      </div>
-      <a class="jump-link" href="/publications/">Open publications</a>
-    </div>
-
-    <div class="plain-list">
-      {publications.slice(0, 1).map((item) => (
-        <article class="plain-item">
-          <div class="item-head">
-            <h3>{item.title}</h3>
-            <span class="period">{item.year}</span>
-          </div>
-          <p class="meta">{item.venue}</p>
-          <p>{item.blurb}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-heading">
-      <p class="section-label">Current focus</p>
-      <h2>Now</h2>
-    </div>
-    <ul class="soft-list body-large">
-      {now.map((item) => (
-        <li>{item}</li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="section section-gridless">
-    <div class="mini-block">
-      <p class="section-label">Writing</p>
-      <ul class="soft-list">
-        {writing.map((item) => (
-          <li>{item}</li>
+      <div class="works">
+        {selectedWork.map((w) => (
+          <article class="work">
+            <div class="work__top"><span class="work__kind">{w.kind}</span><span class="work__status">{w.status}</span></div>
+            <h3>{w.title}</h3>
+            <p>{w.summary}</p>
+            <div class="work__links">
+              {w.links.map((l) => (
+                l.href
+                  ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+                  : <a class="dead">{l.label}</a>
+              ))}
+            </div>
+          </article>
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
 
-    <div class="mini-block">
-      <p class="section-label">Personal</p>
-      <p>{personal[0]}</p>
-      <a class="jump-link" href="/personal/">Read more</a>
-    </div>
-  </section>
+    <!-- WRITING -->
+    <section id="writing">
+      <div class="clip">
+        <div><span class="eyebrow">03 — Writing</span></div>
+        <div class="writing-list">
+          {writing.map((w) => (
+            <a class="writing-card" href={w.href} target="_blank" rel="noopener">
+              <div class="outlet">{w.outlet}</div>
+              <h3>{w.title}</h3>
+              <div class="by">{w.by}</div>
+              <span class="arrow">Read →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
-
-<style>
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(220px, 280px);
-    gap: 2.25rem;
-    align-items: start;
-  }
-
-  .hero-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 1.25rem;
-    margin-top: 1.35rem;
-  }
-
-  .portrait-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    padding-top: 0.35rem;
-  }
-
-  .portrait-note {
-    margin: 0;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.88rem;
-    max-width: 24ch;
-  }
-
-  .compact-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: end;
-  }
-
-  .section-gridless {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    border-bottom: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .mini-block p:last-child,
-  .mini-block ul {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 860px) {
-    .hero-grid,
-    .section-gridless {
-      grid-template-columns: 1fr;
-    }
-
-    .compact-row {
-      flex-direction: column;
-      align-items: start;
-    }
-
-    .portrait-wrap {
-      align-items: start;
-    }
-
-    .portrait-note {
-      text-align: left;
-    }
-  }
-</style>

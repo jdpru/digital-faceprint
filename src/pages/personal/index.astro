@@ -1,41 +1,41 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { now, personal } from '../../data/site';
+import { personal, reading } from '../../data/site';
 ---
 
 <Layout
   title="Personal — JD Pruett"
-  description="Personal notes and interests of JD Pruett."
-  active="personal"
+  description="Personal notes, interests, and a running reading list."
 >
-  <section class="section">
-    <p class="eyebrow">Personal</p>
-    <h1>Interests outside the technical work</h1>
-    <p class="lede">
-      Writing, interfaces, belief formation, and the strange ways people move through institutions,
-      products, and norms.
-    </p>
-  </section>
+  <main class="wrap">
+    <section class="subhero">
+      <span class="eyebrow">Personal</span>
+      <h1>Outside the <em>technical work</em></h1>
+      <p>Writing, interfaces, belief formation, and the strange ways people move through institutions, products, and norms.</p>
+    </section>
 
-  <section class="section">
-    <div class="plain-list">
-      {personal.map((item) => (
-        <article class="plain-item">
-          <p class="body-large">{item}</p>
-        </article>
-      ))}
+    <div class="prose-page">
+      {personal.map((p) => <p>{p}</p>)}
     </div>
-  </section>
 
-  <section class="section">
-    <div class="section-heading">
-      <p class="section-label">Now</p>
-      <h2>Current preoccupations</h2>
-    </div>
-    <ul class="soft-list body-large">
-      {now.map((item) => (
-        <li>{item}</li>
-      ))}
-    </ul>
-  </section>
+    <section>
+      <div class="sec-head">
+        <div><span class="eyebrow">Reading</span></div>
+        <div>
+          <h2>A running shelf</h2>
+          <p class="lead">Books and papers worth your time — and a note on why.</p>
+        </div>
+      </div>
+      <div class="readlist">
+        {reading.map((b) => (
+          <div class="bookrow">
+            <div>
+              <span class="bookrow__title">{b.title}</span><span class="bookrow__author">{b.author}</span>
+            </div>
+            <div class="bookrow__note">{b.note}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
 </Layout>
