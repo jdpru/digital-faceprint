@@ -14,9 +14,9 @@ const {
 
 const nav = [
   { href: '/#about', label: 'About' },
-  { href: '/#experience', label: 'Experience' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#writing', label: 'Writing' },
+  { href: '/#resume', label: 'Résumé' },
+  { href: '/#explore', label: 'Projects' },
+  { href: '/#contact', label: 'Contact' },
 ];
 ---
 
@@ -32,23 +32,23 @@ const nav = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="topbar">
+    <header class="topbar">
       <div class="wrap topbar__in">
         <a class="brand" href="/">{site.name}<span class="dot">.</span></a>
-        <nav class="nav">
+        <nav class="nav" aria-label="Primary">
           {nav.map((item) => <a href={item.href}>{item.label}</a>)}
         </nav>
       </div>
-    </div>
+    </header>
 
     <slot />
 
-    <footer>
+    <footer class="site-footer" id="contact">
       <div class="wrap foot">
         <div><span class="eyebrow">Contact</span></div>
         <div>
@@ -60,9 +60,9 @@ const nav = [
             <a href={site.links.cv} target="_blank" rel="noopener">Curriculum Vitae <span class="ar">↓</span></a>
             <a href={site.links.osf} target="_blank" rel="noopener">OSF <span class="ar">↗</span></a>
           </div>
-          <div class="colophon">
+          <p class="colophon">
             {site.contact.colophon.map((line) => <>{line}<br /></>)}
-          </div>
+          </p>
         </div>
       </div>
     </footer>

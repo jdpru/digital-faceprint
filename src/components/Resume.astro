@@ -1,0 +1,35 @@
+---
+import { experience, education, site } from '../data/site';
+---
+
+<div class="resume">
+  <div><span class="eyebrow muted">Experience</span></div>
+  <div>
+    <div class="resume__list">
+      {experience.map((e) => (
+        <div class="rrow">
+          <span class="rrow__yr">{e.years}</span>
+          <span>
+            <span class="rrow__role">{e.role}</span>
+            <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__edu">
+      {education.map((ed) => (
+        <div class="eduline">
+          <span class="deg">{ed.degree} <em>— {ed.award ?? ed.thesis}</em></span>
+          <span class="meta">{ed.school} · {ed.gpa} · {ed.year}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__cta">
+      <a class="btnlink" href={site.links.cv} target="_blank" rel="noopener">
+        Full curriculum vitæ <span class="ar">↓</span>
+      </a>
+    </div>
+  </div>
+</div>

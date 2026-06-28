@@ -11,7 +11,7 @@ export const site = {
   portrait: {
     src: '/sketch-portrait.png',
     alt: 'Pencil-sketch portrait of JD Pruett',
-    caption: 'drawn from life — say hello',
+    caption: 'drawn from life — the eyes follow you',
   },
 
   about: {
@@ -238,6 +238,52 @@ export const writing: Writing[] = [
     title: 'Poorly Timed',
     by: 'by JD Pruett and Kyle Pruett',
     href: '#',
+  },
+];
+
+export type Shelf = { num: string; title: string; blurb: string; href: string };
+
+export const explore: Shelf[] = [
+  {
+    num: 'I',
+    title: 'Professional Projects',
+    blurb:
+      'Research and engineering: survey methodology, neuroimaging, and machine-learning systems — usually with code and a paper attached.',
+    href: '/projects/',
+  },
+  {
+    num: 'II',
+    title: 'Personal Projects',
+    blurb:
+      'The things I build for no reason but my own curiosity. Experiments, tools, and happy dead-ends.',
+    href: '/personal/',
+  },
+  {
+    num: 'III',
+    title: 'Reading',
+    blurb:
+      'A running shelf of books and papers worth your time — and a few notes on why.',
+    href: '/reading/',
+  },
+];
+
+// Placeholder personal projects (prow-style rows).
+export const personalProjects: Work[] = [
+  {
+    kind: 'Tool · Side project',
+    status: 'Ongoing',
+    title: 'Placeholder project one',
+    summary:
+      'A small experiment built for curiosity. Replace this with a real personal project — what it is, why you made it, and what you learned.',
+    links: [{ label: 'GitHub →', href: '#' }],
+  },
+  {
+    kind: 'Experiment',
+    status: 'Archived',
+    title: 'Placeholder project two',
+    summary:
+      'Another happy dead-end. Swap in real content when ready; the layout handles links, status, and a short description.',
+    links: [{ label: 'Write-up →', href: '#' }],
   },
 ];
 

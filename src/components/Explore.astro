@@ -1,0 +1,14 @@
+---
+import { explore } from '../data/site';
+---
+
+<div class="explore">
+  {explore.map((card) => (
+    <a class="xcard" href={card.href}>
+      <span class="xcard__num">{card.num}</span>
+      <h3>{card.title}</h3>
+      <p>{card.blurb}</p>
+      <span class="xcard__go">Enter →</span>
+    </a>
+  ))}
+</div>

@@ -1,23 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { work } from '../../data/site';
+import { work, publications } from '../../data/site';
 ---
 
 <Layout
-  title="Projects & papers — JD Pruett"
-  description="Projects and papers across survey methodology, neuroscience, and machine learning."
+  title="Professional Projects — JD Pruett"
+  description="Research and engineering projects and papers across survey methodology, neuroscience, and machine learning."
 >
   <main class="wrap">
     <section class="subhero">
-      <span class="eyebrow">Selected work</span>
+      <span class="eyebrow">Professional</span>
       <h1>Projects &amp; <em>papers</em></h1>
       <p>Where survey methods, neuroscience, and machine learning meet — usually with code attached.</p>
     </section>
 
-    <div class="projects">
+    <div class="rows">
+      <p class="eyebrow muted rows__label">Projects</p>
       {work.map((w) => (
         <article class="prow">
-          <div>
+          <div class="prow__meta">
             <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
           </div>
           <h2>{w.title}</h2>
@@ -29,6 +30,17 @@ import { work } from '../../data/site';
                 : <a class="dead">{l.label}</a>
             ))}
           </div>
+        </article>
+      ))}
+
+      <p class="eyebrow muted rows__label">Papers &amp; publications</p>
+      {publications.map((p) => (
+        <article class="prow">
+          <div class="prow__meta">
+            <span class="prow__kind">{p.venue}</span><span class="prow__status">{p.year}</span>
+          </div>
+          <h2>{p.title}</h2>
+          <p>{p.blurb}</p>
         </article>
       ))}
     </div>

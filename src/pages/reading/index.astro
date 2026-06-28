@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { reading } from '../../data/site';
+---
+
+<Layout
+  title="Reading — JD Pruett"
+  description="A running shelf of books and papers worth your time."
+>
+  <main class="wrap">
+    <section class="subhero">
+      <span class="eyebrow">Reading</span>
+      <h1>A running <em>shelf</em></h1>
+      <p>Books and papers worth your time — and a note on why.</p>
+    </section>
+
+    <div class="readlist">
+      {reading.map((b) => (
+        <div class="bookrow">
+          <div>
+            <span class="bookrow__title">{b.title}</span><span class="bookrow__author">{b.author}</span>
+          </div>
+          <div class="bookrow__note">{b.note}</div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

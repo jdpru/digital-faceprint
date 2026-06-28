@@ -10,24 +10,25 @@ const ledeTail = idx >= 0 ? lede.slice(idx) : '';
 
 <header class="hero wrap">
   <div class="hero__grid">
+    <div class="hero__portrait">
+      <div class="portrait" id="portrait">
+        <div class="portrait__inner" id="portraitInner">
+          <img src={site.portrait.src} alt={site.portrait.alt} />
+          <div class="portrait__tint"></div>
+          <span class="pupil" id="pupilL"></span>
+          <span class="pupil" id="pupilR"></span>
+        </div>
+        <div class="portrait__frame"></div>
+      </div>
+      <p class="hero__cap"><b>↳</b> {site.portrait.caption}</p>
+    </div>
+
     <div class="hero__text">
-      <div class="eyebrow">{site.eyebrow}</div>
       <h1 set:html={site.name.replace(' ', '&nbsp;')} />
       <p class="lede">{ledeHead}<span class="ital">{ledeTail}</span></p>
       <div class="hero__meta">
         {site.chips.map((chip) => <span class="chip">{chip}</span>)}
       </div>
-    </div>
-
-    <div class="portrait" id="portrait">
-      <div class="portrait__inner" id="portraitInner">
-        <img src={site.portrait.src} alt={site.portrait.alt} />
-        <div class="portrait__tint"></div>
-        <span class="pupil" id="pupilL"></span>
-        <span class="pupil" id="pupilR"></span>
-      </div>
-      <div class="portrait__frame"></div>
-      <div class="portrait__cap"><b>↳</b> {site.portrait.caption}</div>
     </div>
   </div>
 </header>

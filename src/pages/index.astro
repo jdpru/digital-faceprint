@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Experience from '../components/Experience.astro';
-import { site, education, work, writing } from '../data/site';
-
-const selectedWork = work.slice(0, 4);
+import Resume from '../components/Resume.astro';
+import Explore from '../components/Explore.astro';
+import { site } from '../data/site';
 ---
 
 <Layout>
@@ -12,15 +11,18 @@ const selectedWork = work.slice(0, 4);
 
   <main class="wrap">
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="section" aria-labelledby="about-h">
       <div class="about-body">
-        <div class="about-side">
-          <span class="eyebrow muted">About</span>
-          <div style="margin-top:18px;">
+        <div>
+          <span class="eyebrow muted" id="about-h">About</span>
+          <dl class="about-facts" style="margin-top:18px;">
             {site.about.facts.map((f) => (
-              <><span class="k">{f.k}</span>{f.v}</>
+              <>
+                <dt>{f.k}</dt>
+                <dd>{f.v}</dd>
+              </>
             ))}
-          </div>
+          </dl>
         </div>
         <div class="prose">
           {site.about.prose.map((p) => <p>{p}</p>)}
@@ -28,77 +30,28 @@ const selectedWork = work.slice(0, 4);
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
+    <!-- RÉSUMÉ -->
+    <section id="resume" class="section" aria-labelledby="resume-h">
       <div class="sec-head">
-        <div><span class="eyebrow">01 — Experience</span></div>
+        <div><span class="eyebrow">01 — Résumé</span></div>
         <div>
-          <h2>An interactive résumé</h2>
-          <p class="lead">Roles across research, philanthropy, and the field. <em>Expand any line</em> to read more.</p>
+          <h2 id="resume-h">The short version</h2>
+          <p class="lead">Four roles across research, philanthropy, and the field — plus two degrees from Stanford.</p>
         </div>
       </div>
-
-      <Experience />
-
-      <div class="edu">
-        <div><span class="eyebrow muted">Education</span></div>
-        <div class="edu__list">
-          {education.map((e) => (
-            <div class="edu__item">
-              <div class="edu__deg">{e.degree}
-                <span class="thesis">Thesis — <em>{e.thesis}</em>{e.award && <> · <span class="award">{e.award}</span></>}</span>
-              </div>
-              <div class="edu__meta">{e.school} · {e.gpa}<br />{e.year}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Resume />
     </section>
 
-    <!-- SELECTED WORK -->
-    <section id="work">
+    <!-- EXPLORE -->
+    <section id="explore" class="section" aria-labelledby="explore-h">
       <div class="sec-head">
-        <div><span class="eyebrow">02 — Selected work</span></div>
+        <div><span class="eyebrow">02 — Explore</span></div>
         <div>
-          <h2>Projects &amp; papers</h2>
-          <p class="lead">Where survey methods, neuroscience, and machine learning meet — usually with code attached.</p>
-          <a class="sec-head__more" href="/projects/">All projects &amp; papers →</a>
+          <h2 id="explore-h">Three shelves</h2>
+          <p class="lead">The work I'm paid for, the work I'm not, and what I'm reading. <em>Open any one.</em></p>
         </div>
       </div>
-
-      <div class="works">
-        {selectedWork.map((w) => (
-          <article class="work">
-            <div class="work__top"><span class="work__kind">{w.kind}</span><span class="work__status">{w.status}</span></div>
-            <h3>{w.title}</h3>
-            <p>{w.summary}</p>
-            <div class="work__links">
-              {w.links.map((l) => (
-                l.href
-                  ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                  : <a class="dead">{l.label}</a>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <!-- WRITING -->
-    <section id="writing">
-      <div class="clip">
-        <div><span class="eyebrow">03 — Writing</span></div>
-        <div class="writing-list">
-          {writing.map((w) => (
-            <a class="writing-card" href={w.href} target="_blank" rel="noopener">
-              <div class="outlet">{w.outlet}</div>
-              <h3>{w.title}</h3>
-              <div class="by">{w.by}</div>
-              <span class="arrow">Read →</span>
-            </a>
-          ))}
-        </div>
-      </div>
+      <Explore />
     </section>
   </main>
 </Layout>
