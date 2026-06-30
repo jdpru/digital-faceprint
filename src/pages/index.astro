@@ -11,17 +11,34 @@ import { site } from '../data/site';
 
   <main class="wrap">
     <!-- ABOUT -->
-    <section id="about" class="section" aria-labelledby="about-h">
+    <section id="about" class="section" aria-label="About">
       <div class="about-body">
         <div>
-          <span class="eyebrow muted" id="about-h">About</span>
-          <dl class="about-facts" style="margin-top:18px;">
-            {site.about.facts.map((f) => (
-              <>
-                <dt>{f.k}</dt>
-                <dd>{f.v}</dd>
-              </>
-            ))}
+          <dl class="about-facts">
+            <dt>Based</dt>
+            <dd>{site.about.based}</dd>
+
+            <dt>At the moment occupied with</dt>
+            <dd>
+              <ul class="about-links">
+                {site.about.occupied.items.map((i) => (
+                  <li><a href={i.href} target="_blank" rel="noopener">{i.label}</a></li>
+                ))}
+              </ul>
+              <span class="updated"><span class="updated__dot"></span>Updated {site.about.occupied.updated}</span>
+            </dd>
+
+            <dt>Methods</dt>
+            <dd>{site.about.methods}</dd>
+
+            <dt>Mentors</dt>
+            <dd>
+              <ul class="mentors">
+                {site.about.mentors.map((m) => (
+                  <li><a href={m.href} target="_blank" rel="noopener">{m.name}</a></li>
+                ))}
+              </ul>
+            </dd>
           </dl>
         </div>
         <div class="prose">
@@ -33,10 +50,10 @@ import { site } from '../data/site';
     <!-- RÉSUMÉ -->
     <section id="resume" class="section" aria-labelledby="resume-h">
       <div class="sec-head">
-        <div><span class="eyebrow">01 — Résumé</span></div>
+        <div><span class="label">01 — Résumé</span></div>
         <div>
           <h2 id="resume-h">The short version</h2>
-          <p class="lead">Four roles across research, philanthropy, and the field — plus two degrees from Stanford.</p>
+          <p class="lead">Four roles across research, philanthropy, and the field — plus two degrees from Stanford. <em>Hover any line</em> for more.</p>
         </div>
       </div>
       <Resume />
@@ -45,7 +62,7 @@ import { site } from '../data/site';
     <!-- EXPLORE -->
     <section id="explore" class="section" aria-labelledby="explore-h">
       <div class="sec-head">
-        <div><span class="eyebrow">02 — Explore</span></div>
+        <div><span class="label">02 — Explore</span></div>
         <div>
           <h2 id="explore-h">Three shelves</h2>
           <p class="lead">The work I'm paid for, the work I'm not, and what I'm reading. <em>Open any one.</em></p>

@@ -3,16 +3,27 @@ import { experience, education, site } from '../data/site';
 ---
 
 <div class="resume">
-  <div><span class="eyebrow muted">Experience</span></div>
+  <div><span class="label">Experience</span></div>
   <div>
     <div class="resume__list">
       {experience.map((e) => (
-        <div class="rrow">
+        <div class="rrow" tabindex="0">
           <span class="rrow__yr">{e.years}</span>
-          <span>
+          <div class="rrow__main">
             <span class="rrow__role">{e.role}</span>
             <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
-          </span>
+            <div class="rrow__panel">
+              <div class="rrow__panelin">
+                <div class="rrow__desc">
+                  {e.description.map((p) => <p>{p}</p>)}
+                  <div class="rrow__tags">
+                    {e.tags.map((t) => <span>{t}</span>)}
+                  </div>
+                </div>
+                <div class="rrow__photo" aria-hidden="true"><span>Photo</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       ))}
     </div>

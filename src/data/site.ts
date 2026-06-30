@@ -9,17 +9,26 @@ export const site = {
   ledeEmphasis: 'machines we use to make sense of both.',
   chips: ['Stanford · Economics', 'M.S. Symbolic Systems', 'AI Engineer'],
   portrait: {
-    src: '/sketch-portrait.png',
-    alt: 'Pencil-sketch portrait of JD Pruett',
-    caption: 'drawn from life — the eyes follow you',
+    src: '/portrait.png',
+    alt: 'Painted portrait of JD Pruett',
+    caption: 'painted from life',
   },
 
   about: {
-    facts: [
-      { k: 'Based', v: 'Stanford · California' },
-      { k: 'Working on', v: 'AI systems & data infrastructure' },
-      { k: 'Methods', v: 'Surveys · fMRI · Deep learning' },
-      { k: 'Advisors', v: 'Jon Krosnick · Russ Poldrack' },
+    based: 'San Francisco',
+    occupied: {
+      updated: 'June 2026',
+      items: [
+        { label: 'Varick Agents', href: 'https://www.varickagents.com/' },
+        { label: 'Ontologies of Cognitive Control', href: 'https://poldracklab.org' },
+        { label: 'Euterria', href: 'https://euterria.org' },
+      ],
+    },
+    methods: 'Surveys, fMRI pipelines, deep learning',
+    mentors: [
+      { name: 'Jon Krosnick', href: 'https://profiles.stanford.edu/jon-krosnick' },
+      { name: 'Russ Poldrack', href: 'https://profiles.stanford.edu/russell-poldrack' },
+      { name: 'Steve Ballmer', href: 'https://en.wikipedia.org/wiki/Steve_Ballmer' },
     ],
     prose: [
       'Trained as an economist and a cognitive scientist, I spend most of my time on a single question: how do we measure things that resist measurement — public opinion, self-control, the accuracy of a poll — and how do we build the systems that make those measurements legible?',
