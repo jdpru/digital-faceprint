@@ -17,7 +17,6 @@ export const site = {
   about: {
     based: 'San Francisco',
     occupied: {
-      updated: 'June 2026',
       items: [
         { label: 'Varick Agents', href: 'https://www.varickagents.com/' },
         { label: 'Ontologies of Cognitive Control', href: 'https://poldracklab.org' },

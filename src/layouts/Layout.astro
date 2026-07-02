@@ -14,8 +14,7 @@ const {
 
 const nav = [
   { href: '/#about', label: 'About' },
-  { href: '/#resume', label: 'Résumé' },
-  { href: '/#explore', label: 'Projects' },
+  { href: '/#explore', label: 'Work' },
 ];
 ---
 
@@ -39,11 +38,11 @@ const nav = [
     <header class="topbar">
       <div class="wrap topbar__in">
         <a class="brand" href="/" aria-label={`${site.name} — home`}>
+          <span>{site.name}<span class="dot">.</span></span>
           <svg class="brand__home" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M3 11.3 12 4l9 7.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M5.4 9.6V20h13.2V9.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-          <span>{site.name}<span class="dot">.</span></span>
         </a>
         <nav class="nav" aria-label="Primary">
           {nav.map((item) => <a href={item.href}>{item.label}</a>)}

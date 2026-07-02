@@ -122,10 +122,12 @@ em { font-style: italic; }
 }
 .brand .dot { color: var(--blue); }
 .brand__home {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: var(--blue);
   flex: none;
+  position: relative;
+  top: -1px;
   transition: transform 0.25s var(--ease);
 }
 .brand:hover .brand__home { transform: translateY(-1px); }
@@ -286,8 +288,12 @@ em { font-style: italic; }
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1px;
 }
+.mentors { gap: 1px; }
+/* more space between rows + hanging indent so a wrapped item reads as
+   spillover, not a new row */
+.about-links { gap: 7px; }
+.about-links li { padding-left: 1em; text-indent: -1em; }
 .about-links a,
 .mentors a {
   color: var(--ink);
@@ -298,27 +304,6 @@ em { font-style: italic; }
 .mentors a:hover {
   color: var(--blue);
   border-bottom-color: color-mix(in srgb, var(--blue) 40%, transparent);
-}
-
-/* "last updated" badge */
-.updated {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  font-family: var(--sans);
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.updated__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 3px var(--blue-wash);
 }
 
 /* ---------- brief résumé (no overlap: fixed year col + flexible body) ---------- */
