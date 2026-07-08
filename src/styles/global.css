@@ -291,7 +291,6 @@ em { font-style: italic; }
   border-radius: 100px;
   padding: 5px 15px;
   background: var(--paper-2);
-  text-transform: lowercase;
 }
 
 /* ---------- section scaffolding ---------- */

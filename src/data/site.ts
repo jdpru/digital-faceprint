@@ -6,7 +6,7 @@ export const site = {
   wordmark: 'Jefferson Pruett', // top-left brand
   eyebrow: 'Survey research · Neuroscience · Machine learning',
   lede: 'I work at the seam between survey methodology, neuroscience, and the machines we use to make sense of both.',
-  chips: ['Econ & Neuro · Stanford', 'Head of Engineering · Varick'],
+  chips: ['Stanford · Econ & Neuro', 'Varick · Head of Engineering'],
   portrait: {
     src: '/portrait.png',
     alt: 'Painted portrait of JD Pruett',
