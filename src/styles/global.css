@@ -318,8 +318,6 @@ em { font-style: italic; }
   line-height: 1.85;
   color: var(--ink-soft);
 }
-/* keep only the occupied-with list lowercase; labels + values are natural case */
-.about-links { text-transform: lowercase; }
 .about-facts dt {
   font-style: italic;
   font-size: 14px;

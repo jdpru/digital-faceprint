@@ -129,7 +129,7 @@ export const education: Education[] = [
     year: '2025',
   },
   {
-    degree: 'B.A. Economics, with Honors',
+    degree: 'B.S. Economics, with Honors',
     thesis: 'Assessing Accuracy & Weighting Effects in Matched Sample Surveys',
     award: 'Firestone Medal',
     awardHref:
