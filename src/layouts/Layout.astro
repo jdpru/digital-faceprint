@@ -14,7 +14,7 @@ const {
 
 const nav = [
   { href: '/#about', label: 'About' },
-  { href: '/#explore', label: 'Work' },
+  { href: '/#resume', label: 'Work' },
 ];
 ---
 
@@ -37,11 +37,10 @@ const nav = [
   <body>
     <header class="topbar">
       <div class="wrap topbar__in">
-        <a class="brand" href="/" aria-label={`${site.name} — home`}>
-          <span>{site.name}<span class="dot">.</span></span>
+        <a class="brand" href="/" aria-label={`${site.wordmark} — home`}>
+          <span>{site.wordmark}<span class="dot">.</span></span>
           <svg class="brand__home" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M3 11.3 12 4l9 7.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M5.4 9.6V20h13.2V9.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            <path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10z" />
           </svg>
         </a>
         <nav class="nav" aria-label="Primary">
@@ -51,24 +50,5 @@ const nav = [
     </header>
 
     <slot />
-
-    <footer class="site-footer" id="contact">
-      <div class="wrap foot">
-        <div><span class="eyebrow">Contact</span></div>
-        <div>
-          <h2>Get in touch</h2>
-          <p>{site.contact.blurb}</p>
-          <div class="foot-links">
-            <a href={`mailto:${site.email}`}>Email <span class="ar">↗</span></a>
-            <a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
-            <a href={site.links.cv} target="_blank" rel="noopener">Curriculum Vitae <span class="ar">↓</span></a>
-            <a href={site.links.osf} target="_blank" rel="noopener">OSF <span class="ar">↗</span></a>
-          </div>
-          <p class="colophon">
-            {site.contact.colophon.map((line) => <>{line}<br /></>)}
-          </p>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>

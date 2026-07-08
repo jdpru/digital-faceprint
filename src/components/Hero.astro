@@ -1,12 +1,6 @@
 ---
 import { site } from '../data/site';
 import Socials from './Socials.astro';
-
-// Split the lede so the trailing fragment can be italicised.
-const { lede, ledeEmphasis } = site;
-const idx = ledeEmphasis ? lede.indexOf(ledeEmphasis) : -1;
-const ledeHead = idx >= 0 ? lede.slice(0, idx) : lede;
-const ledeTail = idx >= 0 ? lede.slice(idx) : '';
 ---
 
 <header class="hero wrap">
@@ -19,11 +13,12 @@ const ledeTail = idx >= 0 ? lede.slice(idx) : '';
         <div class="portrait__frame"></div>
       </div>
       <Socials />
+      <a class="hero__email" href={`mailto:${site.email}`}>email: {site.email}</a>
     </div>
 
     <div class="hero__text">
       <h1 set:html={site.name.replace(' ', '&nbsp;')} />
-      <p class="lede">{ledeHead}<span class="ital">{ledeTail}</span></p>
+      <p class="lede">{site.lede}</p>
       <div class="hero__meta">
         {site.chips.map((chip) => <span class="chip">{chip}</span>)}
       </div>

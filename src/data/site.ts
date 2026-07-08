@@ -2,16 +2,14 @@
 // NOTE: copy below is placeholder — swap with real content when ready.
 
 export const site = {
-  name: 'JD Pruett',
+  name: 'JD Pruett', // display name in the hero
+  wordmark: 'Jefferson Pruett', // top-left brand
   eyebrow: 'Survey research · Neuroscience · Machine learning',
   lede: 'I work at the seam between survey methodology, neuroscience, and the machines we use to make sense of both.',
-  // emphasized (italic) fragment inside the lede
-  ledeEmphasis: 'machines we use to make sense of both.',
-  chips: ['Stanford · Economics', 'M.S. Symbolic Systems', 'AI Engineer'],
+  chips: ['Stanford · Economics + Neuroscience', 'AI Engineer'],
   portrait: {
     src: '/portrait.png',
     alt: 'Painted portrait of JD Pruett',
-    caption: 'painted from life',
   },
 
   about: {
@@ -45,7 +43,7 @@ export const site = {
     ],
   },
 
-  email: 'hello@jdpruett.com',
+  email: 'hi@jdpruett.xyz',
   links: {
     linkedin: 'https://www.linkedin.com/in/jdpruett/',
     github: 'https://github.com/jdpru',
@@ -111,21 +109,22 @@ export const experience: ExperienceEntry[] = [
   },
 ];
 
+export const educationSchool = 'Stanford University';
+
 export type Education = {
   degree: string;
   thesis: string;
   award?: string;
-  school: string;
+  awardHref?: string;
   gpa: string;
   year: string;
 };
 
 export const education: Education[] = [
   {
-    degree: 'M.S. Symbolic Systems',
+    degree: 'M.S. Neuroscience & AI',
     thesis:
       'Ontologies of Cognitive Control: Evidence from Self-Regulatory Interventions in Binge Eating & Smoking',
-    school: 'Stanford',
     gpa: 'GPA 4.0',
     year: '2025',
   },
@@ -133,7 +132,8 @@ export const education: Education[] = [
     degree: 'B.A. Economics, with Honors',
     thesis: 'Assessing Accuracy & Weighting Effects in Matched Sample Surveys',
     award: 'Firestone Medal',
-    school: 'Stanford',
+    awardHref:
+      'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
     gpa: 'GPA 3.9',
     year: '2024',
   },

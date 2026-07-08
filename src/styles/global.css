@@ -216,8 +216,21 @@ em { font-style: italic; }
 }
 .socials a:hover { color: var(--blue); transform: translateY(-1px); }
 .socials svg { width: 100%; height: 100%; }
+.hero__email {
+  display: inline-block;
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--ink-faint);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hero__email:hover {
+  color: var(--blue);
+  border-bottom-color: color-mix(in srgb, var(--blue) 40%, transparent);
+}
 .hero h1 {
-  font-size: clamp(40px, 5.2vw, 72px);
+  font-size: clamp(38px, 4.6vw, 64px);
   line-height: 0.99;
   margin: 0 0 0.3em;
   font-weight: 430;
@@ -375,21 +388,32 @@ em { font-style: italic; }
   justify-content: center;
 }
 .rrow__photo span { font-style: italic; font-size: 13px; color: var(--ink-faint); }
-.resume__edu { margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
+/* education */
+.edu { margin-top: 36px; }
+.edu__label { display: block; margin-left: 8px; margin-bottom: 10px; }
+.edu__school { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 2px; }
+.edu__list { display: flex; flex-direction: column; }
 .eduline {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 24px;
   align-items: baseline;
-  flex-wrap: wrap;
+  padding: 14px 0;
   border-bottom: 1px dotted var(--rule);
-  padding-bottom: 14px;
 }
 .eduline:last-child { border-bottom: 0; }
-.eduline .deg { font-size: 17px; }
-.eduline .deg em { color: var(--ink-soft); font-size: 14.5px; }
-.eduline .meta { font-style: italic; font-size: 14px; color: var(--ink-faint); white-space: nowrap; }
-.resume__cta { margin-top: 28px; }
+.edu__deg { min-width: 0; }
+.edu__deg .deg { font-size: 17px; }
+.edu__deg .thesis { display: block; color: var(--ink-soft); font-size: 14.5px; margin-top: 2px; }
+.edu__deg .thesis em { font-style: italic; }
+.edu__deg .award { display: inline-block; margin-top: 5px; font-style: italic; font-size: 14px; color: var(--blue); }
+.edu__deg .award a {
+  border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.edu__deg .award a:hover { color: var(--blue-2); border-color: var(--blue-2); }
+.eduline .meta { font-style: italic; font-size: 14px; color: var(--ink-faint); white-space: nowrap; text-align: right; }
+.resume__cta { margin-top: 30px; }
 
 .btnlink {
   font-style: italic;
@@ -438,35 +462,6 @@ em { font-style: italic; }
   transition: gap 0.25s ease;
 }
 .xcard:hover .xcard__go { gap: 14px; }
-
-/* ---------- footer / contact ---------- */
-.site-footer { border-top: 1px solid var(--rule); padding: clamp(44px, 7vh, 64px) 0 70px; scroll-margin-top: var(--bar-h); }
-.foot { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
-.foot h2 { font-size: 30px; font-weight: 450; margin: 0 0 6px; letter-spacing: -0.015em; }
-.foot p { color: var(--ink-soft); max-width: 42ch; margin: 0 0 26px; }
-.foot-links { display: flex; flex-wrap: wrap; gap: 12px; }
-.foot-links a {
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink);
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 9px 18px;
-  background: var(--paper);
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-}
-.foot-links a:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
-.foot-links a .ar { opacity: 0.5; }
-.colophon {
-  margin-top: 40px;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-faint);
-  line-height: 1.75;
-}
 
 /* ---------- subpages ---------- */
 .subhero { padding: clamp(40px, 7vh, 64px) 0 30px; }
