@@ -16,7 +16,7 @@ export const site = {
     based: 'San Francisco, CA',
     occupied: {
       items: [
-        { label: 'Varick Agents', href: 'https://www.varickagents.com/' },
+        { label: 'Varick', href: 'https://www.varickagents.com/' },
         { label: 'Ontologies of Cognitive Control', href: 'https://poldracklab.org' },
         { label: 'Euterria', href: 'https://euterria.org' },
       ],
