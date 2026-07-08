@@ -1,11 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { work } from '../../data/site';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <Layout
-  title="Professional Projects — JD Pruett"
-  description="Research and engineering projects and papers across survey methodology, neuroscience, and machine learning."
+  title="Projects — JD Pruett"
+  description="Research and engineering projects across survey methodology, neuroscience, and machine learning."
 >
   <main class="wrap">
     <header class="subhero subhero--compact">
@@ -14,33 +18,33 @@ import { work } from '../../data/site';
 
     <div class="ppx" id="ppx">
       <ol class="ppx__index" id="ppxIndex">
-        <li class="ppx__lead">{work.length} projects — hover to browse</li>
-        {work.map((w, i) => (
+        <li class="ppx__lead">{projects.length} projects — hover to browse</li>
+        {projects.map((p, i) => (
           <li class={`ppx__item${i === 0 ? ' is-active' : ''}`} data-i={i}>
             <span class="ppx__num">{String(i + 1).padStart(2, '0')}</span>
             <span class="ppx__t">
-              <span class="ppx__title">{w.title}</span>
-              <span class="ppx__ik">{w.kind}</span>
+              <span class="ppx__title">{p.data.title}</span>
+              <span class="ppx__ik">{p.data.kind}</span>
             </span>
           </li>
         ))}
       </ol>
 
       <div class="ppx__stage" id="ppxStage">
-        {work.map((w, i) => (
+        {projects.map((p, i) => (
           <article class={`ppx__panel${i === 0 ? ' is-active' : ''}`} data-i={i}>
-            <div class="ppx__media"><span class="ph">Image — {w.kind}</span></div>
+            <a class="ppx__media" href={`/projects/${p.id}/`}>
+              {p.data.cover
+                ? <img src={p.data.cover} alt={p.data.title} />
+                : <span class="ph">Image — {p.data.kind}</span>}
+            </a>
             <div class="ppx__meta">
-              <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
+              <span class="prow__kind">{p.data.kind}</span><span class="prow__status">{p.data.status}</span>
             </div>
-            <h2>{w.title}</h2>
-            <p>{w.summary}</p>
+            <h2><a href={`/projects/${p.id}/`}>{p.data.title}</a></h2>
+            <p>{p.data.summary}</p>
             <div class="prow__links">
-              {w.links.map((l) => (
-                l.href
-                  ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                  : <a class="dead">{l.label}</a>
-              ))}
+              <a href={`/projects/${p.id}/`}>Read the write-up →</a>
             </div>
           </article>
         ))}

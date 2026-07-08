@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+---
+
+<Layout title={`${d.title} — JD Pruett`} description={d.summary}>
+  <main class="wrap feature">
+    <a class="feature__back" href="/projects/">← projects</a>
+
+    {d.cover
+      ? <div class="feature__cover"><img src={d.cover} alt={d.title} /></div>
+      : <div class="feature__cover feature__cover--ph"><span class="ph">Image — {d.kind}</span></div>}
+
+    <div class="feature__meta">
+      <span class="prow__kind">{d.kind}</span><span class="prow__status">{d.status}</span>
+    </div>
+    <h1 class="feature__title">{d.title}</h1>
+    {d.tags.length > 0 && (
+      <div class="prow__tags">{d.tags.map((t) => <span>{t}</span>)}</div>
+    )}
+
+    <div class="prose-body">
+      <Content />
+    </div>
+
+    {(d.links.length > 0 || d.pdf) && (
+      <div class="feature__links prow__links">
+        {d.links.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+        {d.pdf && <a href={d.pdf} target="_blank" rel="noopener">PDF ↓</a>}
+      </div>
+    )}
+  </main>
+</Layout>

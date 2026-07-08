@@ -1,2 +1,9 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({});
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  integrations: [mdx()],
+  markdown: {
+    shikiConfig: { theme: 'github-light', wrap: false },
+  },
+});
