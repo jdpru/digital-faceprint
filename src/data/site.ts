@@ -30,7 +30,7 @@ export const site = {
     prose: [
       'Trained as an economist and a cognitive scientist, I spend most of my time on a single question: how do we measure things that resist measurement — public opinion, self-control, the accuracy of a poll — and how do we build the systems that make those measurements legible?',
       'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines — from neuroimaging on high-performance clusters to survey infrastructure for fifteen thousand students in West Africa.',
-      'I care about open, reproducible work, and about communicating it clearly enough that it actually gets used. The sketch up there follows you around; everything else here is meant to stay still and be read.',
+      'I care about open, reproducible work, and about communicating it clearly enough that it actually gets used.',
     ],
   },
 

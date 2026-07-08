@@ -120,7 +120,7 @@ em { font-style: italic; }
   align-items: center;
   gap: 9px;
 }
-.brand .dot { color: var(--blue); }
+.brand .dot { color: var(--blue); font-size: 1.6em; line-height: 0; }
 .brand__home {
   width: 15px;
   height: 15px;
