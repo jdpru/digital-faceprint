@@ -1,95 +1,18 @@
 ---
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import ProjectFeature from '../../components/ProjectFeature.astro';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order,
 );
+const project = projects[0];
+const { Content } = await render(project);
 ---
 
 <Layout
   title="Projects — JD Pruett"
-  description="Research and engineering projects across survey methodology, neuroscience, and machine learning."
+  description="Research and engineering projects, written up as features."
 >
-  <main class="wrap">
-    <header class="subhero subhero--compact">
-      <h1>projects</h1>
-    </header>
-
-    <div class="ppx" id="ppx">
-      <ol class="ppx__index" id="ppxIndex">
-        <li class="ppx__lead">{projects.length} projects — hover to browse</li>
-        {projects.map((p, i) => (
-          <li class={`ppx__item${i === 0 ? ' is-active' : ''}`} data-i={i}>
-            <span class="ppx__num">{String(i + 1).padStart(2, '0')}</span>
-            <span class="ppx__t">
-              <span class="ppx__title">{p.data.title}</span>
-              <span class="ppx__ik">{p.data.kind}</span>
-            </span>
-          </li>
-        ))}
-      </ol>
-
-      <div class="ppx__stage" id="ppxStage">
-        {projects.map((p, i) => (
-          <article class={`ppx__panel${i === 0 ? ' is-active' : ''}`} data-i={i}>
-            <a class="ppx__media" href={`/projects/${p.id}/`}>
-              {p.data.cover
-                ? <img src={p.data.cover} alt={p.data.title} />
-                : <span class="ph">Image — {p.data.kind}</span>}
-            </a>
-            <div class="ppx__meta">
-              <span class="prow__kind">{p.data.kind}</span><span class="prow__status">{p.data.status}</span>
-            </div>
-            <h2><a href={`/projects/${p.id}/`}>{p.data.title}</a></h2>
-            <p>{p.data.summary}</p>
-            <div class="prow__links">
-              <a href={`/projects/${p.id}/`}>Read the write-up →</a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </main>
+  <ProjectFeature project={project} projects={projects} Content={Content} />
 </Layout>
-
-<script>
-  (function () {
-    const index = document.getElementById('ppxIndex');
-    const stage = document.getElementById('ppxStage');
-    if (!index || !stage) return;
-    const items = [...index.querySelectorAll('.ppx__item')];
-    const panels = [...stage.querySelectorAll('.ppx__panel')];
-    let pinned = 0;
-    let current = -1;
-
-    function syncHeight() {
-      const p = panels[current];
-      if (p) stage.style.height = p.offsetHeight + 'px';
-    }
-    function setActive(i) {
-      if (i === current) return;
-      current = i;
-      items.forEach((el, n) => el.classList.toggle('is-active', n === i));
-      panels.forEach((el, n) => el.classList.toggle('is-active', n === i));
-      syncHeight();
-    }
-
-    items.forEach((el) => {
-      const i = Number(el.dataset.i);
-      el.addEventListener('mouseenter', () => setActive(i));
-      el.addEventListener('click', () => { pinned = i; setActive(i); });
-    });
-    index.addEventListener('mouseleave', () => setActive(pinned));
-
-    if ('ResizeObserver' in window) {
-      const ro = new ResizeObserver(syncHeight);
-      panels.forEach((p) => ro.observe(p));
-    }
-    window.addEventListener('resize', syncHeight);
-    window.addEventListener('load', syncHeight);
-
-    setActive(0);
-    requestAnimationFrame(syncHeight);
-  })();
-</script>

@@ -4,19 +4,31 @@ kind: Computational chemistry
 status: Paper
 order: 5
 summary: Binding analysis of psychoactive ligands at the 5-HT2A receptor, examining binding energies and nonpolar interactions.
-tags:
-  - SwissDock
-  - PyMol
-  - Docking
+dek: Why do some molecules that dock at the same receptor feel so different? The answer starts with how, and how tightly, they hold on.
+date: November 2025
+readingTime: 4 min read
+heroCaption: Fig. 1 — A docked ligand in the 5-HT2A binding pocket.
+tags: [SwissDock, PyMol, Docking]
 cover: ""
 pdf: ""
 links:
   - label: PDF →
     href: "#"
 ---
+import EndMark from '../../components/feature/EndMark.astro';
 
-Binding analysis with SwissDock and PyMol, examining binding energies and the
-role of nonpolar interactions in stabilizing 5-HT2A bonding across a series of
-ligands.
+The 5-HT2A receptor is the shared doorway for a whole class of psychoactive molecules. What separates them is the fine print: where they sit in the pocket, and how the pocket holds them.
 
-_Draft write-up — replace this body with the full feature._
+## The analysis
+
+Using SwissDock and PyMol, this project estimates binding energies across a series of ligands and looks closely at the nonpolar interactions that stabilize each pose.
+
+> The interesting variance isn't in whether a molecule binds — it's in what, exactly, is doing the holding.
+
+## Takeaway
+
+Nonpolar contacts account for a surprising share of the stability, which reframes what "fit" means for this pocket. <EndMark />
+
+## References & notes
+
+1. Structures and docking parameters available on request.

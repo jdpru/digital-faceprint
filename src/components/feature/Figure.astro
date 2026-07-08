@@ -1,0 +1,14 @@
+---
+interface Props {
+  src?: string;
+  caption?: string;
+  label?: string;
+}
+const { src, caption, label } = Astro.props;
+---
+<figure class="feature-fig">
+  {src
+    ? <img src={src} alt={caption ?? ''} />
+    : <div class="feature-fig__ph"><span>{label ?? 'Figure'}</span></div>}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

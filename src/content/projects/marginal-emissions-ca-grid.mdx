@@ -4,19 +4,31 @@ kind: Energy · Econometrics
 status: Paper
 order: 6
 summary: A scraper aggregating 5M CAISO data points over six years, with a simulation quantifying marginal emissions offset per MWh of renewables.
-tags:
-  - Python
-  - R
-  - Fixed effects
+dek: A new solar panel doesn't offset the average power plant — it offsets whichever one was about to run next. That distinction is worth a lot of carbon.
+date: October 2025
+readingTime: 5 min read
+heroCaption: Fig. 1 — Marginal emissions factor across the day, California grid.
+tags: [Python, R, Fixed effects]
 cover: ""
 pdf: ""
 links:
   - label: PDF →
     href: "#"
 ---
+import EndMark from '../../components/feature/EndMark.astro';
 
-A Python scraper aggregating 5M data points over six years from CAISO, with an R
-simulation quantifying marginal emissions offset per MWh of renewable
-generation, plus a fixed-effects GLM and heterogeneity analysis.
+The climate value of a renewable megawatt-hour depends on what it displaces — and the grid displaces at the margin, not the average. Getting that number right changes which projects are worth building.
 
-_Draft write-up — replace this body with the full feature._
+## The data
+
+A Python scraper pulls roughly five million data points over six years from CAISO; an R simulation then estimates the marginal emissions offset per MWh of renewable generation.
+
+> Average emissions tell you about the grid you have. Marginal emissions tell you about the grid you change.
+
+## What it estimates
+
+A fixed-effects model, with a heterogeneity analysis by hour and season, puts a defensible figure on the offset — and shows how much it swings with timing. <EndMark />
+
+## References & notes
+
+1. Scraper and simulation code in the repository.

@@ -11,6 +11,10 @@ const projects = defineCollection({
     status: z.string(),
     order: z.number().default(0),
     summary: z.string(),
+    dek: z.string().optional(), // italic subtitle under the title
+    date: z.string().optional(), // e.g. "March 2026"
+    readingTime: z.string().optional(), // e.g. "7 min read"
+    heroCaption: z.string().optional(), // caption under the hero figure
     tags: z.array(z.string()).default([]),
     // media/paths live under /public (CMS-friendly); optional for now
     cover: z.string().optional(),

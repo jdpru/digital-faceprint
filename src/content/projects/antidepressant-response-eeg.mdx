@@ -4,10 +4,11 @@ kind: EEG · Deep learning
 status: Paper
 order: 3
 summary: Variational autoencoders learn latent EEG representations to predict who responds to which antidepressant.
-tags:
-  - VAE
-  - EEG
-  - PyTorch
+dek: Two people with the same diagnosis can need opposite drugs. Can the resting brain say which, before the months of trial and error?
+date: January 2026
+readingTime: 5 min read
+heroCaption: Fig. 1 — Latent EEG space, colored by eventual treatment response.
+tags: [VAE, EEG, PyTorch]
 cover: ""
 pdf: ""
 links:
@@ -16,10 +17,21 @@ links:
   - label: GitHub →
     href: "#"
 ---
+import Figure from '../../components/feature/Figure.astro';
+import EndMark from '../../components/feature/EndMark.astro';
 
-Semi-supervised and recurrent variational autoencoders learn latent EEG
-representations, paired with logistic classifiers and dual-loss training.
-Evaluated with ROC-AUC against clinical and combined baselines — toward a usable
-signal for who responds to which antidepressant.
+Choosing an antidepressant is still largely trial and error: a drug, a six-week wait, a verdict, and often a restart. If the resting EEG carried a usable signal about who responds to what, that loop could get much shorter.
 
-_Draft write-up — replace this body with the full feature._
+## The approach
+
+Semi-supervised and recurrent variational autoencoders compress raw EEG into a latent representation, which a light classifier then reads for response. Training pairs a reconstruction loss with a prediction loss so the space stays both faithful and useful.
+
+> The autoencoder is doing the honest work: it has to describe the signal before it is allowed to guess about it.
+
+## Where it lands
+
+Evaluated with ROC-AUC against clinical and combined baselines, the latent features add signal over demographics alone — modest, but in the direction that matters. <EndMark />
+
+## References & notes
+
+1. Baselines and splits documented in the repository.

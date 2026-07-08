@@ -1,0 +1,71 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  projects: CollectionEntry<'projects'>[];
+  Content: any;
+}
+
+const { project, projects, Content } = Astro.props;
+const d = project.data;
+const eyebrow = `Feature · ${d.kind}`;
+const byline = ['JD Pruett', d.readingTime, d.date].filter(Boolean).join('  ·  ');
+---
+
+<main class="wrap-wide pfeed">
+  <aside class="pfeed__index">
+    <p class="pfeed__lead">Projects</p>
+    <ol>
+      {projects.map((p, i) => (
+        <li class={p.id === project.id ? 'is-active' : ''}>
+          <a href={`/projects/${p.id}/`}>
+            <span class="pfeed__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="pfeed__t">
+              <span class="pfeed__title">{p.data.title}</span>
+              <span class="pfeed__k">{p.data.kind}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </aside>
+
+  <article class="pfeed__article feature-article">
+    <header class="feature-head">
+      <p class="feature-eyebrow">{eyebrow}</p>
+      <h1>{d.title}</h1>
+      {d.dek && <p class="feature-dek">{d.dek}</p>}
+      {byline && <p class="feature-byline">{byline}</p>}
+    </header>
+
+    <figure class="feature-fig feature-fig--hero">
+      {d.cover
+        ? <img src={d.cover} alt={d.title} />
+        : <div class="feature-fig__ph"><span>Hero figure — {d.kind}</span></div>}
+      {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
+    </figure>
+
+    <div class="prose-body">
+      <Content />
+    </div>
+
+    {(d.links.length > 0 || d.pdf) && (
+      <div class="feature-links">
+        {d.links.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+        {d.pdf && <a href={d.pdf} target="_blank" rel="noopener">PDF ↓</a>}
+      </div>
+    )}
+
+    <footer class="feature-next">
+      <p class="feature-eyebrow">Next</p>
+      <h2>Keep reading</h2>
+      <p>One project, written up as a feature. The rest of the shelf is a click away.</p>
+      <div class="feature-links">
+        <a href="/#explore">All projects →</a>
+        <a href="/reading/">Reading →</a>
+        <a href="/">Back to start ↑</a>
+      </div>
+    </footer>
+  </article>
+</main>

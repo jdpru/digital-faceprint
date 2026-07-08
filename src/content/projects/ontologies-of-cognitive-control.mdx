@@ -1,30 +1,48 @@
 ---
 title: Ontologies of Cognitive Control
-kind: fMRI · Intervention
+kind: Cognitive Neuroscience
 status: Finalizing manuscript
 order: 1
 summary: A two-stage fMRI study paired with a mobile intervention, testing whether self-control brain regions predict treatment efficacy.
-tags:
-  - fMRI
-  - Python · SLURM
-  - GLM
-  - Preregistration
+dek: Can the brain's machinery for restraint tell us, in advance, who a treatment will actually help? A two-stage study treats self-control as something you can map.
+date: March 2026
+readingTime: 7 min read
+heroCaption: Fig. 1 — A whole-brain contrast for successful restraint. The regions that light up are the study's starting question, not its answer.
+tags: [fMRI, Python, GLM]
 cover: ""
 pdf: ""
 links: []
 ---
+import Figure from '../../components/feature/Figure.astro';
+import Display from '../../components/feature/Display.astro';
+import EndMark from '../../components/feature/EndMark.astro';
 
-A two-stage fMRI study paired with a mobile self-control intervention, testing
-whether activity in cognitive-control circuits predicts who responds to
-treatment. It integrates task-based fMRI, behavioral performance, breathalyzer
-and Fitbit streams, and ecological momentary assessment into a single model of
-control.
+Self-control is the rare idea that everyone believes in and no two people define the same way. To a clinician it is the thing a patient runs out of at the end of a hard day; to an economist it is a discount rate. This project began with a stubborn question: if we can see that pattern in the brain, can we use it — not to describe self-control after the fact, but to predict, before treatment starts, whether a particular person is built to respond to it.
 
-## What it is
+## A study in two acts
 
-I designed and deployed a high-performance computing pipeline (Python, SLURM)
-for preprocessing, GLM modeling, and behavioral validation, plus group-level
-workflows to evaluate intervention-related changes. I authored the
-preregistration and analysis plan.
+The design has two stages, and the second only makes sense because of the first. In the scanner, participants work through a battery of inhibition tasks while we record the neural effort each one takes. Then everyone goes home, and the second act begins: a four-week mobile intervention, measured against the ordinary friction of daily life.
 
-_Draft write-up — replace this body with the full feature._
+> The wager: if the neural signature captured in the scanner predicts who benefits from the intervention, then "cognitive control" is not just a description of behavior — it is a measurable trait with clinical purchase.
+
+<Display>The scanner tells you what the brain <em>can</em> do. The next four weeks tell you what it <em>will</em>.</Display>
+
+## Four streams, one person
+
+To hold those two worlds together, the study folds four different data streams into a single model of each participant — each one a different resolution on the same underlying question.
+
+| fMRI | Task behavior | Wearables | Daily diaries |
+| --- | --- | --- | --- |
+| Task-evoked activity in control regions | Stop-signal times and error rates | Sleep and activity | Momentary check-ins |
+
+<Figure label="Figure — model schematic" caption="Fig. 2 — A schematic of the joint model: neural, behavioral, and daily-life measures loading onto a shared latent estimate of control." />
+
+## What counts as control?
+
+Here the title earns its weight. An *ontology* is a commitment about what exists — about which categories are real. The honest answer is that we don't yet know, and the study is designed to be wrong in informative ways: if a single latent factor does the predictive work, that is evidence for a unified construct; if it takes several, the tidy word "self-control" was hiding a committee. <EndMark />
+
+## References & notes
+
+1. Preregistration and analysis plan on the Open Science Framework.
+2. Inhibition battery adapted from standard stop-signal and go/no-go paradigms.
+3. Manuscript in preparation — this feature is a plain-language companion, not the paper.

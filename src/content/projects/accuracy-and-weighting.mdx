@@ -4,29 +4,34 @@ kind: Survey methodology
 status: Under review
 order: 2
 summary: Seventeen years of Cooperative Election Study data compared across weighting methods — average error in election estimates exceeds 7% with no improvement over time.
-tags:
-  - R
-  - Survey error
-  - Weighting
-  - Reproducibility
+dek: Online panels promise the nation in miniature. Seventeen years of election data ask a blunter question — how close do they actually get?
+date: February 2026
+readingTime: 6 min read
+heroCaption: Fig. 1 — Estimated vs. validated vote share across seventeen years of matched samples. The gap is the story.
+tags: [R, Survey error, Weighting]
 cover: ""
 pdf: ""
 links:
-  - label: PDF →
-    href: "#"
   - label: GitHub →
     href: "#"
 ---
+import Figure from '../../components/feature/Figure.astro';
+import Display from '../../components/feature/Display.astro';
+import EndMark from '../../components/feature/EndMark.astro';
 
-Seventeen years of YouGov Cooperative Election Study data, compared across
-weighting methods. The analysis finds average error in election estimates
-exceeds 7% with no improvement over time — a direct challenge to nonprobability
-survey claims.
+Nonprobability panels are the workhorse of modern polling: cheaper, faster, and — the claim goes — accurate enough once you weight them back to the population. This project takes that claim at its word and checks it against ground truth, year after year, for the better part of two decades.
 
-## What it is
+## The setup
 
-Built on a 7,000-line R codebase that harmonizes longitudinal data from fifteen
-sources — federal archives, universities, and a private provider via a
-negotiated data trade. Presented at AAPOR; code and data archived on OSF.
+Seventeen years of YouGov Cooperative Election Study data, run through every major weighting scheme and compared against validated election outcomes. The pipeline harmonizes fifteen sources into one comparable frame, so the only thing changing between estimates is the method.
 
-_Draft write-up — replace this body with the full feature._
+<Display>Weighting can fix a biased sample. It cannot manufacture the people who were never in it.</Display>
+
+## What the record shows
+
+Averaged across years and methods, error in election estimates exceeds seven percent — and, tellingly, it does not shrink over time. Better weights help at the margins; they do not close the gap. <EndMark />
+
+## References & notes
+
+1. Data and harmonization code archived on OSF.
+2. Presented at AAPOR; manuscript under review.

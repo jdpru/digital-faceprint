@@ -4,23 +4,33 @@ kind: Cognition · Deep learning
 status: Paper
 order: 4
 summary: LSTM and dynamical VAE models of human reaction times suggest flexibility and stability are distinct cognitive processes.
-tags:
-  - LSTM
-  - Dynamical VAE
-  - Cognition
+dek: A reaction time is one number. The sequence of them, over a whole task, is a fingerprint of how a mind holds itself together.
+date: December 2025
+readingTime: 5 min read
+heroCaption: Fig. 1 — Latent trajectories recovered from reaction-time sequences.
+tags: [LSTM, Dynamical VAE, Cognition]
 cover: ""
 pdf: ""
 links:
   - label: PDF →
     href: "#"
-  - label: GitHub →
-    href: "#"
   - label: Poster →
     href: "#"
 ---
+import EndMark from '../../components/feature/EndMark.astro';
 
-LSTM and dynamical VAE models of human reaction times on cognitive tasks.
-Latent-space analysis suggests flexibility and stability are distinct cognitive
-processes — a data-driven framework consistent with recent psychology.
+Most models treat a reaction time as a draw from a distribution. But the order matters: speeding up, drifting, recovering after an error. This project models the whole sequence as a dynamical system and asks what structure falls out.
 
-_Draft write-up — replace this body with the full feature._
+## The model
+
+LSTM and dynamical variational autoencoders learn a low-dimensional trajectory behind each participant's reaction-time sequence, without being told what to look for.
+
+> Give the model no labels and it still separates the runs — which is exactly when a latent axis starts to feel real.
+
+## What the latent space says
+
+Two axes recur across participants, and they behave like different processes: one for flexibility, one for stability. The suggestion — data-driven, not assumed — is that these are distinct, and consistent with recent psychology. <EndMark />
+
+## References & notes
+
+1. Model code and poster in the repository.
