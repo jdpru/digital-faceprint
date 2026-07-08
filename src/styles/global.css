@@ -327,7 +327,7 @@ em { font-style: italic; }
   margin-top: 14px;
 }
 .about-facts dt:first-child { margin-top: 0; }
-.about-facts dd { margin: 0; }
+.about-facts dd { margin: 0; line-height: 1.4; }
 
 /* bulleted about lists (occupied-with, methods, mentors) — small bullets
    denote each subject; tight line-height keeps a wrapped item together */
