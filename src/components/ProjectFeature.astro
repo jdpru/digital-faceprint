@@ -9,8 +9,8 @@ interface Props {
 
 const { project, projects, Content } = Astro.props;
 const d = project.data;
-const eyebrow = `Feature · ${d.kind}`;
-const byline = ['JD Pruett', d.readingTime, d.date].filter(Boolean).join('  ·  ');
+const eyebrow = d.kind;
+const byline = d.date;
 ---
 
 <main class="wrap-wide pfeed">
@@ -56,16 +56,5 @@ const byline = ['JD Pruett', d.readingTime, d.date].filter(Boolean).join('  ·  
         {d.pdf && <a href={d.pdf} target="_blank" rel="noopener">PDF ↓</a>}
       </div>
     )}
-
-    <footer class="feature-next">
-      <p class="feature-eyebrow">Next</p>
-      <h2>Keep reading</h2>
-      <p>One project, written up as a feature. The rest of the shelf is a click away.</p>
-      <div class="feature-links">
-        <a href="/#explore">All projects →</a>
-        <a href="/reading/">Reading →</a>
-        <a href="/">Back to start ↑</a>
-      </div>
-    </footer>
   </article>
 </main>

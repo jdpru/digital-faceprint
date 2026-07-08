@@ -686,9 +686,6 @@ em { font-style: italic; }
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .feature-links a:hover { border-color: var(--blue); color: var(--blue-2); }
-.feature-next { margin-top: 60px; padding-top: 34px; border-top: 1px solid var(--rule); }
-.feature-next h2 { font-size: 26px; font-weight: 460; letter-spacing: -0.015em; margin: 8px 0 6px; }
-.feature-next p { color: var(--ink-soft); font-size: 16px; margin: 0; max-width: 46ch; }
 @media (prefers-reduced-motion: reduce) { .pfeed__index li::before { transition: none; } }
 
 /* ---------- prose theme (MDX bodies) ---------- */
