@@ -4,29 +4,38 @@ import Socials from './Socials.astro';
 ---
 
 <header class="hero wrap">
-  <div class="hero__grid">
-    <div class="hero__portrait">
-      <div class="portrait" id="portrait">
-        <div class="portrait__inner" id="portraitInner">
-          <img src={site.portrait.src} alt={site.portrait.alt} />
-        </div>
-        <div class="portrait__frame"></div>
-      </div>
-      <Socials />
-      <a class="hero__email" href={`mailto:${site.email}`}>email: {site.email}</a>
+  <div class="portrait" id="portrait">
+    <div class="portrait__inner" id="portraitInner">
+      <img src={site.portrait.src} alt={site.portrait.alt} />
     </div>
-
-    <div class="hero__text">
-      <h1 set:html={site.name.replace(' ', '&nbsp;')} />
-      <p class="lede">{site.lede}</p>
-      <div class="hero__meta">
-        {site.chips.map((chip) => <span class="chip">{chip}</span>)}
-      </div>
-    </div>
+    <div class="portrait__frame"></div>
   </div>
+
+  <h1 set:html={site.name.replace(' ', '&nbsp;')} />
+  <p class="lede">{site.lede}</p>
+
+  <div class="hero__meta">
+    {site.chips.map((chip) => <span class="chip">{chip}</span>)}
+  </div>
+
+  <Socials />
+  <a class="hero__email" href={`mailto:${site.email}`}>email: {site.email}</a>
+
+  <button class="scrolldn" id="scrolldn" aria-label="Scroll to about">
+    <span>Read on</span>
+    <span class="arr">↓</span>
+  </button>
 </header>
 
 <script>
+  // Scroll cue → About
+  const cue = document.getElementById('scrolldn');
+  if (cue) {
+    cue.addEventListener('click', () => {
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   // Subtle parallax: the portrait drifts slightly toward the cursor.
   (function () {
     const portrait = document.getElementById('portrait');

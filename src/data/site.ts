@@ -13,7 +13,7 @@ export const site = {
   },
 
   about: {
-    based: 'San Francisco',
+    based: 'San Francisco, CA',
     occupied: {
       items: [
         { label: 'Varick Agents', href: 'https://www.varickagents.com/' },
@@ -21,7 +21,7 @@ export const site = {
         { label: 'Euterria', href: 'https://euterria.org' },
       ],
     },
-    methods: 'Surveys, fMRI pipelines, deep learning',
+    methods: 'agent design, post-training, survey analysis, fMRI pipelines',
     mentors: [
       { name: 'Jon Krosnick', href: 'https://profiles.stanford.edu/jon-krosnick' },
       { name: 'Russ Poldrack', href: 'https://profiles.stanford.edu/russell-poldrack' },
@@ -45,7 +45,7 @@ export const site = {
 
   email: 'hi@jdpruett.xyz',
   links: {
-    linkedin: 'https://www.linkedin.com/in/jdpruett/',
+    linkedin: 'https://www.linkedin.com/in/jd-pruett-4033b8194',
     github: 'https://github.com/jdpru',
     twitter: 'https://x.com/jdpruett4',
     osf: 'https://osf.io/',

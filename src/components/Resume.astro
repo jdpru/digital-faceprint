@@ -7,20 +7,23 @@ import { experience, education, educationSchool, site } from '../data/site';
   <div>
     <div class="resume__list">
       {experience.map((e) => (
-        <div class="rrow" tabindex="0">
-          <span class="rrow__yr">{e.years}</span>
-          <div class="rrow__main">
-            <span class="rrow__role">{e.role}</span>
-            <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
-            <div class="rrow__panel">
-              <div class="rrow__panelin">
-                <div class="rrow__desc">
-                  {e.description.map((p) => <p>{p}</p>)}
-                  <div class="rrow__tags">
-                    {e.tags.map((t) => <span>{t}</span>)}
-                  </div>
+        <div class="rrow">
+          <button class="rrow__main" type="button" aria-expanded="false">
+            <span class="rrow__yr">{e.years}</span>
+            <span class="rrow__mid">
+              <span class="rrow__role">{e.role}</span>
+              <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
+            </span>
+            <span class="rrow__toggle" aria-hidden="true"></span>
+          </button>
+          <div class="rrow__detail">
+            <div class="rrow__detail-in">
+              <div class="rrow__photo" aria-hidden="true"><span>Photo</span></div>
+              <div class="rrow__desc">
+                {e.description.map((p) => <p>{p}</p>)}
+                <div class="rrow__tags">
+                  {e.tags.map((t) => <span>{t}</span>)}
                 </div>
-                <div class="rrow__photo" aria-hidden="true"><span>Photo</span></div>
               </div>
             </div>
           </div>
@@ -58,3 +61,15 @@ import { experience, education, educationSchool, site } from '../data/site';
     </div>
   </div>
 </div>
+
+<script>
+  // Click (or keyboard) pins a row open; hover previews it via CSS.
+  document.querySelectorAll('.rrow__main').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.rrow');
+      if (!row) return;
+      const open = row.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+</script>

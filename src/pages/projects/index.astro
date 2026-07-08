@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { work, publications } from '../../data/site';
+import { work } from '../../data/site';
 ---
 
 <Layout
@@ -8,41 +8,86 @@ import { work, publications } from '../../data/site';
   description="Research and engineering projects and papers across survey methodology, neuroscience, and machine learning."
 >
   <main class="wrap">
-    <section class="subhero">
+    <header class="subhero">
       <span class="eyebrow">Professional</span>
       <h1>Projects &amp; <em>papers</em></h1>
-      <p>Where survey methods, neuroscience, and machine learning meet — usually with code attached.</p>
-    </section>
+      <p>Where survey methods, neuroscience, and machine learning meet — usually with code, a paper, or a system attached.</p>
+    </header>
 
-    <div class="rows">
-      <p class="eyebrow muted rows__label">Projects</p>
-      {work.map((w) => (
-        <article class="prow">
-          <div class="prow__meta">
-            <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
-          </div>
-          <h2>{w.title}</h2>
-          <p>{w.summary}</p>
-          <div class="prow__links">
-            {w.links.map((l) => (
-              l.href
-                ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                : <a class="dead">{l.label}</a>
-            ))}
-          </div>
-        </article>
-      ))}
+    <div class="ppx" id="ppx">
+      <ol class="ppx__index" id="ppxIndex">
+        <li class="ppx__lead">{work.length} projects — hover to browse</li>
+        {work.map((w, i) => (
+          <li class={`ppx__item${i === 0 ? ' is-active' : ''}`} data-i={i}>
+            <span class="ppx__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="ppx__t">
+              <span class="ppx__title">{w.title}</span>
+              <span class="ppx__ik">{w.kind}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
 
-      <p class="eyebrow muted rows__label">Papers &amp; publications</p>
-      {publications.map((p) => (
-        <article class="prow">
-          <div class="prow__meta">
-            <span class="prow__kind">{p.venue}</span><span class="prow__status">{p.year}</span>
-          </div>
-          <h2>{p.title}</h2>
-          <p>{p.blurb}</p>
-        </article>
-      ))}
+      <div class="ppx__stage" id="ppxStage">
+        {work.map((w, i) => (
+          <article class={`ppx__panel${i === 0 ? ' is-active' : ''}`} data-i={i}>
+            <div class="ppx__media"><span class="ph">Image — {w.kind}</span></div>
+            <div class="ppx__meta">
+              <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
+            </div>
+            <h2>{w.title}</h2>
+            <p>{w.summary}</p>
+            <div class="prow__links">
+              {w.links.map((l) => (
+                l.href
+                  ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+                  : <a class="dead">{l.label}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  (function () {
+    const index = document.getElementById('ppxIndex');
+    const stage = document.getElementById('ppxStage');
+    if (!index || !stage) return;
+    const items = [...index.querySelectorAll('.ppx__item')];
+    const panels = [...stage.querySelectorAll('.ppx__panel')];
+    let pinned = 0;
+    let current = -1;
+
+    function syncHeight() {
+      const p = panels[current];
+      if (p) stage.style.height = p.offsetHeight + 'px';
+    }
+    function setActive(i) {
+      if (i === current) return;
+      current = i;
+      items.forEach((el, n) => el.classList.toggle('is-active', n === i));
+      panels.forEach((el, n) => el.classList.toggle('is-active', n === i));
+      syncHeight();
+    }
+
+    items.forEach((el) => {
+      const i = Number(el.dataset.i);
+      el.addEventListener('mouseenter', () => setActive(i));
+      el.addEventListener('click', () => { pinned = i; setActive(i); });
+    });
+    index.addEventListener('mouseleave', () => setActive(pinned));
+
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(syncHeight);
+      panels.forEach((p) => ro.observe(p));
+    }
+    window.addEventListener('resize', syncHeight);
+    window.addEventListener('load', syncHeight);
+
+    setActive(0);
+    requestAnimationFrame(syncHeight);
+  })();
+</script>
