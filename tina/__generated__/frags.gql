@@ -1,0 +1,17 @@
+fragment ProjectParts on Project {
+  __typename
+  title
+  kind
+  status
+  order
+  summary
+  tags
+  cover
+  pdf
+  links {
+    __typename
+    label
+    href
+  }
+  body
+}

@@ -13,5 +13,9 @@
   },
   "engines": {
     "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^2.5.3",
+    "tinacms": "^3.10.0"
   }
 }

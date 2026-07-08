@@ -28,15 +28,11 @@ import { site } from '../data/site';
             </dd>
 
             <dt>Methods</dt>
-            <dd>
-              <ul class="about-list">
-                {site.about.methods.map((m) => <li>{m}</li>)}
-              </ul>
-            </dd>
+            <dd>{site.about.methods}</dd>
 
             <dt>Mentors</dt>
             <dd>
-              <ul class="about-list mentors">
+              <ul class="about-stack">
                 {site.about.mentors.map((m) => (
                   <li><a href={m.href} target="_blank" rel="noopener">{m.name}</a></li>
                 ))}
