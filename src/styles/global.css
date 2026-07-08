@@ -127,7 +127,7 @@ em { font-style: italic; }
   color: var(--blue);
   flex: none;
   position: relative;
-  top: -1px;
+  top: -2px;
   transition: transform 0.25s var(--ease);
 }
 .brand:hover .brand__home { transform: translateY(-1px); }
@@ -291,6 +291,7 @@ em { font-style: italic; }
   border-radius: 100px;
   padding: 5px 15px;
   background: var(--paper-2);
+  text-transform: lowercase;
 }
 
 /* ---------- section scaffolding ---------- */
@@ -319,7 +320,11 @@ em { font-style: italic; }
   font-size: 17px;
   line-height: 1.85;
   color: var(--ink-soft);
+  text-transform: lowercase;
 }
+/* mentors are proper names — keep their capitalisation */
+.mentors,
+.mentors a { text-transform: none; }
 .about-facts dt {
   font-style: italic;
   font-size: 14px;
@@ -473,7 +478,7 @@ em { font-style: italic; }
   .rrow::before, .rrow__main, .rrow__detail, .rrow__photo, .rrow__desc, .rrow__toggle { transition: none; }
 }
 /* education */
-.edu { margin-top: 36px; }
+.edu { margin-top: 16px; }
 .edu__label { display: block; margin-left: 8px; margin-bottom: 10px; }
 .edu__school { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 2px; }
 .edu__list { display: flex; flex-direction: column; }

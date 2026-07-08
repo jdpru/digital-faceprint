@@ -38,10 +38,10 @@ const nav = [
     <header class="topbar">
       <div class="wrap topbar__in">
         <a class="brand" href="/" aria-label={`${site.wordmark} — home`}>
-          <span>{site.wordmark}<span class="dot">.</span></span>
           <svg class="brand__home" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10z" />
           </svg>
+          <span>{site.wordmark}<span class="dot">.</span></span>
         </a>
         <nav class="nav" aria-label="Primary">
           {nav.map((item) => <a href={item.href}>{item.label}</a>)}

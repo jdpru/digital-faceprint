@@ -6,7 +6,7 @@ export const site = {
   wordmark: 'Jefferson Pruett', // top-left brand
   eyebrow: 'Survey research · Neuroscience · Machine learning',
   lede: 'I work at the seam between survey methodology, neuroscience, and the machines we use to make sense of both.',
-  chips: ['Stanford · Economics + Neuroscience', 'AI Engineer'],
+  chips: ['Econ & Neuro · Stanford', 'Head of Engineering · Varick'],
   portrait: {
     src: '/portrait.png',
     alt: 'Painted portrait of JD Pruett',
@@ -134,7 +134,7 @@ export const education: Education[] = [
     award: 'Firestone Medal',
     awardHref:
       'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
-    gpa: 'GPA 3.9',
+    gpa: 'GPA 4.0',
     year: '2024',
   },
 ];
@@ -254,23 +254,20 @@ export type Shelf = { num: string; title: string; blurb: string; href: string };
 export const explore: Shelf[] = [
   {
     num: 'I',
-    title: 'Professional Projects',
-    blurb:
-      'Research and engineering: survey methodology, neuroimaging, and machine-learning systems — usually with code and a paper attached.',
+    title: 'Projects',
+    blurb: 'A mix of research and engineering.',
     href: '/projects/',
   },
   {
     num: 'II',
-    title: 'Personal Projects',
-    blurb:
-      'The things I build for no reason but my own curiosity. Experiments, tools, and happy dead-ends.',
+    title: 'Fun Stuff',
+    blurb: 'Time well spent, perhaps better spent elsewhere.',
     href: '/personal/',
   },
   {
     num: 'III',
     title: 'Reading',
-    blurb:
-      'A running shelf of books and papers worth your time — and a few notes on why.',
+    blurb: 'Some of my favorites.',
     href: '/reading/',
   },
 ];
