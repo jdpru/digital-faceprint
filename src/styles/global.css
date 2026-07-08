@@ -565,6 +565,8 @@ em { font-style: italic; }
 }
 .subhero h1 em { font-style: italic; font-weight: 340; }
 .subhero p { font-size: 21px; color: var(--ink-soft); max-width: 56ch; margin: 0; }
+.subhero--compact { padding-bottom: 12px; }
+.subhero--compact h1 { font-size: clamp(30px, 3.6vw, 44px); margin: 0; }
 
 /* project / paper rows (text-only) */
 .rows { padding: 24px 0 90px; display: flex; flex-direction: column; }
