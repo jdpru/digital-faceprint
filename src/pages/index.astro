@@ -20,7 +20,7 @@ import { site } from '../data/site';
 
             <dt>Momentarily occupied by</dt>
             <dd>
-              <ul class="about-links">
+              <ul class="about-list about-links">
                 {site.about.occupied.items.map((i) => (
                   <li><a href={i.href} target="_blank" rel="noopener">{i.label}</a></li>
                 ))}
@@ -28,11 +28,15 @@ import { site } from '../data/site';
             </dd>
 
             <dt>Methods</dt>
-            <dd>{site.about.methods}</dd>
+            <dd>
+              <ul class="about-list">
+                {site.about.methods.map((m) => <li>{m}</li>)}
+              </ul>
+            </dd>
 
             <dt>Mentors</dt>
             <dd>
-              <ul class="mentors">
+              <ul class="about-list mentors">
                 {site.about.mentors.map((m) => (
                   <li><a href={m.href} target="_blank" rel="noopener">{m.name}</a></li>
                 ))}

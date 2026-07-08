@@ -12,7 +12,7 @@ const branch =
 
 export default defineConfig({
   branch,
-  clientId: process.env.TINA_CLIENT_ID || '', // from app.tina.io
+  clientId: process.env.TINA_CLIENT_ID || 'a9e24397-2072-4057-933a-4d0c418253fa', // from app.tina.io
   token: process.env.TINA_TOKEN || '', // from app.tina.io
   build: { outputFolder: 'admin', publicFolder: 'public' },
   media: { tina: { mediaRoot: 'uploads', publicFolder: 'public' } },

@@ -32,28 +32,32 @@ Vercel rebuilds automatically.
 
 ## Adding the TinaCMS editor (the browser `/admin`)
 
-`tina/config.ts` already defines the editor schema. To turn it on:
+`tina/config.ts` already defines the editor schema **and has the Tina Cloud
+Client ID baked in** (`a9e24397-2072-4057-933a-4d0c418253fa`). To turn the
+editor on:
 
-1. **Install Tina:**
+1. **Install Tina (local):**
    ```bash
-   npm install tinacms @tinacms/cli
+   npm install -D tinacms @tinacms/cli
    ```
-2. **Create a Tina Cloud project** at https://app.tina.io — connect this GitHub
-   repo. It gives you a **Client ID** and you generate a **Token**.
-3. **Add env vars** in Vercel (Project → Settings → Environment Variables) and
-   in a local `.env`:
-   ```
-   TINA_CLIENT_ID=...
-   TINA_TOKEN=...
-   ```
-4. **Local editing:**
+2. **Edit locally:**
    ```bash
    npx tinacms dev -c "astro dev"
    ```
-   then open http://localhost:4321/admin
-5. **Production editing:** change the Vercel **build command** to
-   `tinacms build && astro build` (keep output `dist`). Then edit at
-   `https://<your-site>/admin` — changes commit back to GitHub and redeploy.
+   then open http://localhost:4321/admin — this works against your local files,
+   no token needed.
+3. **For production editing** (`https://<your-site>/admin`), generate a
+   **read-only token** in your Tina Cloud project and add it in Vercel
+   (Project → Settings → Environment Variables):
+   ```
+   TINA_TOKEN=...            # required in prod
+   TINA_CLIENT_ID=...        # optional; falls back to the value in tina/config.ts
+   ```
+   Then change the Vercel **build command** to `tinacms build && astro build`
+   (keep output `dist`). Edits commit back to GitHub and redeploy.
 
-Until step 5 is done, the live build stays plain `astro build`, so nothing
-breaks before Tina is configured.
+**Not committed on purpose:** `tinacms`/`@tinacms/cli` are left out of
+`package.json` and the Vercel build stays plain `astro build`, so the live site
+keeps deploying safely until you finish step 3. Once you add the token + build
+command, add the two packages to `devDependencies` so Vercel can run
+`tinacms build`.

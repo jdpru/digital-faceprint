@@ -331,34 +331,40 @@ em { font-style: italic; }
 .about-facts dt:first-child { margin-top: 0; }
 .about-facts dd { margin: 0; }
 
-/* stacked link lists (occupied-with + mentors) */
-.about-links,
-.mentors {
+/* bulleted about lists (occupied-with, methods, mentors) — small bullets
+   denote each subject; tight line-height keeps a wrapped item together */
+.about-list {
   list-style: none;
-  margin: 2px 0 0;
+  margin: 4px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 3px;
+  line-height: 1.32;
 }
-.mentors { gap: 1px; }
-/* more space between rows + hanging indent so a wrapped item reads as
-   spillover, not a new row */
-.about-links { gap: 7px; }
-.about-links li { padding-left: 1em; text-indent: -1em; }
-.about-links a,
-.mentors a {
+.about-list li { position: relative; padding-left: 15px; }
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 0.58em;
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+.about-list a {
   color: var(--ink);
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.about-links a:hover,
-.mentors a:hover {
+.about-list a:hover {
   color: var(--blue);
   border-bottom-color: color-mix(in srgb, var(--blue) 40%, transparent);
 }
 
 /* ---------- experience (hover or click to expand) ---------- */
-.resume { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
+.resume { display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 40px; row-gap: 30px; }
 .resume__list { display: flex; flex-direction: column; }
 .rrow { position: relative; border-bottom: 1px solid var(--rule); }
 .rrow:first-child { border-top: 1px solid var(--rule); }
@@ -475,8 +481,6 @@ em { font-style: italic; }
   .rrow::before, .rrow__main, .rrow__detail, .rrow__photo, .rrow__desc, .rrow__toggle { transition: none; }
 }
 /* education */
-.edu { margin-top: 16px; }
-.edu__label { display: block; margin-left: 8px; margin-bottom: 10px; }
 .edu__school { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 2px; }
 .edu__list { display: flex; flex-direction: column; }
 .eduline {

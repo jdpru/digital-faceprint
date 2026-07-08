@@ -30,28 +30,28 @@ import { experience, education, educationSchool } from '../data/site';
         </div>
       ))}
     </div>
+  </div>
 
-    <div class="edu">
-      <span class="label edu__label">Education</span>
-      <p class="edu__school">{educationSchool}</p>
-      <div class="edu__list">
-        {education.map((ed) => (
-          <div class="eduline">
-            <div class="edu__deg">
-              <span class="deg">{ed.degree}</span>
-              <span class="thesis"><em>{ed.thesis}</em></span>
-              {ed.award && (
-                <span class="award">
-                  {ed.awardHref
-                    ? <a href={ed.awardHref} target="_blank" rel="noopener">{ed.award}</a>
-                    : ed.award}
-                </span>
-              )}
-            </div>
-            <span class="meta">{ed.gpa} · {ed.year}</span>
+  <div><span class="label">Education</span></div>
+  <div class="edu">
+    <p class="edu__school">{educationSchool}</p>
+    <div class="edu__list">
+      {education.map((ed) => (
+        <div class="eduline">
+          <div class="edu__deg">
+            <span class="deg">{ed.degree}</span>
+            <span class="thesis"><em>{ed.thesis}</em></span>
+            {ed.award && (
+              <span class="award">
+                {ed.awardHref
+                  ? <a href={ed.awardHref} target="_blank" rel="noopener">{ed.award}</a>
+                  : ed.award}
+              </span>
+            )}
           </div>
-        ))}
-      </div>
+          <span class="meta">{ed.gpa} · {ed.year}</span>
+        </div>
+      ))}
     </div>
   </div>
 </div>

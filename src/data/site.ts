@@ -21,7 +21,7 @@ export const site = {
         { label: 'Euterria', href: 'https://euterria.org' },
       ],
     },
-    methods: 'agent design, post-training, survey analysis, fMRI pipelines',
+    methods: ['agents', 'post-training', 'surveys', 'fMRI'],
     mentors: [
       { name: 'Jon Krosnick', href: 'https://profiles.stanford.edu/jon-krosnick' },
       { name: 'Russ Poldrack', href: 'https://profiles.stanford.edu/russell-poldrack' },
