@@ -5,7 +5,7 @@ export const site = {
   name: 'JD Pruett', // display name in the hero
   wordmark: 'Jefferson Pruett', // top-left brand
   eyebrow: 'Survey research · Neuroscience · Machine learning',
-  lede: 'I work at the seam between survey methodology, neuroscience, and the machines we use to make sense of both.',
+  lede: 'Neuro researcher and ML engineer, working across AI, cognition, and survey methods.',
   chips: ['Stanford · Econ & Neuro', 'Varick · Head of Engineering'],
   portrait: {
     src: '/portrait.png',
