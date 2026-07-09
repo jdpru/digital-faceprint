@@ -6,7 +6,7 @@ order: 0
 summary: A nonprofit knowledge-sharing platform for the Bay Area climate community, turning the field's scattered decks and reports into something you can actually search and build on.
 dek: The Bay Area climate community knows an enormous amount collectively. Almost none of it is findable. Euterria is the tool we built to change that.
 date: 2025 – present
-readingTime: 4 min read
+readingTime: 7 min read
 tags: [Product, Semantic search, Climate, Nonprofit]
 cover: ""
 pdf: ""
@@ -15,24 +15,47 @@ links:
     href: "https://euterria.org"
 ---
 import EndMark from '../../components/feature/EndMark.astro';
+import SearchFlow from '../../components/feature/SearchFlow.astro';
 
 A climate group in Oakland working on urban heat can spend months building something a group across the bay already figured out, simply because there was no way to know the other work existed. The Bay Area climate community, taken together, is sitting on years of pilots, program designs, reports, and hard-won lessons about what actually works. The problem is that almost none of it is findable. It lives in slide decks on someone's laptop, in institutional memory, in PDFs nobody outside the org has ever opened. Euterria, which I co-founded in 2025, is the tool we built to fix that.
 
 ## What it is
 
-Euterria is a nonprofit knowledge-sharing platform for the Bay Area climate community: a shared resource, in the most literal sense. Organizations upload what they already have, decks, reports, PDFs, and Euterria's pipeline turns those documents into a searchable map of the community's programs, people, and resources. Then anyone can query it the way they'd ask a well-connected colleague, "who's working on wildfire smoke and indoor air quality?", and get a synthesized answer with the actual organizations and initiatives linked underneath. So far the platform indexes 117 programs across 14 organizations and 269 people, and it grows every time a group adds its own material.
+Euterria is a nonprofit knowledge-sharing platform for the Bay Area climate community: a shared resource, in the most literal sense. Organizations upload what they already have, decks, reports, PDFs, and Euterria's pipeline turns those documents into a searchable map of the community's programs, people, and resources. Then anyone can query it the way they'd ask a well-connected colleague, "who's working on wildfire smoke and indoor air quality?", and get a synthesized answer with the actual organizations and initiatives linked underneath. It grows every time a group adds its own material, and it's already become a genuinely useful map of who is doing what across the region.
 
-## The problem it's actually solving
+## The problem underneath the problem
 
-Duplication is expensive everywhere, but it's especially costly in a nonprofit ecosystem where budgets are thin and the work is urgent. Two organizations unknowingly rebuilding the same heat-resilience toolkit isn't just wasteful; it's a collaboration that never happened, a lesson that never got passed on. The usual fixes, conferences, mailing lists, the occasional shared drive, don't scale and don't stick. What's missing is discovery: a fast, low-effort way to find out who else is working on your problem and what they've already learned. That's the entire bet behind Euterria. Make the community's knowledge legible, and collaboration becomes the path of least resistance instead of a lucky accident.
+My reference point for this is academia, which has plenty of its own problems, but does one thing very well: it leaves a paper trail. Publishing makes the state of a field legible, and funding, explicitly or implicitly, is tied to how a project builds on and advances what's already been done. In the private sector, a market does similar work: a duplicate product loses to the incumbent, and the incumbent loses to whoever ships something better. Neither of those correcting forces exists for nonprofits. There's no market forcing convergence and no funding structure that specifically rewards knowing what already exists.
 
-## How it works
+Collaboration is often a genuine value for the people running these organizations, well-aligned with their personalities and their mission, but it carries real, mostly invisible costs. Sharing information, digging up an old report, traveling to meet someone, deciding how to coordinate resources, working out who takes on what. It's hard enough inside a single org. Across a dozen of them, it rarely happens at all, not for lack of goodwill, but because nobody has the time to pay those costs.
 
-The hard part is turning messy institutional documents into something queryable without losing track of where each fact came from. A slide deck isn't structured data; it's a human artifact full of implicit context. Euterria ingests those documents, parses them into structured programs, people, and resources, and embeds them so the whole corpus can be searched semantically rather than by keyword. Queries run as conversational retrieval: the system pulls the relevant material, synthesizes an answer, and cites the specific organizations and initiatives it drew from, so a user can always follow the thread back to the source and reach out. Provenance is the point. An answer you can't trace isn't much use to someone deciding who to call next.
+Long term, I think this needs a funding-level fix, and that's a bigger problem than any one tool will solve. To be clear, nonprofits are service providers, and it's often necessary to have a mesh of organizations serving similar needs across different populations and regions. That's not the inefficiency. The inefficiency is redundant *knowledge*: relearning the same lessons, rebuilding the same playbook, missing the same partner a neighboring org already found. If we can consolidate that knowledge overhead, while still leaving each org free to run its programs its own way, we make real progress toward enriching the nonprofit ecosystem as a whole.
+
+That's a very hard problem, and it will never be solved in its entirety. Euterria started with one piece of it: making discovery itself as smooth as possible. Deciding how to collaborate should be about as easy as searching Google. Knowing who to call should be just as easy.
+
+## Under the hood
+
+A slide deck or a PDF report isn't structured data, it's a human artifact, full of implicit context and no schema. The actual engineering problem isn't storage, it's turning that mess into something you can ask a real question of, and getting back an answer that's actually useful.
+
+Every document a group uploads gets read by a model and extracted into a typed record: title, issue areas, geography, key people, the program it belongs to, rather than a blob of text nobody can search. That structure is what makes an answer explainable instead of just plausible.
+
+Search itself runs two passes at once: a keyword pass that catches exact matches, and a semantic pass that matches on meaning, including a passage buried deep inside a sixty-page toolkit nobody would have thought to open. Both sets of candidates blend together, and a reranking model makes the final call on order, so the most relevant result surfaces regardless of whether it happened to use the same words as the question.
+
+<SearchFlow />
+
+That last step matters more than it sounds like it should. Two organizations can describe the same work in completely different language, one calls it "urban heat mitigation," another calls it "tree equity." A keyword search alone treats those as unrelated. Reading for meaning is what lets Euterria recognize they're the same conversation.
 
 ## Backed by Stanford's TomKat Center
 
 Euterria is part of the [TomKat Center for Sustainable Energy's Innovation Transfer portfolio](https://tomkat.stanford.edu/innovation-transfer/euterria), which funds and incubates ventures working toward an equitable, sustainable energy future. That early backing is what let us build Euterria as a free resource for the organizations we serve, instead of another tool with a price tag small nonprofits can't justify.
+
+## Where it stands today
+
+Euterria is in pilot with around twenty organizations around the Bay right now: uploading their own material, testing whether the search actually holds up against the way people really ask these questions, and telling us where it still gets things wrong. That feedback loop matters more at this stage than growth for its own sake. We'd rather get discovery right for a tight-knit group of orgs than get it half-right for a large one.
+
+## A tool isn't the point, the ecosystem around it is
+
+Like anything else in this space, the real utility isn't the search box, it's what grows up around it. Our goal isn't to become a database that organizations occasionally query. It's to become the people who make collaboration the default first move instead of an afterthought, the ones who know who to call, what already exists, and how to get two organizations working the same problem talking to each other. The tool is what gets us in the room. Building that culture, slowly, one pilot org at a time, is the actual work.
 
 ## Why I care about it
 
