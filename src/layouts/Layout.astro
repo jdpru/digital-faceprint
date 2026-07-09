@@ -1,15 +1,18 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { site } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  transitions?: boolean;
 }
 
 const {
   title = `${site.name} — survey research, neuroscience, machine learning`,
   description = 'Personal site for JD Pruett — survey methodology, neuroscience, and machine-learning systems.',
+  transitions = false,
 } = Astro.props;
 
 const nav = [
@@ -33,18 +36,19 @@ const nav = [
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
       rel="stylesheet"
     />
+    {transitions && <ClientRouter />}
   </head>
   <body>
     <header class="topbar">
       <div class="wrap topbar__in">
-        <a class="brand" href="/" aria-label={`${site.wordmark} — home`}>
+        <a class="brand" href="/" aria-label={`${site.wordmark} — home`} data-astro-reload>
           <svg class="brand__home" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10z" />
           </svg>
           <span>{site.wordmark}<span class="dot">.</span></span>
         </a>
         <nav class="nav" aria-label="Primary">
-          {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+          {nav.map((item) => <a href={item.href} data-astro-reload>{item.label}</a>)}
         </nav>
       </div>
     </header>

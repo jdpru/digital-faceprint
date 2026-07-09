@@ -28,9 +28,9 @@ export const site = {
       { name: 'Steve Ballmer', href: 'https://en.wikipedia.org/wiki/Steve_Ballmer' },
     ],
     prose: [
-      'Trained as an economist and a cognitive scientist, I spend most of my time on a single question: how do we measure things that resist measurement — public opinion, self-control, the accuracy of a poll — and how do we build the systems that make those measurements legible?',
-      'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines — from neuroimaging on high-performance clusters to survey infrastructure for fifteen thousand students in West Africa.',
-      'I care about open, reproducible work, and about communicating it clearly enough that it actually gets used.',
+      'Trained as an economist and a cognitive scientist, I like to think about how we measure that which resists measurement — public opinion, self-control, the accuracy of a poll — and how do we build the systems that make those measurements legible?',
+      'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines — from neuroimaging on high-performance clusters to survey infrastructure.',
+      'I care about open, reproducible work, and enjoy the slow, occasionally painful process of communicating clarity.',
     ],
   },
 
@@ -261,7 +261,7 @@ export const explore: Shelf[] = [
   {
     num: 'II',
     title: 'Fun Stuff',
-    blurb: 'Time well spent, perhaps better spent elsewhere.',
+    blurb: 'Time well spent, though perhaps spent better elsewhere.',
     href: '/personal/',
   },
   {
