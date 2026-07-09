@@ -3,10 +3,12 @@ interface Props {
   src?: string;
   caption?: string;
   label?: string;
+  align?: 'left' | 'right';
 }
-const { src, caption, label } = Astro.props;
+const { src, caption, label, align } = Astro.props;
+const cls = ['feature-fig', align ? `feature-fig--${align}` : ''].filter(Boolean).join(' ');
 ---
-<figure class="feature-fig">
+<figure class={cls}>
   {src
     ? <img src={src} alt={caption ?? ''} />
     : <div class="feature-fig__ph"><span>{label ?? 'Figure'}</span></div>}

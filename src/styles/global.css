@@ -678,6 +678,13 @@ em { font-style: italic; }
 .feature-fig__ph span { font-style: italic; font-size: 13px; color: var(--ink-faint); }
 .feature-fig figcaption { margin-top: 10px; font-style: italic; font-size: 13.5px; line-height: 1.5; color: var(--ink-faint); }
 
+/* offset collage figures: alternate left/right, smaller, pulled toward the outer edge */
+.prose-body .feature-fig--left, .prose-body .feature-fig--right { width: fit-content; max-width: 58%; margin-top: 6px; margin-bottom: 40px; }
+.prose-body .feature-fig--left { margin-left: -9%; margin-right: auto; }
+.prose-body .feature-fig--right { margin-left: auto; margin-right: -9%; }
+.prose-body .feature-fig--left img, .prose-body .feature-fig--right img { max-height: 440px; }
+.prose-body .feature-fig--left figcaption, .prose-body .feature-fig--right figcaption { text-align: left; }
+
 .feature-display {
   font-family: var(--serif); font-size: clamp(23px, 2.7vw, 31px); font-weight: 430;
   line-height: 1.24; letter-spacing: -0.01em; text-align: center; color: var(--ink);
@@ -779,6 +786,8 @@ em { font-style: italic; }
   .pfeed { grid-template-columns: 1fr; column-gap: 0; row-gap: 22px; }
   .pfeed__index { position: static; }
   .feature-article { max-width: none; }
+  .prose-body .feature-fig--left, .prose-body .feature-fig--right { width: auto; max-width: 100%; margin-left: auto; margin-right: auto; }
+  .prose-body .feature-fig--left img, .prose-body .feature-fig--right img { margin: 0 auto; }
 }
 
 @media (max-width: 560px) {
