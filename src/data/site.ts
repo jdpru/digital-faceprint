@@ -60,6 +60,8 @@ export type ExperienceEntry = {
   place: string;
   description: string[];
   tags: string[];
+  photo?: string; // optional thumbnail shown in the expanded row
+  photoAlt?: string;
 };
 
 export const experience: ExperienceEntry[] = [
@@ -84,6 +86,8 @@ export const experience: ExperienceEntry[] = [
       'Designed the questionnaires and the end-to-end collection pipeline, then worked with faculty and staff to tailor the tooling and train them to run it themselves.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
+    photo: '/gallery/design-technology-institute/dti-cohort-thumb.jpg',
+    photoAlt: 'With the Design & Technology Institute cohort in Accra.',
   },
   {
     years: '2023 — Now',

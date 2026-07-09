@@ -18,12 +18,13 @@ import { experience, education, educationSchool } from '../data/site';
           </button>
           <div class="rrow__detail">
             <div class="rrow__detail-in">
-              <div class="rrow__photo" aria-hidden="true"><span>Photo</span></div>
+              {e.photo && (
+                <div class="rrow__photo">
+                  <img src={e.photo} alt={e.photoAlt ?? ''} loading="lazy" />
+                </div>
+              )}
               <div class="rrow__desc">
                 {e.description.map((p) => <p>{p}</p>)}
-                <div class="rrow__tags">
-                  {e.tags.map((t) => <span>{t}</span>)}
-                </div>
               </div>
             </div>
           </div>

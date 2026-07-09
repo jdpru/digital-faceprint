@@ -35,15 +35,17 @@ That's a very hard problem, and it will never be solved in its entirety. Euterri
 
 ## Keyword and meaning, blended and reranked
 
-A slide deck or a PDF report isn't structured data, it's a human artifact, full of implicit context and no schema. The actual engineering problem isn't storage, it's turning that mess into something you can ask a real question of, and getting back an answer that's actually useful.
+A slide deck or a PDF report isn't structured data, it's a human artifact, full of implicit context and no schema. So the first thing Euterria does with an uploaded document is read it with a model and pull it apart into typed records: a program with its issue areas and the people it serves, an organization with what it needs and offers, a person with their skills and role. Long documents get split into sections and indexed on their own. Nothing stays a free-floating blob of text; everything becomes an entity with fields you can point at.
 
-Every document a group uploads gets read by a model and extracted into a typed record: title, issue areas, geography, key people, the program it belongs to, rather than a blob of text nobody can search. That structure is what makes an answer explainable instead of just plausible.
+Retrieval is the easy half. A question fans out across all of those indexes at once, catching literal keyword matches and semantic ones together, so a program nobody phrased exactly still surfaces if it's about the right thing. That casts a wide net. The interesting problem is what to do with the catch.
 
-Search itself runs two passes at once: a keyword pass that catches exact matches, and a semantic pass that matches on meaning, including a passage buried deep inside a sixty-page toolkit nobody would have thought to open. Both sets of candidates blend together, and a reranking model makes the final call on order, so the most relevant result surfaces regardless of whether it happened to use the same words as the question.
+The honest answer to "who's working on urban heat in Oakland?" is usually not the document that says "urban heat" the most times. It might be a person whose profile never uses the phrase, a program filed under "tree equity," or a single paragraph on page forty of a resilience toolkit. Ranking those against each other, across entirely different kinds of things, is where Euterria does its real work.
+
+That's the reranker's job. Each candidate, a person, a program, an org, a passage from a report, gets rendered into a compact semantic document: its title, type, the organization behind it, its metadata and a snippet or two. A reranking model reads all of them against the original question and reorders the shortlist by what each result actually means, not by how often it echoed the query's words. Evidence from inside documents feeds the same step: one genuinely relevant chunk can lift the whole resource it belongs to above a document that only mentions the topic in passing.
 
 <SearchFlow />
 
-That last step matters more than it sounds like it should. Two organizations can describe the same work in completely different language, one calls it "urban heat mitigation," another calls it "tree equity." A keyword search alone treats those as unrelated. Reading for meaning is what lets Euterria recognize they're the same conversation.
+The payoff shows up the instant you compare the two orderings. Keyword score puts the report that name-drops "urban heat" on top and buries the person who runs the cooling-center program four rows down. The reranker flips them, because it's reading for meaning, and meaning is what the question was about.
 
 ## In pilot with about twenty organizations around the Bay
 

@@ -1,36 +1,47 @@
 ---
-// A static recreation of the hybrid-retrieval diagram from euterria.org's
-// "under the hood" page: one question fans out to keyword + semantic
-// search, the candidates blend, and a reranker decides the final order.
+// Static recreation of euterria.org's semantic-reranker figure: one
+// shortlist of candidates, first ordered by keyword score, then reordered
+// by a reranking model reading for meaning. The keyword winner sinks; the
+// person the query never named by phrase rises to the top. Colours encode
+// entity type, to show the reranker sorting across different kinds of thing.
 ---
-<figure class="eutf">
-  <div class="eutf-card">
-    <div class="eutf-row eutf-row--query">
-      <span class="eutf-stage-label">Question</span>
-      <div class="eutf-pill">&ldquo;Who&rsquo;s working on urban heat in Oakland?&rdquo;</div>
+<figure class="rrk">
+  <div class="rrk-card">
+    <div class="rrk-grid">
+      <div class="rrk-col">
+        <p class="rrk-head">Keyword shortlist</p>
+        <ol class="rrk-list">
+          <li class="rrk-item"><span class="rrk-rank">1</span><span class="rrk-dot" style="background:#2E8FA3"></span><span class="rrk-label">Heat &amp; Health Report</span></li>
+          <li class="rrk-item"><span class="rrk-rank">2</span><span class="rrk-dot" style="background:#2E8FA3"></span><span class="rrk-label">Citywide Tree Census</span></li>
+          <li class="rrk-item"><span class="rrk-rank">3</span><span class="rrk-dot" style="background:#6D5BD0"></span><span class="rrk-label">Oakland Shade Plan</span></li>
+          <li class="rrk-item"><span class="rrk-rank">4</span><span class="rrk-dot" style="background:#C77A2B"></span><span class="rrk-label">Dr. Maya Okonkwo</span></li>
+          <li class="rrk-item"><span class="rrk-rank">5</span><span class="rrk-dot" style="background:#1F6E3C"></span><span class="rrk-label">GreenLine Collaborative</span></li>
+        </ol>
+      </div>
+
+      <div class="rrk-mid" aria-hidden="true">
+        <span class="rrk-mid-label">semantic reranker</span>
+        <span class="rrk-mid-arrow"></span>
+      </div>
+
+      <div class="rrk-col">
+        <p class="rrk-head">Reranked by meaning</p>
+        <ol class="rrk-list">
+          <li class="rrk-item rrk-item--top"><span class="rrk-rank">1</span><span class="rrk-dot" style="background:#C77A2B"></span><span class="rrk-label">Dr. Maya Okonkwo</span><span class="rrk-move rrk-move--up">▲&nbsp;3</span></li>
+          <li class="rrk-item"><span class="rrk-rank">2</span><span class="rrk-dot" style="background:#6D5BD0"></span><span class="rrk-label">Oakland Shade Plan</span><span class="rrk-move rrk-move--up">▲&nbsp;1</span></li>
+          <li class="rrk-item"><span class="rrk-rank">3</span><span class="rrk-dot" style="background:#1F6E3C"></span><span class="rrk-label">GreenLine Collaborative</span><span class="rrk-move rrk-move--up">▲&nbsp;2</span></li>
+          <li class="rrk-item"><span class="rrk-rank">4</span><span class="rrk-dot" style="background:#2E8FA3"></span><span class="rrk-label">Heat &amp; Health Report</span><span class="rrk-move rrk-move--down">▼&nbsp;3</span></li>
+          <li class="rrk-item"><span class="rrk-rank">5</span><span class="rrk-dot" style="background:#2E8FA3"></span><span class="rrk-label">Citywide Tree Census</span><span class="rrk-move rrk-move--down">▼&nbsp;3</span></li>
+        </ol>
+      </div>
     </div>
 
-    <div class="eutf-arrow" aria-hidden="true"></div>
-
-    <div class="eutf-row eutf-row--split">
-      <div class="eutf-branch">
-        <span class="eutf-stage-label">Keyword search</span>
-        <div class="eutf-chip">Oakland Shade Plan</div>
-        <div class="eutf-chip">Heat &amp; Health Report</div>
-      </div>
-      <div class="eutf-branch">
-        <span class="eutf-stage-label">Semantic search</span>
-        <div class="eutf-chip eutf-chip--sem">Dr. Maya Okonkwo</div>
-        <div class="eutf-chip eutf-chip--sem">&ldquo;…tree-canopy gaps in flatland heat&rdquo;</div>
-      </div>
-    </div>
-
-    <div class="eutf-arrow" aria-hidden="true"></div>
-
-    <div class="eutf-row eutf-row--query">
-      <span class="eutf-stage-label">Reranked by meaning</span>
-      <div class="eutf-pill eutf-pill--result">Dr. Maya Okonkwo → Oakland Shade Plan → GreenLine Collaborative</div>
+    <div class="rrk-legend">
+      <span><i style="background:#C77A2B"></i>Person</span>
+      <span><i style="background:#6D5BD0"></i>Program</span>
+      <span><i style="background:#1F6E3C"></i>Organization</span>
+      <span><i style="background:#2E8FA3"></i>Resource</span>
     </div>
   </div>
-  <figcaption>How a question becomes a ranked answer: keyword and semantic retrieval run in parallel, then a reranker sorts the blended results by what the question actually means.</figcaption>
+  <figcaption>The same five candidates, ranked by keyword score, then reordered by a reranking model reading for meaning. The keyword winner sinks to fourth; the person the query never named by phrase rises to first.</figcaption>
 </figure>
