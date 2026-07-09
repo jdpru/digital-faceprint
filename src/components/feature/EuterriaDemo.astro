@@ -1,7 +1,9 @@
 ---
 // A recreation of the "Ask Euterria" search animation from euterria.org,
 // built from the real product copy and colors so it reads as an honest
-// screenshot-in-motion rather than a mockup.
+// screenshot-in-motion rather than a mockup. Content for a scenario is
+// rendered in full (hidden) before typing starts, so the card holds a
+// fixed size and reveals into it rather than growing as it goes.
 ---
 <div class="eut-demo">
   <div class="eut-card">
@@ -13,7 +15,7 @@
       </div>
       <button class="eut-search-btn" type="button" tabindex="-1">Search</button>
     </div>
-    <div class="eut-body">
+    <div class="eut-body" id="eutBody">
       <h2 class="eut-headline" id="eutHeadline">&nbsp;</h2>
       <div class="eut-brief-label" id="eutBriefLabel">
         <svg class="eut-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.7 5.4L19 9l-5.3 1.6L12 16l-1.7-5.4L5 9l5.3-1.6L12 2Z"/></svg>
@@ -28,63 +30,63 @@
 </div>
 
 <style>
-  .eut-demo { background: #F5EEE0; border-radius: 20px; padding: clamp(14px, 3vw, 26px); margin: 0 0 32px; }
+  .eut-demo { background: #F5EEE0; border-radius: 18px; padding: clamp(12px, 2.6vw, 22px); margin: 0 0 32px; }
   .eut-card {
-    max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid #E8E1D2; border-radius: 20px;
+    max-width: 460px; margin: 0 auto; background: #fff; border: 1px solid #E8E1D2; border-radius: 18px;
     overflow: hidden; box-shadow: 0 8px 24px -10px rgba(20,24,30,.18), 0 2px 6px rgba(20,24,30,.06);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-  .eut-bar-row { display: flex; align-items: center; gap: 10px; padding: 12px; border-bottom: 1px solid #E8E1D2; background: linear-gradient(to bottom, #fff, #FCFAF5); }
-  .eut-bar { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; border: 1px solid #DCD3C0; border-radius: 12px; padding: 9px 13px; background: #fff; transition: border-color .2s, box-shadow .2s; }
-  .eut-bar.is-active { border-color: #3C7D5A; box-shadow: 0 0 0 4px rgba(60,125,90,.14); }
-  .eut-icon { width: 16px; height: 16px; color: #1F6E3C; flex-shrink: 0; }
-  #eutQuery { font-size: 14px; font-weight: 600; color: #15181E; white-space: nowrap; overflow: hidden; }
-  .eut-caret { width: 2px; height: 15px; background: #3C7D5A; opacity: 0; flex-shrink: 0; }
+  .eut-bar-row { display: flex; align-items: center; gap: 8px; padding: 10px; border-bottom: 1px solid #E8E1D2; background: linear-gradient(to bottom, #fff, #FCFAF5); }
+  .eut-bar { flex: 1; min-width: 0; display: flex; align-items: center; gap: 7px; border: 1px solid #DCD3C0; border-radius: 10px; padding: 8px 11px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+  .eut-bar.is-active { border-color: #3C7D5A; box-shadow: 0 0 0 3px rgba(60,125,90,.14); }
+  .eut-icon { width: 14px; height: 14px; color: #1F6E3C; flex-shrink: 0; }
+  #eutQuery { font-size: 12.5px; font-weight: 600; color: #15181E; white-space: nowrap; overflow: hidden; }
+  .eut-caret { width: 2px; height: 13px; background: #3C7D5A; opacity: 0; flex-shrink: 0; }
   .eut-caret.is-blinking { animation: eutCaretBlink 0.9s steps(1) infinite; }
   @keyframes eutCaretBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  .eut-search-btn { flex-shrink: 0; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #15181E; color: #fff; font-size: 12.5px; font-weight: 700; cursor: default; }
-  .eut-body { padding: 18px 20px 20px; }
+  .eut-search-btn { flex-shrink: 0; height: 31px; padding: 0 13px; border-radius: 999px; border: 0; background: #15181E; color: #fff; font-size: 11px; font-weight: 700; cursor: default; }
+  .eut-body { padding: 15px 16px 17px; min-height: 330px; }
   .eut-headline {
-    font-family: var(--serif, Georgia, serif); font-size: clamp(17px, 2.2vw, 21px); font-weight: 600;
-    color: #15181E; line-height: 1.35; margin: 0; min-height: 1.35em;
+    font-family: var(--serif, Georgia, serif); font-size: 15.5px; font-weight: 600;
+    color: #15181E; line-height: 1.35; margin: 0; min-height: 2.7em;
     opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease;
   }
   .eut-headline.is-in { opacity: 1; transform: translateY(0); }
   .eut-brief-label {
-    margin-top: 13px; display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 800;
+    margin-top: 11px; display: flex; align-items: center; gap: 5px; font-size: 9.5px; font-weight: 800;
     text-transform: uppercase; letter-spacing: .1em; color: #1F6E3C; opacity: 0; transition: opacity .4s ease;
   }
   .eut-brief-label.is-in { opacity: 1; }
-  .eut-sparkle { width: 12px; height: 12px; }
-  .eut-brief-text { margin: 9px 0 0; font-size: 13.5px; line-height: 1.65; color: #2B313B; min-height: 3.3em; }
+  .eut-sparkle { width: 11px; height: 11px; }
+  .eut-brief-text { margin: 8px 0 0; font-size: 12px; line-height: 1.62; color: #2B313B; min-height: 4.9em; }
   .eut-brief-text :global(.eut-word), .eut-brief-text :global(.eut-entity) { opacity: 0; transition: opacity .3s ease; }
   .eut-brief-text.is-in :global(.eut-word), .eut-brief-text.is-in :global(.eut-entity) { opacity: 1; }
   .eut-brief-text :global(.eut-entity) {
-    display: inline-flex; margin: 0 2px; padding: 1px 8px; border-radius: 999px; border: 1px solid #C4E2CB;
-    background: #E9F4EC; color: #2C7A43; font-weight: 700; font-size: 12.5px;
+    display: inline-flex; margin: 0 2px; padding: 1px 7px; border-radius: 999px; border: 1px solid #C4E2CB;
+    background: #E9F4EC; color: #2C7A43; font-weight: 700; font-size: 11px;
   }
-  .eut-tabs { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 3px 16px; border-bottom: 1px solid #E8E1D2; opacity: 0; transition: opacity .4s ease; }
+  .eut-tabs { margin-top: 13px; display: flex; flex-wrap: wrap; gap: 3px 13px; border-bottom: 1px solid #E8E1D2; opacity: 0; transition: opacity .4s ease; min-height: 1.6em; }
   .eut-tabs.is-in { opacity: 1; }
-  .eut-tabs :global(span) { padding-bottom: 7px; font-size: 11.5px; font-weight: 700; color: #7A8088; }
+  .eut-tabs :global(span) { padding-bottom: 6px; font-size: 10px; font-weight: 700; color: #7A8088; }
   .eut-tabs :global(span:first-child) { color: #15181E; border-bottom: 2px solid #D9492E; }
   .eut-tabs :global(span b) { margin-left: 3px; color: #2B313B; font-weight: 700; }
-  .eut-results { margin-top: 2px; }
+  .eut-results { margin-top: 2px; min-height: 148px; }
   .eut-results :global(.eut-result) {
-    display: flex; gap: 11px; padding: 13px 0; border-bottom: 1px solid #E8E1D2;
+    display: flex; gap: 9px; padding: 10px 0; border-bottom: 1px solid #E8E1D2;
     opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
   }
   .eut-results :global(.eut-result.is-in) { opacity: 1; transform: translateY(0); }
   .eut-results :global(.eut-result-icon) {
-    flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px; border: 1px solid #DCD3C0; background: #fff;
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; border: 1px solid #DCD3C0; background: #fff;
     display: flex; align-items: center; justify-content: center; color: #2B313B;
   }
-  .eut-results :global(.eut-result-icon svg) { width: 15px; height: 15px; }
-  .eut-results :global(.eut-result-kind) { margin: 0; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #7A8088; }
-  .eut-results :global(.eut-result-title) { margin: 3px 0 0; font-family: var(--serif, Georgia, serif); font-size: 14.5px; font-weight: 600; color: #15181E; }
-  .eut-results :global(.eut-result-desc) { margin: 3px 0 0; font-size: 12px; line-height: 1.5; color: #4A5260; }
-  .eut-results :global(.eut-result-tags) { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px; }
-  .eut-results :global(.eut-result-tags span) { padding: 2px 8px; border-radius: 999px; border: 1px solid #DCD3C0; font-size: 10px; font-weight: 600; color: #2B313B; }
-  .eut-demo-caption { margin: 10px 0 0; text-align: center; font-style: italic; font-size: 12.5px; color: var(--ink-faint, #8a8a8a); }
+  .eut-results :global(.eut-result-icon svg) { width: 13px; height: 13px; }
+  .eut-results :global(.eut-result-kind) { margin: 0; font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #7A8088; }
+  .eut-results :global(.eut-result-title) { margin: 2px 0 0; font-family: var(--serif, Georgia, serif); font-size: 12.5px; font-weight: 600; color: #15181E; }
+  .eut-results :global(.eut-result-desc) { margin: 2px 0 0; font-size: 10.5px; line-height: 1.5; color: #4A5260; }
+  .eut-results :global(.eut-result-tags) { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .eut-results :global(.eut-result-tags span) { padding: 1px 7px; border-radius: 999px; border: 1px solid #DCD3C0; font-size: 9px; font-weight: 600; color: #2B313B; }
+  .eut-demo-caption { margin: 9px 0 0; text-align: center; font-style: italic; font-size: 12px; color: var(--ink-faint, #8a8a8a); }
 
   @media (prefers-reduced-motion: reduce) {
     .eut-caret { animation: none !important; }
@@ -201,6 +203,21 @@
       .join('');
   }
 
+  // Lay out the full scenario (headline text, brief, tabs, results) up front
+  // but invisible, so the card's height is fixed for the whole scenario and
+  // the reveal is purely opacity/transform — no growth as content appears.
+  function primeScenario(scenario: Scenario) {
+    headlineEl.textContent = `“${scenario.question}”`;
+    renderBrief(scenario.brief);
+    renderTabs(scenario.tabs);
+    renderResults(scenario.results);
+    headlineEl.classList.remove('is-in');
+    briefLabelEl.classList.remove('is-in');
+    briefTextEl.classList.remove('is-in');
+    tabsEl.classList.remove('is-in');
+    [...resultsEl.children].forEach((c) => c.classList.remove('is-in'));
+  }
+
   async function typeQuery(text: string) {
     queryEl.textContent = '';
     caret.classList.add('is-blinking');
@@ -213,23 +230,9 @@
     bar.classList.remove('is-active');
   }
 
-  function resetStage() {
-    headlineEl.classList.remove('is-in');
-    briefLabelEl.classList.remove('is-in');
-    briefTextEl.classList.remove('is-in');
-    tabsEl.classList.remove('is-in');
-    headlineEl.innerHTML = '&nbsp;';
-    briefTextEl.innerHTML = '';
-    tabsEl.innerHTML = '';
-    resultsEl.innerHTML = '';
-  }
-
-  function renderStatic(scenario: Scenario) {
+  function revealStatic(scenario: Scenario) {
     queryEl.textContent = scenario.question;
-    headlineEl.textContent = `“${scenario.question}”`;
-    renderBrief(scenario.brief);
-    renderTabs(scenario.tabs);
-    renderResults(scenario.results);
+    primeScenario(scenario);
     requestAnimationFrame(() => {
       headlineEl.classList.add('is-in');
       briefLabelEl.classList.add('is-in');
@@ -240,24 +243,19 @@
   }
 
   async function playScenario(scenario: Scenario) {
-    resetStage();
+    queryEl.textContent = '';
+    primeScenario(scenario);
     await typeQuery(scenario.question);
     await wait(200);
-    headlineEl.textContent = `“${scenario.question}”`;
     headlineEl.classList.add('is-in');
     await wait(220);
     briefLabelEl.classList.add('is-in');
     await wait(200);
-    renderBrief(scenario.brief);
-    requestAnimationFrame(() => briefTextEl.classList.add('is-in'));
+    briefTextEl.classList.add('is-in');
     await wait(scenario.brief.length * 45 + 400);
-    renderTabs(scenario.tabs);
-    renderResults(scenario.results);
-    requestAnimationFrame(() => {
-      tabsEl.classList.add('is-in');
-      [...resultsEl.children].forEach((c, i) => {
-        setTimeout(() => c.classList.add('is-in'), i * 150);
-      });
+    tabsEl.classList.add('is-in');
+    [...resultsEl.children].forEach((c, i) => {
+      setTimeout(() => c.classList.add('is-in'), i * 150);
     });
     await wait(scenario.results.length * 150 + 3400);
   }
@@ -273,7 +271,7 @@
   const container = document.querySelector('.eut-demo');
   if (container) {
     if (reduced) {
-      renderStatic(scenarios[0]);
+      revealStatic(scenarios[0]);
     } else {
       let started = false;
       const io = new IntersectionObserver((entries) => {
