@@ -51,12 +51,12 @@ const byline = d.date;
       )}
     </header>
 
-    <figure class="feature-fig feature-fig--hero">
-      {d.cover
-        ? <img src={d.cover} alt={d.title} />
-        : <div class="feature-fig__ph"><span>Hero figure — {d.kind}</span></div>}
-      {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
-    </figure>
+    {d.cover && (
+      <figure class="feature-fig feature-fig--hero">
+        <img src={d.cover} alt={d.title} />
+        {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
+      </figure>
+    )}
 
     <div class="prose-body">
       <Content />

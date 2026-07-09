@@ -589,6 +589,8 @@ em { font-style: italic; }
 .prow__status { font-style: italic; font-size: 14px; color: var(--ink-faint); }
 .prow h2 { font-size: 30px; font-weight: 470; letter-spacing: -0.015em; line-height: 1.12; margin: 8px 0 12px; }
 .prow p { font-size: 17px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 16px; max-width: 64ch; }
+.prow__video { max-width: 620px; margin: 0 0 18px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); background: #000; }
+.prow__video iframe { display: block; width: 100%; height: 100%; border: 0; }
 .prow__links { display: flex; gap: 16px; flex-wrap: wrap; }
 .prow__links a {
   font-style: italic;

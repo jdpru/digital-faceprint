@@ -64,6 +64,17 @@ export type ExperienceEntry = {
 
 export const experience: ExperienceEntry[] = [
   {
+    years: '2025 — Now',
+    role: 'Co-founder',
+    org: 'Euterria',
+    place: 'San Francisco, CA',
+    description: [
+      'Co-founded a nonprofit knowledge-sharing platform for the Bay Area climate community — a searchable database that ingests organizations’ decks, reports, and PDFs and turns them into a queryable map of the field’s programs, people, and resources.',
+      'Built the document-ingestion and semantic-search pipeline so climate groups can find who else is working on their problem and build on existing work rather than duplicating it. Now indexes 117 programs across 14 organizations and 269 people.',
+    ],
+    tags: ['Product', 'Semantic search', 'Document ingestion', 'Climate'],
+  },
+  {
     years: '2025',
     role: 'Technical Consultant',
     org: 'Design & Technology Institute',
@@ -146,6 +157,7 @@ export type Work = {
   title: string;
   summary: string;
   links: WorkLink[];
+  video?: string; // YouTube video id, embedded when present
 };
 
 export const work: Work[] = [
@@ -272,23 +284,15 @@ export const explore: Shelf[] = [
   },
 ];
 
-// Placeholder personal projects (prow-style rows).
 export const personalProjects: Work[] = [
   {
-    kind: 'Tool · Side project',
-    status: 'Ongoing',
-    title: 'Placeholder project one',
+    kind: 'iOS app · Side project',
+    status: 'Prototype',
+    title: 'A reader app for The Dispatch',
     summary:
-      'A small experiment built for curiosity. Replace this with a real personal project — what it is, why you made it, and what you learned.',
-    links: [{ label: 'GitHub →', href: '#' }],
-  },
-  {
-    kind: 'Experiment',
-    status: 'Archived',
-    title: 'Placeholder project two',
-    summary:
-      'Another happy dead-end. Swap in real content when ready; the layout handles links, status, and a short description.',
-    links: [{ label: 'Write-up →', href: '#' }],
+      'A month-long fan project: an iOS reader for The Dispatch built entirely on their public RSS feed. Highlight any article to create an annotation, all saved in one place and shareable with the source link auto-appended. An AI feature I call “The Correspondent” recommends recent pieces to further or challenge a view, and can fact-check or add context as you read. Podcasts play inline in the background, plus dark mode, offline reading, and semantic search across full-article embeddings. I sent it to the founders on the off chance it was useful.',
+    links: [{ label: 'Watch the walkthrough →', href: 'https://youtu.be/Qtjt9tDCQG8' }],
+    video: 'Qtjt9tDCQG8',
   },
 ];
 

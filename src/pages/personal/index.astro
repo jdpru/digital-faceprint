@@ -25,6 +25,17 @@ import { personal, personalProjects } from '../../data/site';
           </div>
           <h2>{w.title}</h2>
           <p>{w.summary}</p>
+          {w.video && (
+            <div class="prow__video">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${w.video}`}
+                title={`${w.title} — walkthrough`}
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
           <div class="prow__links">
             {w.links.map((l) => (
               l.href
