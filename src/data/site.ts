@@ -254,7 +254,7 @@ export type Shelf = { num: string; title: string; blurb: string; href: string };
 export const explore: Shelf[] = [
   {
     num: 'I',
-    title: 'Projects',
+    title: 'Projects & Papers',
     blurb: 'A mix of research and engineering.',
     href: '/projects/',
   },
