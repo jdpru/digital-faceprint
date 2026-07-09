@@ -3,34 +3,42 @@ title: Dynamic Reaction-Time Modeling
 kind: Cognition · Deep learning
 status: Paper
 order: 5
-summary: LSTM and dynamical VAE models of human reaction times suggest flexibility and stability are distinct cognitive processes.
+summary: LSTM and dynamical VAE models trained on a task-switching dataset, testing whether deep learning can recover the stability-flexibility structure of human reaction times.
 dek: A reaction time is one number. The sequence of them, over a whole task, is a fingerprint of how a mind holds itself together.
-date: December 2025
+date: December 2024
 readingTime: 5 min read
-heroCaption: Fig. 1 — Latent trajectories recovered from reaction-time sequences.
-tags: [LSTM, Dynamical VAE, Cognition]
-cover: ""
-pdf: ""
-links:
-  - label: PDF →
-    href: "#"
-  - label: Poster →
-    href: "#"
+heroCaption: Fig. 3 — Latent-space trajectories from the DVAE, separated by switch type and stimulus congruency.
+tags: [LSTM, Dynamical VAE, Cognitive modeling]
+cover: "/covers/dynamic-reaction-time-modeling.png"
+pdf: "/papers/Pruett_dynamic_reaction_time_2024.pdf"
+links: []
 ---
 import EndMark from '../../components/feature/EndMark.astro';
 
-Most models treat a reaction time as a draw from a distribution. But the order matters: speeding up, drifting, recovering after an error. This project models the whole sequence as a dynamical system and asks what structure falls out.
+Every time you switch tasks, mentally, there's a tax: a slightly slower response while your mind reconfigures itself. Every time you resist a distraction, there's a different tax: a slightly slower response while you hold your focus in place. For decades, cognitive science treated these two costs, switching and shielding, as opposite ends of a single dial: get better at one and you pay for it with the other. A newer line of research says that's wrong, that stability and flexibility are handled independently rather than traded off. This project asks whether a deep-learning model, trained only on raw reaction times, can recover that structure on its own, with no one telling it what to look for.
 
-## The model
+## The task behind the data
 
-LSTM and dynamical variational autoencoders learn a low-dimensional trajectory behind each participant's reaction-time sequence, without being told what to look for.
+The dataset comes from a task-switching study where 65 people classified numbers by parity (odd or even) or magnitude (greater or less than five), with the active rule cued by a colored frame around each number. Two properties of each trial were varied independently: whether the task had just changed from the previous trial (a "switch," versus a "repeat"), and whether the two possible classification rules happened to agree on the same answer for that number (making it "congruent" or "incongruent"). The gap in reaction time between switch and repeat trials is a behavioral measure of flexibility. The gap between incongruent and congruent trials is a behavioral measure of stability. Roughly 40,000 trials across all subjects, which by cognitive-science standards is already a fairly large batch of data, but small by deep-learning standards, and that mismatch turns out to matter.
 
-> Give the model no labels and it still separates the runs — which is exactly when a latent axis starts to feel real.
+## Three ways to model a sequence
 
-## What the latent space says
+Three architectures were trained to predict a person's reaction time on a given trial from the features of that trial and the ones before it: a plain feedforward network as a baseline, an LSTM recurrent network that reads ten trials at a time to pick up on short-term dependencies, and a dynamical variational autoencoder, or DVAE, that compresses each trial sequence into a low-dimensional latent trajectory and then reconstructs it. The DVAE is the most interesting of the three, because its latent space is exactly the kind of thing that might reveal whether the model has independently discovered "flexibility" and "stability" as separate internal axes, the same way the brain is hypothesized to.
 
-Two axes recur across participants, and they behave like different processes: one for flexibility, one for stability. The suggestion — data-driven, not assumed — is that these are distinct, and consistent with recent psychology. <EndMark />
+## The honest result: prediction was hard
+
+None of the three models predicted reaction times especially well. Test-set correlation between predicted and actual response times topped out around 0.28, for the plain feedforward network, with the LSTM and DVAE landing just behind it at 0.27. That's a weak signal, and worth saying plainly rather than dressing up: with roughly 40,000 trials and only a handful of features per trial (which task, whether it switched, whether it was congruent), there simply isn't much for a deep model to grab onto. Reaction time is noisy at the individual level, and the dataset, while large for a cognitive task battery, is small next to what deep learning usually expects.
+
+## The more interesting result: the model organized itself anyway
+
+Even with weak predictions, the DVAE's latent space was worth a closer look, because nothing in training told it to separate trial types. Plotting the learned trajectories by condition (switch vs. repeat, congruent vs. incongruent, shown above) shows the four combinations clustering into visibly distinct regions, most cleanly along the switch versus non-switch boundary. That's consistent with earlier work on a similar architecture (Task-DyVa), which found the same kind of separation using a dataset thousands of times larger. Finding a hint of the same structure here, on a dataset sized like an ordinary lab study, suggests the effect isn't purely an artifact of scale. The caveat has to come with it, though: because the underlying reaction-time predictions were noisy, this latent separation is suggestive, not confirmatory. It would take a model with real predictive accuracy to treat this as evidence for or against the independence hypothesis.
+
+## Why bother modeling something you can't predict well
+
+It might seem like a negative result: the models didn't predict behavior accurately. But the goal here wasn't really prediction: it was asking whether the internal structure a model is forced to build, in order to try to predict behavior, resembles the structure cognitive science already believes is there. That the DVAE's latent space organized itself along recognizable psychological lines, even while its point predictions stayed noisy, is a hint about where the signal actually lives: less in the exact number of milliseconds a person takes, and more in the shape of how those numbers move together over a sequence of trials. The natural next step, flagged as future work, is building person-specific models rather than one pooled model across all 65 subjects, since a lot of the individual variation being averaged away here might be exactly the variation that matters. <EndMark />
 
 ## References & notes
 
-1. Model code and poster in the repository.
+1. Jaffe, P. I., Poldrack, R. A., Schafer, R. J., Bissett, P. G. (2023). *Modelling human behaviour in cognitive tasks with latent dynamical systems.* Nature Human Behaviour.
+2. Geddert, R., Egner, T. (2022). *No need to choose: Independent regulation of cognitive stability and flexibility challenges the stability-flexibility trade-off.* Journal of Experimental Psychology: General.
+3. Model code available on request.
