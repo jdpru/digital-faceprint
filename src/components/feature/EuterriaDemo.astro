@@ -1,0 +1,291 @@
+---
+// A recreation of the "Ask Euterria" search animation from euterria.org,
+// built from the real product copy and colors so it reads as an honest
+// screenshot-in-motion rather than a mockup.
+---
+<div class="eut-demo">
+  <div class="eut-card">
+    <div class="eut-bar-row">
+      <div class="eut-bar" id="eutBar">
+        <svg class="eut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <span id="eutQuery"></span>
+        <span class="eut-caret" id="eutCaret"></span>
+      </div>
+      <button class="eut-search-btn" type="button" tabindex="-1">Search</button>
+    </div>
+    <div class="eut-body">
+      <h2 class="eut-headline" id="eutHeadline">&nbsp;</h2>
+      <div class="eut-brief-label" id="eutBriefLabel">
+        <svg class="eut-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.7 5.4L19 9l-5.3 1.6L12 16l-1.7-5.4L5 9l5.3-1.6L12 2Z"/></svg>
+        Euterria Brief
+      </div>
+      <p class="eut-brief-text" id="eutBriefText"></p>
+      <div class="eut-tabs" id="eutTabs"></div>
+      <div class="eut-results" id="eutResults"></div>
+    </div>
+  </div>
+  <p class="eut-demo-caption">A recreation of the live search on euterria.org.</p>
+</div>
+
+<style>
+  .eut-demo { background: #F5EEE0; border-radius: 20px; padding: clamp(14px, 3vw, 26px); margin: 0 0 32px; }
+  .eut-card {
+    max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid #E8E1D2; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 8px 24px -10px rgba(20,24,30,.18), 0 2px 6px rgba(20,24,30,.06);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .eut-bar-row { display: flex; align-items: center; gap: 10px; padding: 12px; border-bottom: 1px solid #E8E1D2; background: linear-gradient(to bottom, #fff, #FCFAF5); }
+  .eut-bar { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; border: 1px solid #DCD3C0; border-radius: 12px; padding: 9px 13px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+  .eut-bar.is-active { border-color: #3C7D5A; box-shadow: 0 0 0 4px rgba(60,125,90,.14); }
+  .eut-icon { width: 16px; height: 16px; color: #1F6E3C; flex-shrink: 0; }
+  #eutQuery { font-size: 14px; font-weight: 600; color: #15181E; white-space: nowrap; overflow: hidden; }
+  .eut-caret { width: 2px; height: 15px; background: #3C7D5A; opacity: 0; flex-shrink: 0; }
+  .eut-caret.is-blinking { animation: eutCaretBlink 0.9s steps(1) infinite; }
+  @keyframes eutCaretBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  .eut-search-btn { flex-shrink: 0; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #15181E; color: #fff; font-size: 12.5px; font-weight: 700; cursor: default; }
+  .eut-body { padding: 18px 20px 20px; }
+  .eut-headline {
+    font-family: var(--serif, Georgia, serif); font-size: clamp(17px, 2.2vw, 21px); font-weight: 600;
+    color: #15181E; line-height: 1.35; margin: 0; min-height: 1.35em;
+    opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .eut-headline.is-in { opacity: 1; transform: translateY(0); }
+  .eut-brief-label {
+    margin-top: 13px; display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .1em; color: #1F6E3C; opacity: 0; transition: opacity .4s ease;
+  }
+  .eut-brief-label.is-in { opacity: 1; }
+  .eut-sparkle { width: 12px; height: 12px; }
+  .eut-brief-text { margin: 9px 0 0; font-size: 13.5px; line-height: 1.65; color: #2B313B; min-height: 3.3em; }
+  .eut-brief-text :global(.eut-word), .eut-brief-text :global(.eut-entity) { opacity: 0; transition: opacity .3s ease; }
+  .eut-brief-text.is-in :global(.eut-word), .eut-brief-text.is-in :global(.eut-entity) { opacity: 1; }
+  .eut-brief-text :global(.eut-entity) {
+    display: inline-flex; margin: 0 2px; padding: 1px 8px; border-radius: 999px; border: 1px solid #C4E2CB;
+    background: #E9F4EC; color: #2C7A43; font-weight: 700; font-size: 12.5px;
+  }
+  .eut-tabs { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 3px 16px; border-bottom: 1px solid #E8E1D2; opacity: 0; transition: opacity .4s ease; }
+  .eut-tabs.is-in { opacity: 1; }
+  .eut-tabs :global(span) { padding-bottom: 7px; font-size: 11.5px; font-weight: 700; color: #7A8088; }
+  .eut-tabs :global(span:first-child) { color: #15181E; border-bottom: 2px solid #D9492E; }
+  .eut-tabs :global(span b) { margin-left: 3px; color: #2B313B; font-weight: 700; }
+  .eut-results { margin-top: 2px; }
+  .eut-results :global(.eut-result) {
+    display: flex; gap: 11px; padding: 13px 0; border-bottom: 1px solid #E8E1D2;
+    opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .eut-results :global(.eut-result.is-in) { opacity: 1; transform: translateY(0); }
+  .eut-results :global(.eut-result-icon) {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px; border: 1px solid #DCD3C0; background: #fff;
+    display: flex; align-items: center; justify-content: center; color: #2B313B;
+  }
+  .eut-results :global(.eut-result-icon svg) { width: 15px; height: 15px; }
+  .eut-results :global(.eut-result-kind) { margin: 0; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #7A8088; }
+  .eut-results :global(.eut-result-title) { margin: 3px 0 0; font-family: var(--serif, Georgia, serif); font-size: 14.5px; font-weight: 600; color: #15181E; }
+  .eut-results :global(.eut-result-desc) { margin: 3px 0 0; font-size: 12px; line-height: 1.5; color: #4A5260; }
+  .eut-results :global(.eut-result-tags) { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .eut-results :global(.eut-result-tags span) { padding: 2px 8px; border-radius: 999px; border: 1px solid #DCD3C0; font-size: 10px; font-weight: 600; color: #2B313B; }
+  .eut-demo-caption { margin: 10px 0 0; text-align: center; font-style: italic; font-size: 12.5px; color: var(--ink-faint, #8a8a8a); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eut-caret { animation: none !important; }
+    .eut-headline, .eut-brief-label, .eut-brief-text :global(.eut-word), .eut-brief-text :global(.eut-entity),
+    .eut-tabs, .eut-results :global(.eut-result) { transition: none !important; }
+  }
+</style>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const ICONS: Record<string, string> = {
+    program:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>',
+    organization:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg>',
+  };
+
+  type BriefPart = { t?: string; e?: string };
+  type Result = { kind: string; icon: 'program' | 'organization'; title: string; desc: string; tags: string[] };
+  type Scenario = { question: string; tabs: [string, string][]; brief: BriefPart[]; results: Result[] };
+
+  const scenarios: Scenario[] = [
+    {
+      question: 'What programs focus on youth climate jobs?',
+      tabs: [['All', '47'], ['Organizations', '6'], ['People', '18'], ['Programs', '19'], ['Resources', '4']],
+      brief: [
+        { t: 'Youth workforce development is a growing focus across the network. ' },
+        { e: 'Canopy' }, { t: ' runs ' }, { e: 'Teen Urban Foresters' },
+        { t: ', a paid program training high-schoolers in urban forestry. ' },
+        { e: 'Grassroots Ecology' }, { t: ' hosts the ' }, { e: 'California Climate Action Corps' },
+        { t: ' fellowship, and ' }, { e: 'Acterra' }, { t: ' places emerging leaders through its ' },
+        { e: 'Climate Action Fellowship' }, { t: '.' },
+      ],
+      results: [
+        {
+          kind: 'Program', icon: 'program', title: 'Teen Urban Foresters',
+          desc: "Canopy's paid summer program training Midpeninsula teens in tree care, planting, and green-job skills.",
+          tags: ['Youth Programs', 'Urban Forestry', 'Workforce'],
+        },
+        {
+          kind: 'Program', icon: 'program', title: 'California Climate Action Corps',
+          desc: 'A statewide fellowship placing emerging leaders in community climate projects, hosted locally by Grassroots Ecology.',
+          tags: ['Workforce Development', 'Youth Leadership'],
+        },
+      ],
+    },
+    {
+      question: 'Who else is working on urban heat islands?',
+      tabs: [['All', '109'], ['Organizations', '5'], ['People', '53'], ['Programs', '28'], ['Resources', '12']],
+      brief: [
+        { t: 'Several organizations are focused on urban heat resilience. Notably, ' },
+        { e: 'Greenbelt Alliance' }, { t: ' works through their ' }, { e: 'Resilience Playbook' },
+        { t: ', which provides strategies for equitable adaptation to climate impacts including urban heat. Meanwhile, ' },
+        { e: 'Canopy' }, { t: ' leads urban-forestry programs like ' }, { e: 'Community Tree Planting' },
+        { t: ' and ' }, { e: 'Teen Urban Foresters' }, { t: ' that increase tree canopy in underserved neighborhoods.' },
+      ],
+      results: [
+        {
+          kind: 'Program', icon: 'program', title: 'Extreme Heat Risk Program',
+          desc: "San Mateo County's climate-resilience work addresses extreme heat through the Climate Ready SMC heat dashboard.",
+          tags: ['Climate Adaptation', 'Community Health', 'Environmental Justice'],
+        },
+        {
+          kind: 'Organization', icon: 'organization', title: 'Canopy',
+          desc: 'Grows the urban tree canopy across the Midpeninsula, prioritizing tree-planting in neighborhoods most exposed to extreme heat.',
+          tags: ['Urban Forestry', 'Tree Equity', 'Youth Programs'],
+        },
+      ],
+    },
+  ];
+
+  const bar = document.getElementById('eutBar') as HTMLElement;
+  const caret = document.getElementById('eutCaret') as HTMLElement;
+  const queryEl = document.getElementById('eutQuery') as HTMLElement;
+  const headlineEl = document.getElementById('eutHeadline') as HTMLElement;
+  const briefLabelEl = document.getElementById('eutBriefLabel') as HTMLElement;
+  const briefTextEl = document.getElementById('eutBriefText') as HTMLElement;
+  const tabsEl = document.getElementById('eutTabs') as HTMLElement;
+  const resultsEl = document.getElementById('eutResults') as HTMLElement;
+
+  function wait(ms: number) {
+    return new Promise<void>((r) => setTimeout(r, ms));
+  }
+
+  function renderTabs(tabs: [string, string][]) {
+    tabsEl.innerHTML = tabs.map(([label, count]) => `<span>${label} <b>${count}</b></span>`).join('');
+  }
+
+  function renderResults(results: Result[]) {
+    resultsEl.innerHTML = results
+      .map(
+        (r) => `
+        <div class="eut-result">
+          <div class="eut-result-icon">${ICONS[r.icon]}</div>
+          <div>
+            <p class="eut-result-kind">${r.kind}</p>
+            <h3 class="eut-result-title">${r.title}</h3>
+            <p class="eut-result-desc">${r.desc}</p>
+            <div class="eut-result-tags">${r.tags.map((t) => `<span>${t}</span>`).join('')}</div>
+          </div>
+        </div>`
+      )
+      .join('');
+  }
+
+  function renderBrief(brief: BriefPart[]) {
+    briefTextEl.innerHTML = brief
+      .map((part, i) => {
+        const delay = `${i * 45}ms`;
+        if (part.e) return `<span class="eut-entity" style="transition-delay:${delay}">${part.e}</span>`;
+        return `<span class="eut-word" style="transition-delay:${delay}">${part.t}</span>`;
+      })
+      .join('');
+  }
+
+  async function typeQuery(text: string) {
+    queryEl.textContent = '';
+    caret.classList.add('is-blinking');
+    bar.classList.add('is-active');
+    for (let i = 1; i <= text.length; i++) {
+      queryEl.textContent = text.slice(0, i);
+      await wait(28);
+    }
+    caret.classList.remove('is-blinking');
+    bar.classList.remove('is-active');
+  }
+
+  function resetStage() {
+    headlineEl.classList.remove('is-in');
+    briefLabelEl.classList.remove('is-in');
+    briefTextEl.classList.remove('is-in');
+    tabsEl.classList.remove('is-in');
+    headlineEl.innerHTML = '&nbsp;';
+    briefTextEl.innerHTML = '';
+    tabsEl.innerHTML = '';
+    resultsEl.innerHTML = '';
+  }
+
+  function renderStatic(scenario: Scenario) {
+    queryEl.textContent = scenario.question;
+    headlineEl.textContent = `“${scenario.question}”`;
+    renderBrief(scenario.brief);
+    renderTabs(scenario.tabs);
+    renderResults(scenario.results);
+    requestAnimationFrame(() => {
+      headlineEl.classList.add('is-in');
+      briefLabelEl.classList.add('is-in');
+      briefTextEl.classList.add('is-in');
+      tabsEl.classList.add('is-in');
+      [...resultsEl.children].forEach((c) => c.classList.add('is-in'));
+    });
+  }
+
+  async function playScenario(scenario: Scenario) {
+    resetStage();
+    await typeQuery(scenario.question);
+    await wait(200);
+    headlineEl.textContent = `“${scenario.question}”`;
+    headlineEl.classList.add('is-in');
+    await wait(220);
+    briefLabelEl.classList.add('is-in');
+    await wait(200);
+    renderBrief(scenario.brief);
+    requestAnimationFrame(() => briefTextEl.classList.add('is-in'));
+    await wait(scenario.brief.length * 45 + 400);
+    renderTabs(scenario.tabs);
+    renderResults(scenario.results);
+    requestAnimationFrame(() => {
+      tabsEl.classList.add('is-in');
+      [...resultsEl.children].forEach((c, i) => {
+        setTimeout(() => c.classList.add('is-in'), i * 150);
+      });
+    });
+    await wait(scenario.results.length * 150 + 3400);
+  }
+
+  async function loop() {
+    let i = 0;
+    while (true) {
+      await playScenario(scenarios[i % scenarios.length]);
+      i++;
+    }
+  }
+
+  const container = document.querySelector('.eut-demo');
+  if (container) {
+    if (reduced) {
+      renderStatic(scenarios[0]);
+    } else {
+      let started = false;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            loop();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(container);
+    }
+  }
+</script>

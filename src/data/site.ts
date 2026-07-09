@@ -69,10 +69,10 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Co-founded a nonprofit knowledge-sharing platform for the Bay Area climate community — a searchable database that ingests organizations’ decks, reports, and PDFs and turns them into a queryable map of the field’s programs, people, and resources.',
-      'Built the document-ingestion and semantic-search pipeline so climate groups can find who else is working on their problem and build on existing work rather than duplicating it. Now indexes 117 programs across 14 organizations and 269 people.',
+      'Co-founded a nonprofit building a shared home for what the Bay Area climate community already knows, helping nonprofits find each other, learn from work already done, and stop quietly rebuilding things a neighboring org solved months ago.',
+      'Built the tools that let organizations turn what they already have, decks, reports, institutional memory, into something the whole community can search and build on, so good ideas spread instead of staying trapped in one org\'s files. Now connects 117 programs across 14 organizations and 269 people.',
     ],
-    tags: ['Product', 'Semantic search', 'Document ingestion', 'Climate'],
+    tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
   },
   {
     years: '2025',

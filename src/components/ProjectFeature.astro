@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import EuterriaDemo from './feature/EuterriaDemo.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -50,6 +51,8 @@ const byline = d.date;
         </p>
       )}
     </header>
+
+    {project.id === 'euterria' && <EuterriaDemo />}
 
     {d.cover && (
       <figure class="feature-fig feature-fig--hero">
