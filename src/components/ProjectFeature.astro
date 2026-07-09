@@ -56,5 +56,12 @@ const byline = d.date;
         {d.pdf && <a href={d.pdf} target="_blank" rel="noopener">PDF ↓</a>}
       </div>
     )}
+
+    {d.pdf && (
+      <div class="feature-pdf">
+        <p class="feature-pdf__label">Full paper</p>
+        <iframe src={d.pdf} title={`${d.title} — PDF`} />
+      </div>
+    )}
   </article>
 </main>

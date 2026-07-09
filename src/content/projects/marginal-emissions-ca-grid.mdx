@@ -3,32 +3,61 @@ title: Marginal Emissions in the CA Power Grid
 kind: Energy · Econometrics
 status: Paper
 order: 7
-summary: A scraper aggregating 5M CAISO data points over six years, with a simulation quantifying marginal emissions offset per MWh of renewables.
+summary: An hourly analysis of CAISO data showing that a MWh of wind or solar offsets very different amounts of CO2 depending on when it hits the grid.
 dek: A new solar panel doesn't offset the average power plant — it offsets whichever one was about to run next. That distinction is worth a lot of carbon.
-date: October 2025
+date: December 2023
 readingTime: 5 min read
-heroCaption: Fig. 1 — Marginal emissions factor across the day, California grid.
-tags: [Python, R, Fixed effects]
+heroCaption: Fig. 1 — Marginal emissions avoided (MEA), tonnes of CO2 per MWh, across levels of grid demand.
+tags: [Python, R, Fixed effects, CAISO]
 cover: ""
-pdf: ""
-links:
-  - label: PDF →
-    href: "#"
+pdf: "/papers/marginal-emissions-ca-grid.pdf"
+links: []
 ---
 import EndMark from '../../components/feature/EndMark.astro';
 
-The climate value of a renewable megawatt-hour depends on what it displaces — and the grid displaces at the margin, not the average. Getting that number right changes which projects are worth building.
+A megawatt-hour of solar power doesn't offset the average power plant on the grid. It offsets whichever plant was about to ramp up next, and that plant changes hour by hour depending on how much California already needs. State and federal programs pay a flat rate for renewable generation, in cents per kilowatt-hour, no matter when that generation happens. This project asks whether that flat rate is actually rewarding the right hours.
+
+## Why "average" is the wrong number
+
+Power plants fall into three rough types. Baseload plants run near full capacity all the time because they're cheap to keep on. Peakers are expensive to run but cheap to build, so they only switch on when demand spikes. Wind and solar cost nothing to run once built, so whenever the sun or wind cooperates, that power gets used first. The plant that gets displaced is whichever nonrenewable unit was sitting at the margin, ready to absorb the next bit of demand. Which plant that is, a clean hydro unit or a dirty gas peaker, depends entirely on how much the grid needs at that moment. So the emissions avoided by one more MWh of renewables isn't fixed. It moves with demand.
 
 ## The data
 
-A Python scraper pulls roughly five million data points over six years from CAISO; an R simulation then estimates the marginal emissions offset per MWh of renewable generation.
+I pulled six years of hourly data from CAISO, the operator that runs about 80% of California's grid: hourly demand, generation broken out by fuel source, and hourly CO2 emissions, also broken out by source, since California requires utilities to report emissions this granularly. That's close to 40,000 hourly observations, five million underlying data points once every fuel source is accounted for.
 
-> Average emissions tell you about the grid you have. Marginal emissions tell you about the grid you change.
+## Step one: the average offset
 
-## What it estimates
+The first model is a straightforward fixed-effects regression:
 
-A fixed-effects model, with a heterogeneity analysis by hour and season, puts a defensible figure on the offset — and shows how much it swings with timing. <EndMark />
+<p class="feature-eq">E<sub>t</sub> = β · W<sub>t</sub> + φ · Z<sub>t</sub> + ε</p>
+
+E is hourly CO2 emissions, W is hourly wind or solar generation, and Z is a set of controls: the level, square, and cube of demand that hour, plus a separate fixed effect for every combination of hour, day of week, and month across the sample (9,576 in total). Those fixed effects strip out routine daily and seasonal patterns, like everyone turning on air conditioning at the same time solar output peaks, so β is left measuring something closer to a causal offset: how much a MWh of generation reduces emissions, holding the rest of the day's rhythm constant.
+
+The answer: about 0.33 metric tons of CO2 per MWh for wind, 0.33 for solar, and 0.38 for all renewables combined. Reasonable numbers, and reassuringly close to prior estimates for other grids. But averages hide the thing this paper is actually about.
+
+## Step two: letting the offset move with demand
+
+An average tells you about the grid you have. It doesn't tell you what happens to the offset when the grid is nearly idle at 3am versus straining at 6pm. To get that, I extended the model to let the effect of generation interact with demand, up to a cubic term in each:
+
+<p class="feature-eq">MEA(W, D) = −∂E(W, D) / ∂W</p>
+
+This is just a derivative: hold demand D fixed, and ask how emissions change as generation W ticks up by one more MWh. That slope is the marginal emissions avoided, MEA, and because the underlying model lets generation and demand interact nonlinearly, the slope is free to change shape depending on where you are on the demand curve, instead of being locked to one number for the whole year.
+
+## What the shape looks like
+
+Wind and solar move in opposite directions. At low demand, an extra MWh of wind offsets less as demand climbs; wind's benefit briefly declines. But past a certain point that reverses, and at the highest demand levels observed, wind's offset climbs sharply, roughly tripling from its low point. Solar does the reverse: its offset rises steadily and smoothly as demand increases, because solar mostly displaces the gas peakers that only get switched on once demand is already high, so a sunny hour is worth more to the grid precisely when the grid is under the most strain.
+
+Averaged across all renewables, the picture is a shallow U that turns upward: offsets sit around 0.35 mT at low demand, dip slightly, then climb toward roughly 0.45 mT as demand approaches its peak, about a 30% swing from the flattest part of the curve to the busiest hours of the day.
+
+## Why this matters for policy
+
+Every major renewable incentive I could find (the federal Investment Tax Credit, California's net metering and solar programs) pays a fixed rate per unit of generation, treating a MWh of solar at noon on a mild day the same as a MWh of wind during a July evening peak. If the true offset swings by 30% or more depending on timing, a flat subsidy is over-paying for the hours that do the least good and under-paying for the hours that do the most. A time-varying incentive, one that pays more for generation that shows up when the grid is already strained, would buy more emissions reduction per subsidy dollar without adding a single new turbine or panel.
+
+The obvious caveats apply: this assumes a cubic functional form for how emissions bend with demand, and it doesn't yet control for weather directly, only for the seasonal patterns weather tends to follow. Better data on wind speed and irradiance would sharpen these estimates. But the qualitative result, that the marginal value of clean energy depends on when it arrives, is unlikely to disappear with more data. It just gets more precise. <EndMark />
 
 ## References & notes
 
-1. Scraper and simulation code in the repository.
+1. Novan, K. (2015). *Valuing the Wind: Renewable Energy Policies and Air Pollution Avoided.* American Economic Journal: Economic Policy, 7(3), 291–326.
+2. Cullen, J. (2013). *Measuring the Environmental Benefits of Wind-Generated Electricity.* American Economic Journal: Economic Policy, 5(4), 107–33.
+3. Zivin, S., Kotchen, M., Mansur, E. (2014). *Spatial and Temporal Heterogeneity of Marginal Emissions.* NBER.
+4. Scraper and simulation code available on request.
