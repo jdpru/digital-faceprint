@@ -28,8 +28,8 @@ export const site = {
       { name: 'Steve Ballmer', href: 'https://en.wikipedia.org/wiki/Steve_Ballmer' },
     ],
     prose: [
-      'Trained as an economist and a cognitive scientist, I like to think about how we measure that which resists measurement — public opinion, self-control, the accuracy of a poll — and how do we build the systems that make those measurements legible?',
-      'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines — from neuroimaging on high-performance clusters to survey infrastructure.',
+      'Trained as an economist and a cognitive scientist, I like to think about how we measure that which resists measurement: public opinion, self-control, the accuracy of a poll, and how we build the systems that make those measurements legible.',
+      'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines, from neuroimaging on high-performance clusters to survey infrastructure.',
       'I care about open, reproducible work, and enjoy the slow, occasionally painful process of communicating clarity.',
     ],
   },
