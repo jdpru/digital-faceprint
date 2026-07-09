@@ -19,6 +19,7 @@ const projects = defineCollection({
     // media/paths live under /public (CMS-friendly); optional for now
     cover: z.string().optional(),
     pdf: z.string().optional(),
+    github: z.string().optional(), // link to the project's repo
     links: z
       .array(z.object({ label: z.string(), href: z.string() }))
       .default([]),

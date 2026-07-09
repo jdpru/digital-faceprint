@@ -3,35 +3,50 @@ title: Predicting Antidepressant Response from EEG
 kind: EEG · Deep learning
 status: Paper
 order: 4
-summary: Variational autoencoders learn latent EEG representations to predict who responds to which antidepressant.
-dek: Two people with the same diagnosis can need opposite drugs. Can the resting brain say which, before the months of trial and error?
-date: January 2026
+summary: Semi-supervised and recurrent autoencoders compress resting-state EEG into a latent space trained to predict antidepressant response, tested against clinical features alone on a 700-patient trial.
+dek: Two people with the same diagnosis can need opposite drugs. Can the resting brain say which, before the months of trial and error, or does it just look like it can?
+date: May 2025
 readingTime: 5 min read
-heroCaption: Fig. 1 — Latent EEG space, colored by eventual treatment response.
-tags: [VAE, EEG, PyTorch]
-cover: ""
-pdf: ""
-links:
-  - label: PDF →
-    href: "#"
-  - label: GitHub →
-    href: "#"
+heroCaption: Fig. 4 — Latent EEG space (PCA), colored by treatment response. Train set (left) looks separable; test set (right) doesn't.
+tags: [Autoencoder, EEG, Semi-supervised learning]
+cover: "/covers/antidepressant-response-eeg.png"
+pdf: "/papers/Pruett_antidepressant_eeg_2025.pdf"
+github: "https://github.com/jdpru/iSPOT-Autoencoder"
+links: []
 ---
-import Figure from '../../components/feature/Figure.astro';
 import EndMark from '../../components/feature/EndMark.astro';
 
-Choosing an antidepressant is still largely trial and error: a drug, a six-week wait, a verdict, and often a restart. If the resting EEG carried a usable signal about who responds to what, that loop could get much shorter.
+Picking an antidepressant is still mostly trial and error: start a drug, wait six to eight weeks to see if it works, and if it doesn't, start over. Roughly two-thirds of patients don't remit on their first medication. If a cheap fifteen-minute test, like a resting EEG, could flag who's likely to respond to what before that wait even starts, it would shorten a genuinely painful process for a lot of people. This project builds that test and reports, honestly, that it doesn't quite work yet, and tries to explain why that's still worth knowing.
 
-## The approach
+## The dataset
 
-Semi-supervised and recurrent variational autoencoders compress raw EEG into a latent representation, which a light classifier then reads for response. Training pairs a reconstruction loss with a prediction loss so the space stays both faithful and useful.
+The data comes from iSPOT-D, a real multi-site clinical trial that randomized over a thousand adults with depression to one of three common antidepressants and tracked their outcomes over eight weeks. About 700 of those patients had both a usable resting-state EEG recording, taken before treatment started, and a documented outcome: did their symptoms drop by at least half. That's the target. The predictors are two-minute EEG recordings across 26 scalp electrodes, plus the clinical variables (age, gender, assigned medication, and the individual items of the standard depression rating scale used at intake).
 
-> The autoencoder is doing the honest work: it has to describe the signal before it is allowed to guess about it.
+## Compressing a brain signal down to something predictive
 
-## Where it lands
+The core idea is an autoencoder: a network that learns to compress a high-dimensional input, in this case EEG plus clinical features, down into a small latent code, and then reconstruct the original input from that code. If the compression is good, the latent code has captured whatever structure matters in the signal. The plain version of this is unsupervised: it never sees the outcome label, it just learns to compress and reconstruct.
 
-Evaluated with ROC-AUC against clinical and combined baselines, the latent features add signal over demographics alone — modest, but in the direction that matters. <EndMark />
+The more interesting version is semi-supervised: alongside the reconstruction objective, a small prediction head reads the latent code and tries to guess the patient's actual treatment response. The two objectives are combined into a single loss, weighted against each other, so the model is being asked to find a compressed representation that's still faithful to the raw signal but also, if possible, useful for predicting who gets better. A third variant, a recurrent variational autoencoder, processes the EEG as an actual time series (116 timesteps across the recording) rather than flattening it into one static vector, on the theory that the moment-to-moment dynamics of brain activity, not just its average pattern, might carry the useful signal.
+
+Each version's latent code was then handed to a simple downstream classifier (logistic regression) to actually generate a prediction, which keeps the evaluation honest: the autoencoder can't just memorize the answer, it has to produce a representation a separate, simple model can use.
+
+## The result: barely above a coin flip
+
+None of the six model variants beat chance by much. The best one, a semi-supervised autoencoder combining EEG and clinical features, reached an ROC-AUC of 0.557, a small step up from using clinical features alone (0.513), and every EEG-only model landed between 0.518 and 0.533. For context, 0.5 is a coin flip and 1.0 is perfect separation, so the entire field of results sat within about six points of pure noise. Two of the three combined EEG-plus-clinical models actually did worse than the clinical-only baseline, which is a useful, if unflattering, data point in itself: bolting EEG features onto a model doesn't automatically help, and can actively hurt if the added dimensions mostly add noise for a classifier to overfit on.
+
+The more revealing problem shows up in the confusion matrices. Most models learned to guess "responder" for almost everyone, since about 62% of patients in the test set were responders, so a model that just predicts the majority class looks deceptively accurate. The recurrent model was the most extreme case: it labeled all 38 non-responders in the test set as responders, for a specificity of exactly zero, while still posting a respectable-looking accuracy number. High accuracy paired with zero specificity is the signature of a model that found the easy way to look correct rather than the hard way to actually be useful.
+
+## Why the latent space confirms the honest read
+
+The image above shows the semi-supervised model's latent space, reduced to its top two principal components and colored by outcome. In the training data, there's a visible, if soft, tendency for responders and non-responders to separate. In the held-out test data, that structure is gone. That gap between train and test is exactly what overfitting looks like: the model found *something* to organize its latent space around in training, but whatever it found didn't generalize, which is consistent with the near-chance test performance rather than contradicting it.
+
+## Why report a result like this
+
+It would have been easy to bury this or only show the best-looking number. But the more useful contribution here is calibrating expectations: this replicates, on a real, messy, multi-site clinical trial, a finding that shows up periodically in the broader EEG-biomarker literature, that resting-state signals are a weaker predictor of treatment response than people initially hope, and that clean results from earlier, smaller, more homogeneous studies don't always survive contact with the kind of noisy, real-world data an actual clinical tool would have to work with. The semi-supervised architecture and two-stage evaluation pipeline built here are reusable regardless: the next attempt might do better with individual EEG frequency bands or connectivity features instead of broadband power, or with explicit penalties that stop a model from collapsing onto the majority class. <EndMark />
 
 ## References & notes
 
-1. Baselines and splits documented in the repository.
+1. Watts, D., Pulice, R. F., Reilly, J., Brunoni, A. R., Kapczinski, F., Passos, I. C. (2022). *Predicting treatment response using EEG in major depressive disorder: A machine-learning meta-analysis.* Translational Psychiatry, 12(1).
+2. Williams, L. M. et al. (2011). *International Study to Predict Optimized Treatment for Depression (iSPOT-D): Rationale and protocol.* Trials, 12(1), 4.
+3. Wu, W. et al. (2020). *An electroencephalographic signature predicts antidepressant response in major depression.* Nature Biotechnology, 38(4), 439–447.
+4. Model code available on GitHub.
