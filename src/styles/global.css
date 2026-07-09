@@ -681,6 +681,12 @@ em { font-style: italic; }
   padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
 }
 .feature-eq sub { font-size: 0.65em; font-style: normal; }
+.feature-eq .frac {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  vertical-align: middle; margin: 0 5px; line-height: 1.2; font-size: 0.86em;
+}
+.feature-eq .frac .num { padding: 0 4px 3px; border-bottom: 1px solid currentColor; }
+.feature-eq .frac .den { padding: 3px 4px 0; }
 
 .feature-pdf { margin-top: 40px; }
 .feature-pdf__label {
