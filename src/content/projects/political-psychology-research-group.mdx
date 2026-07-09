@@ -1,21 +1,20 @@
 ---
-title: Political Psychology Research Group
+title: Matched Sample Accuracy
 kind: Survey methods
-status: Working paper
+status: Under review
 order: 3
-summary: Nine waves of the Cooperative Election Study, benchmarked against real election returns, testing whether YouGov's matched-sample method actually solved the accuracy problem it was built to solve.
-dek: On mentorship, learning to see the strings behind the world, and seventeen years of election data that refuse to get better.
+summary: A working paper testing whether YouGov's matched-sample method, the backbone of the Cooperative Election Study, actually closes the accuracy gap between opt-in and random samples.
+dek: On mentorship, learning to see the strings behind the world, and a question that's been quietly under-checked for seventeen years of election data.
 date: 2023 – present
-readingTime: 7 min read
-heroCaption: Fig. 10 — RMSE by weighting method across nine CES waves, 2006–2022. YouGov's proprietary weights (dark blue) beat generic post-stratification (brown), but the gap barely narrows over seventeen years.
+readingTime: 4 min read
 tags: [R, Survey methodology, Nonprobability sampling]
-cover: "/covers/political-psychology-research-group.png"
-pdf: "/papers/Pruett_ces_accuracy_2026.pdf"
+cover: ""
+pdf: ""
 links: []
 ---
 import EndMark from '../../components/feature/EndMark.astro';
 
-[Jon Krosnick](https://profiles.stanford.edu/jon-krosnick) was my main undergrad mentor. Between being an outdoor center leader and an ethical deliberation fellow, I talked to a lot of freshmen, and they always asked the same thing: how do you actually "make it" at Stanford? My answer was always mentorship. The difference between people who felt like they grew and people who just went through the motions and came out with a piece of paper was mentorship, every time. I believe that because of Jon.
+[Jon Krosnick](https://profiles.stanford.edu/jon-krosnick) was my main undergrad mentor, and this project grew out of his [Political Psychology Research Group](https://pprg.stanford.edu). Between being an outdoor center leader and an ethical deliberation fellow, I talked to a lot of freshmen, and they always asked the same thing: how do you actually "make it" at Stanford? My answer was always mentorship. The difference between people who felt like they grew and people who just went through the motions and came out with a piece of paper was mentorship, every time. I believe that because of Jon.
 
 He taught me how to find open science. He taught me that obsession and relentlessness have a place in academia right next to kindness. And he taught me the weirder lesson, that if you stare at the world one particular way for long enough, you start seeing the strings it's pulled by in the background. For me that was survey work: why the polls were so bad in 2016, why half of what you read in the *Times* isn't quite what it looks like, and how much of what we call "truth," GDP, inflation, how many people are incarcerated, is really just someone's survey answer.
 
@@ -23,26 +22,16 @@ He taught me how to find open science. He taught me that obsession and relentles
 
 For most of the 20th century, good survey research meant probability sampling: pick respondents at random, with known odds of selection, and the math of inference follows. The internet broke that model economically. Random-digit-dial response rates collapsed, and a wave of online "nonprobability" panels, people who opt in rather than get selected, offered faster, cheaper data instead. The catch, replicated across dozens of studies, is that opt-in samples are usually less accurate.
 
-One firm claimed to have found a way around that tradeoff. YouGov's method, sample matching, builds a synthetic sample by drawing a random target sample from a real government survey (the American Community Survey), then finding opt-in panelists who most closely resemble each person in that target sample on a wide set of characteristics. The pitch is that if the matching variables are rich enough, the matched sample behaves statistically like the random one it's standing in for. YouGov built its Cooperative Election Study, one of the most widely used political surveys in academic research, on exactly this method, and a 2016 Pew study found YouGov beating not just other opt-in panels but some probability samples outright. That result did a lot of work in political science. It's the reason a matched-sample survey became citable as if it were a random one.
+One firm claimed to have found a way around that tradeoff. YouGov's method, sample matching, builds a synthetic sample by drawing a random target sample from a real government survey, then finding opt-in panelists who most closely resemble each person in that target sample on a wide set of characteristics. The pitch is that if the matching variables are rich enough, the matched sample behaves statistically like the random one it's standing in for. YouGov built its Cooperative Election Study, one of the most widely used political surveys in academic research, on exactly this method, and a well-known 2016 Pew study found YouGov beating not just other opt-in panels but some probability samples outright. That result did a lot of work in political science. It's a large part of the reason a matched-sample survey became citable as if it were a random one.
 
-## What we actually tested
+## What we're testing, and why it matters
 
-Jon, my coauthor Gabriel Li, and I set out to check whether that reputation holds up at scale. We pulled nine waves of the CES, 2006 through 2022, and compared its estimates against real, external benchmarks: Census Bureau demographic data, verified voter turnout records, and actual certified election returns for president, Senate, House, governor, and several down-ballot offices. Across those nine years that's over 9,500 individual comparisons between what the CES said and what was actually true.
+Jon, my coauthor Gabriel Li, and I set out to check whether that reputation holds up at scale, using nine waves of the CES, 2006 through 2022, checked against real external benchmarks: Census demographic data, verified turnout records, and certified election returns. The design choice that matters most is separating variables the CES explicitly builds its statistical weights around from everything else. The first group will, almost by construction, look accurate. The second is the honest test of whether matching alone is doing what it claims.
 
-The design choice that matters most is a distinction almost no prior evaluation makes: separating *primary* variables, the ones YouGov explicitly builds its statistical weights around, from *secondary* variables, everything else. Primary variables are, almost by construction, going to look accurate, because the weighting procedure is mechanically tuned to match them. Secondary variables are the honest test. If sample matching is doing what it claims, unweighted or lightly-weighted estimates on variables nobody specifically corrected for should still land close to the truth.
-
-## What we found
-
-They don't, consistently. Pooling all nine waves, the CES's overall error (root mean squared error, or RMSE) was 7.9% including voter turnout and 6.1% excluding it, comparable to, not better than, the broader literature on nonprobability surveys. More importantly, that accuracy did not improve over seventeen years, despite YouGov repeatedly revising its matching algorithm, expanding its panel, and switching statistical weighting methods entirely partway through. If anything, error crept up slightly.
-
-The primary-versus-secondary split is where the real story is. Variables built into the weighting scheme averaged 3.7% error. Variables that weren't averaged 7.0%, roughly double, a gap that held steady or widened across every year we measured. And when we stripped YouGov's proprietary weights off entirely and looked at the matched sample raw, error rose further still. Matching alone, without the weighting layered on top of it, does not reliably approximate a random sample. Applying our own best-practice demographic post-stratification weights (the standard, generic approach any researcher could replicate) closed almost none of that gap either. Whatever is making certain CES numbers accurate, it's not the matching, and it's not conventional weighting. It's that those specific numbers were the ones the weights were built to hit.
-
-## Why this matters beyond one survey
-
-The CES isn't a niche product. It underpins a large share of published political science research on voting behavior, and its accuracy is frequently just assumed rather than checked, partly because of results like the 2016 Pew study. Our findings complicate that assumption. Sample matching, at least as implemented here, hasn't closed the accuracy gap between opt-in and random samples the way its reputation suggests. The variables that look strong are the ones already engineered to look strong. For everything else, roughly the bulk of what any given study actually wants to measure, the honest error rate is closer to double digits than to zero. <EndMark />
+The paper is currently under review, so I'm keeping the specifics light here until that process finishes. What I can say is that the CES isn't a niche product. It underpins a large share of published political science research on voting behavior, and its accuracy is frequently assumed rather than checked, in part because of results like that 2016 Pew study. Whether sample matching actually closes the gap between opt-in and random samples, or whether that reputation is doing more work than the method itself, has real implications for how much weight researchers should put on findings drawn from it. <EndMark />
 
 ## References & notes
 
-1. Pruett, J., Li, G., Krosnick, J. (2026). *The Accuracy of Matched Sample Surveys: Evidence from the Cooperative Election Study.* Working paper, submitted to Public Opinion Quarterly.
+1. Pruett, J., Li, G., Krosnick, J. (2026). *The Accuracy of Matched Sample Surveys: Evidence from the Cooperative Election Study.* Working paper, under review at Public Opinion Quarterly.
 2. Kennedy, C., Mercer, A., Keeter, S., Hatley, N., McGeeney, K., Gimenez, A. (2016). *Evaluating Online Nonprobability Surveys.* Pew Research Center.
 3. MacInnis, B., Krosnick, J. A., Ho, A. S., Cho, M. (2018). *The Accuracy of Measurements with Probability and Nonprobability Survey Samples: Replication and Extension.* Public Opinion Quarterly, 82(4), 707–744.
