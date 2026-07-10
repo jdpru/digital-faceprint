@@ -373,6 +373,15 @@ em { font-style: italic; }
 
 /* ---------- experience (hover or click to expand) ---------- */
 .resume { display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 40px; row-gap: 30px; }
+.resume__head { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.expand-all {
+  font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-faint);
+  background: none; border: 1px solid var(--rule); border-radius: 100px;
+  padding: 5px 13px; cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.expand-all:hover { color: var(--blue); border-color: var(--blue); }
 .resume__list { display: flex; flex-direction: column; }
 .rrow { position: relative; border-bottom: 1px solid var(--rule); }
 .rrow:first-child { border-top: 1px solid var(--rule); }
@@ -411,24 +420,29 @@ em { font-style: italic; }
 .rrow__mid { min-width: 0; }
 .rrow__org { display: block; color: var(--ink-soft); font-size: 15px; margin-top: 1px; }
 .rrow__org .place { font-style: italic; font-size: 14px; color: var(--ink-faint); margin-left: 8px; }
-/* + / − toggle glyph */
+/* pinned indicator + toggle glyph (＋ on hover-preview, × when pinned) */
+.rrow__ind { display: inline-flex; align-items: center; gap: 9px; align-self: center; }
+.rrow__pinlabel {
+  font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue); white-space: nowrap;
+  opacity: 0; transform: translateX(5px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.1, 1);
+}
+.rrow.is-open .rrow__pinlabel { opacity: 1; transform: none; }
 .rrow__toggle {
-  position: relative; width: 15px; height: 15px; flex: 0 0 auto; align-self: center;
+  position: relative; width: 14px; height: 14px; flex: 0 0 auto;
   opacity: 0.4; transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.1, 1);
 }
 .rrow__toggle::before,
 .rrow__toggle::after {
-  content: ""; position: absolute; background: var(--ink-soft);
-  transition: background 0.3s ease, opacity 0.3s ease;
+  content: ""; position: absolute; background: var(--ink-soft); transition: background 0.3s ease;
 }
-.rrow__toggle::before { left: 0; right: 0; top: 7px; height: 1.5px; }
-.rrow__toggle::after { top: 0; bottom: 0; left: 7px; width: 1.5px; }
-.rrow:hover .rrow__toggle,
-.rrow.is-open .rrow__toggle { opacity: 1; transform: rotate(90deg); }
-.rrow:hover .rrow__toggle::before, .rrow:hover .rrow__toggle::after,
+.rrow__toggle::before { left: 0; right: 0; top: 6.25px; height: 1.5px; }
+.rrow__toggle::after { top: 0; bottom: 0; left: 6.25px; width: 1.5px; }
+.rrow:hover .rrow__toggle { opacity: 1; }
+.rrow:hover .rrow__toggle::before, .rrow:hover .rrow__toggle::after { background: var(--blue); }
+.rrow.is-open .rrow__toggle { opacity: 1; transform: rotate(45deg); } /* ＋ → × */
 .rrow.is-open .rrow__toggle::before, .rrow.is-open .rrow__toggle::after { background: var(--blue); }
-.rrow:hover .rrow__toggle::after,
-.rrow.is-open .rrow__toggle::after { opacity: 0; }
 /* expanding detail (grid-rows 0fr → 1fr) */
 .rrow__detail {
   display: grid;
@@ -466,8 +480,9 @@ em { font-style: italic; }
   background: var(--paper-3);
 }
 .rrow__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rrow__body { margin: 0 0 22px; }
 .rrow__desc {
-  margin: 0 0 22px;
+  margin: 0;
   font-size: 15.5px;
   line-height: 1.62;
   color: var(--ink-soft);
@@ -480,6 +495,59 @@ em { font-style: italic; }
 .rrow.is-open .rrow__desc { opacity: 1; transform: none; }
 .rrow__desc p { margin: 0 0 0.7em; }
 .rrow__desc p:last-of-type { margin-bottom: 0; }
+.rrow__more {
+  display: inline-block; margin-top: 13px;
+  font-style: italic; font-size: 14.5px; color: var(--blue);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.45s ease 0.2s, transform 0.45s cubic-bezier(0.4, 0, 0.1, 1) 0.2s, border-color 0.2s ease, color 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+.rrow:hover .rrow__more,
+.rrow.is-open .rrow__more { opacity: 1; transform: none; }
+.rrow__more:hover { color: var(--blue-2); border-bottom-color: color-mix(in srgb, var(--blue) 40%, transparent); }
+
+/* "San Francisco" → Golden Gate microinteraction */
+.sf-hot {
+  position: relative; display: inline-block;
+  border-bottom: 1px dotted color-mix(in srgb, currentColor 50%, transparent);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.sf-hot:hover { color: #C74A2C; border-bottom-color: transparent; }
+.sf-hot__bridge {
+  position: absolute; left: -4px; right: -4px; bottom: -7px; height: 12px; width: auto;
+  overflow: visible; pointer-events: none;
+  opacity: 0; transform: translateY(2px); transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.sf-hot:hover .sf-hot__bridge { opacity: 1; transform: none; }
+.sf-hot__bridge path { stroke: #C74A2C; stroke-width: 1.4; }
+.sf-hot__cable { stroke-dasharray: 150; stroke-dashoffset: 150; transition: stroke-dashoffset 0.5s ease 0.05s; }
+.sf-hot:hover .sf-hot__cable { stroke-dashoffset: 0; }
+
+.sf-pop {
+  position: absolute; z-index: 6; left: 0; top: 0; width: 234px;
+  padding: 13px 16px 15px;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 11px;
+  box-shadow: 0 14px 32px -14px rgba(20, 24, 30, 0.3), 0 2px 8px rgba(20, 24, 30, 0.07);
+  opacity: 0; transform: translateY(-4px) scale(0.98); transform-origin: top left; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.sf-pop.is-shown { opacity: 1; transform: none; pointer-events: auto; }
+.sf-pop__bridge { display: block; width: 100%; height: auto; margin-bottom: 9px; }
+.sf-pop__bridge path { stroke: #C74A2C; stroke-linecap: round; fill: none; }
+.sf-pop__deck { stroke-width: 2.6; }
+.sf-pop__tower { stroke-width: 3; }
+.sf-pop__cable { stroke-width: 2; }
+.sf-pop__hangers { stroke-width: 1; opacity: 0.55; }
+.sf-pop__title {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 9px;
+}
+.sf-pop__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.sf-pop__list a {
+  font-family: var(--serif); font-style: italic; font-size: 16.5px; color: var(--blue);
+  transition: color 0.2s ease;
+}
+.sf-pop__list a:hover { color: var(--blue-2); }
 @media (prefers-reduced-motion: reduce) {
   .rrow::before, .rrow__main, .rrow__detail, .rrow__photo, .rrow__desc, .rrow__toggle { transition: none; }
 }

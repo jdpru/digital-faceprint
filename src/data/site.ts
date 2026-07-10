@@ -62,6 +62,7 @@ export type ExperienceEntry = {
   description: string[];
   tags: string[];
   photos?: ExperiencePhoto[]; // optional thumbnails shown in the expanded row
+  href?: string; // link to the corresponding project feature
 };
 
 export const experience: ExperienceEntry[] = [
@@ -81,6 +82,7 @@ export const experience: ExperienceEntry[] = [
         alt: 'Organizations across the Bay Area, mapped by what they work on.',
       },
     ],
+    href: '/projects/euterria/',
   },
   {
     years: '2025',
@@ -98,6 +100,7 @@ export const experience: ExperienceEntry[] = [
         alt: 'Speaking at a Precision Quality session in Accra.',
       },
     ],
+    href: '/projects/design-technology-institute/',
   },
   {
     years: '2023 — Now',
@@ -115,6 +118,7 @@ export const experience: ExperienceEntry[] = [
         alt: 'With Jon Krosnick at my Stanford thesis medal ceremony.',
       },
     ],
+    href: '/projects/political-psychology-research-group/',
   },
   {
     years: '2024 — Now',
@@ -126,6 +130,7 @@ export const experience: ExperienceEntry[] = [
       'Designed and deployed a high-performance computing pipeline (Python, SLURM) for preprocessing, GLM modeling, and behavioral validation, plus group-level workflows to evaluate intervention-related changes in cognitive-control circuits. Authored the preregistration and analysis plan.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
+    href: '/projects/ontologies-of-cognitive-control/',
   },
   {
     years: '2022 — 23',
