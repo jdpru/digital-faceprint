@@ -3,44 +3,29 @@ import { experience, education, educationSchool } from '../data/site';
 ---
 
 <div class="resume">
-  <div class="resume__head">
-    <span class="label">Work</span>
-    <button class="expand-all" type="button" aria-expanded="false">Expand all</button>
-  </div>
+  <div><span class="label">Work</span></div>
   <div>
+    <div class="resume__list-head">
+      <button class="expand-all" type="button" aria-expanded="false">Expand all</button>
+    </div>
     <div class="resume__list">
-      {experience.map((e) => {
-        const sf = e.place.startsWith('San Francisco');
-        return (
+      {experience.map((e) => (
         <div class="rrow">
-          <button class="rrow__main" type="button" aria-expanded="false">
+          <div class="rrow__main">
             <span class="rrow__yr">{e.years}</span>
             <span class="rrow__mid">
-              <span class="rrow__role">{e.role}</span>
-              <span class="rrow__org">{e.org}<span class="place">{sf
-                ? (<><span class="sf-hot">San Francisco<svg class="sf-hot__bridge" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path class="sf-hot__cable" d="M0,13 Q22,1 50,7 T100,13" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__deck" d="M0,13 H100" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__tower" d="M22,13 V2 M78,13 V2" fill="none" vector-effect="non-scaling-stroke"/></svg></span>{e.place.replace('San Francisco', '')}</>)
-                : e.place}</span></span>
+              {e.href
+                ? <a class="rrow__role rrow__role--link" href={e.href}>{e.role}</a>
+                : <span class="rrow__role">{e.role}</span>}
+              <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
             </span>
-            <span class="rrow__ind" aria-hidden="true">
-              <span class="rrow__pinlabel">Pinned</span>
-              <span class="rrow__toggle"></span>
-            </span>
-          </button>
-          {sf && (
-            <div class="sf-pop" role="tooltip" aria-hidden="true">
-              <svg class="sf-pop__bridge" viewBox="0 0 220 72" fill="none" aria-hidden="true">
-                <path d="M0,60 H220" class="sf-pop__deck"/>
-                <path d="M52,60 V15 M168,60 V15" class="sf-pop__tower"/>
-                <path d="M3,58 Q52,15 110,33 Q168,15 217,58" class="sf-pop__cable"/>
-                <path d="M28,49 V60 M82,25 V60 M110,33 V60 M138,25 V60 M192,49 V60" class="sf-pop__hangers"/>
-              </svg>
-              <p class="sf-pop__title">My favorite places in SF</p>
-              <ul class="sf-pop__list">
-                <li><a href="https://www.thesocialstudysf.com/" target="_blank" rel="noopener">The Social Study</a></li>
-                <li><a href="https://www.famsf.org/visit/de-young" target="_blank" rel="noopener">de Young</a></li>
-              </ul>
-            </div>
-          )}
+            <button class="rrow__ind" type="button" aria-pressed="false" aria-label={`Pin ${e.role} open`}>
+              <span class="rrow__pin" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+              </span>
+              <span class="rrow__toggle" aria-hidden="true"></span>
+            </button>
+          </div>
           <div class="rrow__detail">
             <div class="rrow__detail-in">
               {e.photos && e.photos.length > 0 && (
@@ -52,19 +37,13 @@ import { experience, education, educationSchool } from '../data/site';
                   ))}
                 </div>
               )}
-              <div class="rrow__body">
-                <div class="rrow__desc">
-                  {e.description.map((p) => <p>{p}</p>)}
-                </div>
-                {e.href && (
-                  <a class="rrow__more" href={e.href}>Read the write-up →</a>
-                )}
+              <div class="rrow__desc">
+                {e.description.map((p) => <p>{p}</p>)}
               </div>
             </div>
           </div>
         </div>
-        );
-      })}
+      ))}
     </div>
   </div>
 
@@ -104,13 +83,13 @@ import { experience, education, educationSchool } from '../data/site';
     expandBtn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
   }
 
-  // Click (or keyboard) pins a row open; hover previews it via CSS.
-  document.querySelectorAll<HTMLButtonElement>('.rrow__main').forEach((btn) => {
+  // The pin control (＋ / pin icon) locks a row open; hover previews it via CSS.
+  document.querySelectorAll<HTMLButtonElement>('.rrow__ind').forEach((btn) => {
     btn.addEventListener('click', () => {
       const row = btn.closest('.rrow');
       if (!row) return;
       const open = row.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-pressed', open ? 'true' : 'false');
       syncExpandLabel();
     });
   });
@@ -120,40 +99,8 @@ import { experience, education, educationSchool } from '../data/site';
     const shouldOpen = !all.every((r) => r.classList.contains('is-open'));
     all.forEach((row) => {
       row.classList.toggle('is-open', shouldOpen);
-      row.querySelector('.rrow__main')?.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      row.querySelector('.rrow__ind')?.setAttribute('aria-pressed', shouldOpen ? 'true' : 'false');
     });
     syncExpandLabel();
-  });
-
-  // "San Francisco" hover reveals a small popover of favorite places.
-  document.querySelectorAll<HTMLElement>('.sf-hot').forEach((hot) => {
-    const row = hot.closest<HTMLElement>('.rrow');
-    const pop = row?.querySelector<HTMLElement>('.sf-pop');
-    if (!row || !pop) return;
-    let hideTimer = 0;
-
-    const show = () => {
-      window.clearTimeout(hideTimer);
-      const hotR = hot.getBoundingClientRect();
-      const rowR = row.getBoundingClientRect();
-      const maxLeft = rowR.width - pop.offsetWidth - 2;
-      let left = hotR.left - rowR.left;
-      if (left > maxLeft) left = Math.max(0, maxLeft);
-      pop.style.left = Math.round(left) + 'px';
-      pop.style.top = Math.round(hotR.bottom - rowR.top + 8) + 'px';
-      pop.classList.add('is-shown');
-      pop.setAttribute('aria-hidden', 'false');
-    };
-    const hide = () => {
-      hideTimer = window.setTimeout(() => {
-        pop.classList.remove('is-shown');
-        pop.setAttribute('aria-hidden', 'true');
-      }, 160);
-    };
-
-    hot.addEventListener('mouseenter', show);
-    hot.addEventListener('mouseleave', hide);
-    pop.addEventListener('mouseenter', () => window.clearTimeout(hideTimer));
-    pop.addEventListener('mouseleave', hide);
   });
 </script>

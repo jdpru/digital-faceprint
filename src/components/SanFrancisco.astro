@@ -1,0 +1,49 @@
+---
+// "San Francisco" with a Golden Gate microinteraction: hover the words
+// to tint them International Orange, draw a small bridge beneath, and
+// reveal a popover of favorite SF places.
+interface Props {
+  place?: string;
+}
+const { place = 'San Francisco, CA' } = Astro.props;
+const rest = place.replace('San Francisco', '');
+---
+<span class="sf-place">
+  <span class="sf-hot">San Francisco<svg class="sf-hot__bridge" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path class="sf-hot__cable" d="M0,13 Q22,1 50,7 T100,13" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__deck" d="M0,13 H100" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__tower" d="M22,13 V2 M78,13 V2" fill="none" vector-effect="non-scaling-stroke"/></svg></span>{rest}<span class="sf-pop" role="tooltip" aria-hidden="true">
+    <svg class="sf-pop__bridge" viewBox="0 0 220 72" fill="none" aria-hidden="true">
+      <path d="M0,60 H220" class="sf-pop__deck"/>
+      <path d="M52,60 V15 M168,60 V15" class="sf-pop__tower"/>
+      <path d="M3,58 Q52,15 110,33 Q168,15 217,58" class="sf-pop__cable"/>
+      <path d="M28,49 V60 M82,25 V60 M110,33 V60 M138,25 V60 M192,49 V60" class="sf-pop__hangers"/>
+    </svg>
+    <p class="sf-pop__title">My favorite places in SF</p>
+    <ul class="sf-pop__list">
+      <li><a href="https://www.thesocialstudysf.com/" target="_blank" rel="noopener">The Social Study</a></li>
+      <li><a href="https://www.famsf.org/visit/de-young" target="_blank" rel="noopener">de Young</a></li>
+    </ul>
+  </span>
+</span>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.sf-place').forEach((wrap) => {
+    const hot = wrap.querySelector<HTMLElement>('.sf-hot');
+    const pop = wrap.querySelector<HTMLElement>('.sf-pop');
+    if (!hot || !pop) return;
+    let hideTimer = 0;
+    const show = () => {
+      window.clearTimeout(hideTimer);
+      pop.classList.add('is-shown');
+      pop.setAttribute('aria-hidden', 'false');
+    };
+    const hide = () => {
+      hideTimer = window.setTimeout(() => {
+        pop.classList.remove('is-shown');
+        pop.setAttribute('aria-hidden', 'true');
+      }, 160);
+    };
+    hot.addEventListener('mouseenter', show);
+    hot.addEventListener('mouseleave', hide);
+    pop.addEventListener('mouseenter', () => window.clearTimeout(hideTimer));
+    pop.addEventListener('mouseleave', hide);
+  });
+</script>

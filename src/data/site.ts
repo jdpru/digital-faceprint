@@ -72,8 +72,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Co-founded a nonprofit building a shared home for what the Bay Area climate community already knows, helping nonprofits find each other, learn from work already done, and stop quietly rebuilding things a neighboring org solved months ago.',
-      'Built the tools that let organizations turn what they already have, decks, reports, institutional memory, into something the whole community can search and build on, so good ideas spread instead of staying trapped in one org\'s files. Now connects 117 programs across 14 organizations and 269 people.',
+      'Euterria is a nonprofit I co-founded to help the Bay Area climate community find what it already collectively knows. Hundreds of organizations hold years of hard-won knowledge, in grant reports, program decks, and institutional memory, that nobody outside the org can search.',
+      'We turn that scattered material into a shared, searchable map of the community\'s programs, people, and resources, so groups can build on each other\'s work instead of quietly rebuilding what a neighbor already solved. It\'s in pilot with around twenty organizations around the Bay, backed by Stanford\'s TomKat Center.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
@@ -90,8 +90,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Design & Technology Institute',
     place: 'Accra, Ghana',
     description: [
-      'Led a data-modernization initiative across six campuses of a national vocational training institute, building infrastructure for the collection, analysis, and secure storage of survey data from 15,000 students.',
-      'Designed the questionnaires and the end-to-end collection pipeline, then worked with faculty and staff to tailor the tooling and train them to run it themselves.',
+      'The Design & Technology Institute is a national vocational school in Accra training thousands of young Ghanaians for skilled, work-ready careers. It had almost none of the data infrastructure it needed to understand its own students at scale.',
+      'Over a summer we built that backbone from scratch: the questionnaires, the end-to-end pipeline to collect, analyze, and securely store survey data from 15,000 students across six campuses, and the dashboards to make sense of it. Just as important, we trained the faculty and staff to run the whole thing themselves after I left.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
@@ -108,8 +108,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Political Psychology Research Group · PI Jon Krosnick',
     place: 'Stanford, CA',
     description: [
-      'Ran a large-scale methodological evaluation of the Cooperative Election Study, partitioning total survey error into sampling vs. post-stratification components and benchmarking estimates against validated election outcomes.',
-      'Built a 7,000-line R codebase to harmonize longitudinal data from 15 sources — federal archives, universities, and a private provider via a negotiated data trade. Supervised five undergraduate researchers; presented at AAPOR with a manuscript under review for Best Student Paper. Code and data archived on OSF.',
+      'We ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on the matched-sample method of YouGov, the most prominent nonprobability survey provider, and one of the most cited datasets in political science.',
+      'Across seventeen years of data, we separated the error that comes from who ends up in the sample from the error that weighting is supposed to fix, benchmarking against validated election outcomes to test whether matched sampling really closes the gap between opt-in and random samples. I built the harmonization pipeline behind it and led a small team of undergraduate researchers; the work is under review and archived openly.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
@@ -126,8 +126,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Poldrack Lab · PI Russell A. Poldrack',
     place: 'Stanford, CA',
     description: [
-      'Led neuroimaging analyses for a pre/post intervention study combining task-based fMRI with a mobile self-control intervention in individuals with binge eating disorder and nicotine dependence.',
-      'Designed and deployed a high-performance computing pipeline (Python, SLURM) for preprocessing, GLM modeling, and behavioral validation, plus group-level workflows to evaluate intervention-related changes in cognitive-control circuits. Authored the preregistration and analysis plan.',
+      'This was a brain-imaging study of self-control: does the part of the brain you use to resist an impulse actually predict whether a behavioral intervention will work? We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention they used in daily life.',
+      'I led the neuroimaging side, building the high-performance computing pipeline that turned raw scans into modeled, validated results, and writing the preregistration that fixed our analysis plan before we looked at outcomes. It became my master\'s thesis, Ontologies of Cognitive Control.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
     href: '/projects/ontologies-of-cognitive-control/',
@@ -138,8 +138,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Ballmer Group Philanthropy Projects',
     place: 'Seattle, WA',
     description: [
-      'Recruited by former Microsoft CEO Steve Ballmer to lead research on his special-projects team. Designed three $450M budgets to expand afterschool education to every child in Seattle, Detroit, and Los Angeles.',
-      'Led a comprehensive study of the afterschool landscape, coordinating data collection with city governments, philanthropies, and NGOs to inform large-scale, evidence-based funding strategy.',
+      'Steve Ballmer\'s team brought me on to answer a concrete question: what would it cost to give every child in a city access to afterschool programming, and how would you actually spend that money well?',
+      'I led a study of the afterschool landscape across Seattle, Detroit, and Los Angeles, coordinating data from city governments, philanthropies, and nonprofits, and designed three roughly $450M funding plans grounded in what each city actually needed.',
     ],
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
     photos: [

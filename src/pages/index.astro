@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Resume from '../components/Resume.astro';
 import Explore from '../components/Explore.astro';
+import SanFrancisco from '../components/SanFrancisco.astro';
 import { site } from '../data/site';
 ---
 
@@ -16,7 +17,9 @@ import { site } from '../data/site';
         <div>
           <dl class="about-facts">
             <dt>Based</dt>
-            <dd>{site.about.based}</dd>
+            <dd>{site.about.based.startsWith('San Francisco')
+              ? <SanFrancisco place={site.about.based} />
+              : site.about.based}</dd>
 
             <dt>Momentarily Occupied By</dt>
             <dd>
