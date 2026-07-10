@@ -75,6 +75,12 @@ export const experience: ExperienceEntry[] = [
       'Built the tools that let organizations turn what they already have, decks, reports, institutional memory, into something the whole community can search and build on, so good ideas spread instead of staying trapped in one org\'s files. Now connects 117 programs across 14 organizations and 269 people.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
+    photos: [
+      {
+        src: '/gallery/euterria/euterria-map-thumb.jpg',
+        alt: 'Organizations across the Bay Area, mapped by what they work on.',
+      },
+    ],
   },
   {
     years: '2025',
@@ -88,8 +94,8 @@ export const experience: ExperienceEntry[] = [
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
       {
-        src: '/gallery/design-technology-institute/dti-cohort-thumb.jpg',
-        alt: 'With the Design & Technology Institute cohort in Accra.',
+        src: '/gallery/design-technology-institute/dti-precision-quality-talk-thumb.jpg',
+        alt: 'Speaking at a Precision Quality session in Accra.',
       },
     ],
   },
@@ -103,6 +109,12 @@ export const experience: ExperienceEntry[] = [
       'Built a 7,000-line R codebase to harmonize longitudinal data from 15 sources — federal archives, universities, and a private provider via a negotiated data trade. Supervised five undergraduate researchers; presented at AAPOR with a manuscript under review for Best Student Paper. Code and data archived on OSF.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
+    photos: [
+      {
+        src: '/gallery/political-psychology-research-group/pprg-jon-krosnick-thumb.jpg',
+        alt: 'With Jon Krosnick at my Stanford thesis medal ceremony.',
+      },
+    ],
   },
   {
     years: '2024 — Now',
