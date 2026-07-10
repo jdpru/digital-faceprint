@@ -18,9 +18,13 @@ import { experience, education, educationSchool } from '../data/site';
           </button>
           <div class="rrow__detail">
             <div class="rrow__detail-in">
-              {e.photo && (
-                <div class="rrow__photo">
-                  <img src={e.photo} alt={e.photoAlt ?? ''} loading="lazy" />
+              {e.photos && e.photos.length > 0 && (
+                <div class="rrow__photos">
+                  {e.photos.map((p) => (
+                    <div class="rrow__photo">
+                      <img src={p.src} alt={p.alt} loading="lazy" />
+                    </div>
+                  ))}
                 </div>
               )}
               <div class="rrow__desc">
