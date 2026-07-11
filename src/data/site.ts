@@ -72,8 +72,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Euterria is a nonprofit I co-founded to help the Bay Area climate community find what it already collectively knows. Hundreds of organizations hold years of hard-won knowledge, in grant reports, program decks, and institutional memory, that nobody outside the org can search.',
-      'We turn that scattered material into a shared, searchable map of the community\'s programs, people, and resources, so groups can build on each other\'s work instead of quietly rebuilding what a neighbor already solved. It\'s in pilot with around twenty organizations around the Bay, backed by Stanford\'s TomKat Center.',
+      'Nonprofits live in a strange collaboration ecosystem. They aren\'t supposed to compete, but the funding landscape makes them de-facto competitors, and unlike private companies they\'re not directly rewarded for differentiation, since duplicate services are often exactly what\'s needed. Collaboration is an ideal for nonprofits, but in practice the cost of it is usually too high to make it worth pursuing.',
+      'Euterria seeks to lower that cost for Bay Area climate nonprofits. We take the hard-won knowledge scattered across orgs, grant reports, program decks, institutional memory, and turn it into one organized, searchable platform, so finding a partner or a precedent is about as easy as a Google search. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
@@ -90,8 +90,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Design & Technology Institute',
     place: 'Accra, Ghana',
     description: [
-      'The Design & Technology Institute is a national vocational school in Accra training thousands of young Ghanaians for skilled, work-ready careers. It had almost none of the data infrastructure it needed to understand its own students at scale.',
-      'Over a summer we built that backbone from scratch: the questionnaires, the end-to-end pipeline to collect, analyze, and securely store survey data from 15,000 students across six campuses, and the dashboards to make sense of it. Just as important, we trained the faculty and staff to run the whole thing themselves after I left.',
+      'The Design & Technology Institute is a national vocational school in Accra training thousands of Ghanaians in skilled trades, with centers across the country surveying thousands of students every month.',
+      'As a SEED fellow, I worked to make sure DTI had the data management and technical systems in place to speed up its incredible work around the country. That meant partly finding the right off-the-shelf software and getting teams onboarded, and partly building custom tools for things like procurement, inventory, and student surveys. Just as important, I trained faculty and staff to keep all of it running after I left.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
@@ -108,8 +108,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Political Psychology Research Group · PI Jon Krosnick',
     place: 'Stanford, CA',
     description: [
-      'We ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on the matched-sample method of YouGov, the most prominent nonprobability survey provider, and one of the most cited datasets in political science.',
-      'Across seventeen years of data, we separated the error that comes from who ends up in the sample from the error that weighting is supposed to fix, benchmarking against validated election outcomes to test whether matched sampling really closes the gap between opt-in and random samples. I built the harmonization pipeline behind it and led a small team of undergraduate researchers; the work is under review and archived openly.',
+      'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science, studying the psychological underpinnings and consequences of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys.',
+      'I ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples, separating the error that comes from who\'s in the sample from the error weighting is meant to fix. I built the harmonization pipeline behind it and led a small team of undergraduates; the paper is under review and openly archived.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
@@ -126,8 +126,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Poldrack Lab · PI Russell A. Poldrack',
     place: 'Stanford, CA',
     description: [
-      'This was a brain-imaging study of self-control: does the part of the brain you use to resist an impulse actually predict whether a behavioral intervention will work? We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention they used in daily life.',
-      'I led the neuroimaging side, building the high-performance computing pipeline that turned raw scans into modeled, validated results, and writing the preregistration that fixed our analysis plan before we looked at outcomes. It became my master\'s thesis, Ontologies of Cognitive Control.',
+      'Russ\' lab studies the neural basis of adaptive behavior, and is a leader in open neuroscience. My corner of it was cognitive control: inhibitory control and cognitive flexibility, the machinery you use to stop yourself and to change course. It\'s the part of the mind that fails us in many of the behaviors we most want to change.',
+      'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with weaker cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our standard general linear models as well as a mediation analysis strategy to isolate the neural signals that actually carried the intervention\'s effect on behavior.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
     href: '/projects/ontologies-of-cognitive-control/',
@@ -138,8 +138,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Ballmer Group Philanthropy Projects',
     place: 'Seattle, WA',
     description: [
-      'Steve Ballmer\'s team brought me on to answer a concrete question: what would it cost to give every child in a city access to afterschool programming, and how would you actually spend that money well?',
-      'I led a study of the afterschool landscape across Seattle, Detroit, and Los Angeles, coordinating data from city governments, philanthropies, and nonprofits, and designed three roughly $450M funding plans grounded in what each city actually needed.',
+      'Steve Ballmer is the former CEO of Microsoft, and his foundation is one of the largest philanthropic funders in the LA, Detroit, and Seattle metros. After I presented to Steve in a class, I worked with him and his philanthropy team to figure out what it would take to offer afterschool programming to every kid in those three cities who wanted it.',
+      'I led a study of the afterschool landscape across all three cities, then developed the financial model to cost it out, ultimately designing a roughly $450M annual budget that leaned on existing public infrastructure.',
     ],
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
     photos: [
