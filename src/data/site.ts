@@ -78,7 +78,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
       {
-        src: '/gallery/euterria/euterria-map-thumb.jpg',
+        src: '/gallery/euterria/map-thumb.jpg',
         alt: 'Organizations across the Bay Area, mapped by what they work on.',
       },
     ],
@@ -96,7 +96,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
       {
-        src: '/gallery/design-technology-institute/dti-precision-quality-talk-thumb.jpg',
+        src: '/gallery/design-technology-institute/precision-quality-talk-thumb.jpg',
         alt: 'Speaking at a Precision Quality session in Accra.',
       },
     ],
@@ -114,7 +114,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
       {
-        src: '/gallery/political-psychology-research-group/pprg-jon-krosnick-thumb.jpg',
+        src: '/gallery/political-psychology-research-group/jon-krosnick-thumb.jpg',
         alt: 'With Jon Krosnick at my Stanford thesis medal ceremony.',
       },
     ],
@@ -130,6 +130,12 @@ export const experience: ExperienceEntry[] = [
       'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with weaker cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our standard general linear models as well as a mediation analysis strategy to isolate the neural signals that actually carried the intervention\'s effect on behavior.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
+    photos: [
+      {
+        src: '/gallery/ontologies-of-cognitive-control/white-surface-thumb.jpg',
+        alt: 'FreeSurfer reconstruction of a cortical white-matter surface.',
+      },
+    ],
     href: '/projects/ontologies-of-cognitive-control/',
   },
   {
@@ -144,7 +150,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
     photos: [
       {
-        src: '/gallery/ballmer/ballmer-office-thumb.jpg',
+        src: '/gallery/ballmer/office-thumb.jpg',
         alt: 'The Ballmer Group office in Seattle.',
       },
     ],

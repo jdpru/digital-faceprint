@@ -7,9 +7,9 @@ summary: A two-stage fMRI study paired with a mobile intervention, testing wheth
 dek: Can the brain's machinery for restraint tell us, in advance, who a treatment will actually help? A two-stage study treats self-control as something you can map.
 date: March 2026
 readingTime: 7 min read
-heroCaption: Fig. 1 — A whole-brain contrast for successful restraint. The regions that light up are the study's starting question, not its answer.
+heroCaption: Fig. 1 — A FreeSurfer reconstruction of one hemisphere's white-matter surface, lateral (left) and medial (right). Before any function is measured, each brain is rebuilt into anatomy like this.
 tags: [fMRI, Python, GLM]
-cover: ""
+cover: "/gallery/ontologies-of-cognitive-control/white-surface.jpg"
 pdf: ""
 links: []
 ---
@@ -23,6 +23,8 @@ Self-control is the rare idea that everyone believes in and no two people define
 
 The design has two stages, and the second only makes sense because of the first. In the scanner, participants work through a battery of inhibition tasks while we record the neural effort each one takes. Then everyone goes home, and the second act begins: a four-week mobile intervention, measured against the ordinary friction of daily life.
 
+<Figure src="/gallery/ontologies-of-cognitive-control/freesurfer-segmentation.jpg" caption="Fig. 2 — The same scan after FreeSurfer, in FSLeyes: the cortical ribbon and subcortical structures segmented and parcellated from the raw T1 (left, in color; a grayscale label view at right). This anatomy is the coordinate frame every functional contrast is read against." />
+
 > The wager: if the neural signature captured in the scanner predicts who benefits from the intervention, then "cognitive control" is not just a description of behavior — it is a measurable trait with clinical purchase.
 
 <Display>The scanner tells you what the brain <em>can</em> do. The next four weeks tell you what it <em>will</em>.</Display>
@@ -35,7 +37,7 @@ To hold those two worlds together, the study folds four different data streams i
 | --- | --- | --- | --- |
 | Task-evoked activity in control regions | Stop-signal times and error rates | Sleep and activity | Momentary check-ins |
 
-<Figure label="Figure — model schematic" caption="Fig. 2 — A schematic of the joint model: neural, behavioral, and daily-life measures loading onto a shared latent estimate of control." />
+<Figure label="Figure — model schematic" caption="Fig. 3 — A schematic of the joint model: neural, behavioral, and daily-life measures loading onto a shared latent estimate of control." />
 
 ## What counts as control?
 
