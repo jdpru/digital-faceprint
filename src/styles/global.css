@@ -305,7 +305,8 @@ em { font-style: italic; }
 
 /* ---------- about ---------- */
 #about { padding-bottom: clamp(30px, 5vh, 48px); }
-#resume { padding-top: clamp(30px, 5vh, 48px); }
+#resume { padding-top: clamp(30px, 5vh, 48px); padding-bottom: clamp(30px, 5vh, 48px); }
+#explore { padding-top: clamp(30px, 5vh, 48px); }
 .about-body { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
 .about-body .prose { max-width: 62ch; }
 .about-body .prose p { margin: 0 0 1.05em; }
