@@ -42,14 +42,14 @@ const nav = [
     <header class="topbar">
       <div class="wrap topbar__in">
         <a class="brand" href="/" aria-label={`${site.wordmark} — home`} data-astro-reload>
+          <span class="brand__home" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10z" />
+            </svg>
+          </span>
           <span>{site.wordmark}<span class="dot">.</span></span>
         </a>
         <nav class="nav" aria-label="Primary">
-          <a class="nav__home" href="/" aria-label="Home" data-astro-reload>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10z" />
-            </svg>
-          </a>
           {nav.map((item) => <a href={item.href} data-astro-reload>{item.label}</a>)}
         </nav>
       </div>

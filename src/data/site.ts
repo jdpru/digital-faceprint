@@ -104,7 +104,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     years: '2023 — Now',
-    role: 'Researcher · Survey Methodology',
+    role: 'Researcher · Survey Methods',
     org: 'Political Psychology Research Group · PI Jon Krosnick',
     place: 'Stanford, CA',
     description: [
@@ -122,7 +122,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     years: '2024 — Now',
-    role: 'Researcher · Neuroimaging',
+    role: 'Researcher · Cognitive Control',
     org: 'Poldrack Lab · PI Russell A. Poldrack',
     place: 'Stanford, CA',
     description: [
@@ -134,8 +134,8 @@ export const experience: ExperienceEntry[] = [
   },
   {
     years: '2022 — 23',
-    role: 'Special Projects · Lead Researcher',
-    org: 'Ballmer Group Philanthropy Projects',
+    role: 'Researcher · Special Projects',
+    org: 'Ballmer Group',
     place: 'Seattle, WA',
     description: [
       'Steve Ballmer is the former CEO of Microsoft, and his foundation is one of the largest philanthropic funders in the LA, Detroit, and Seattle metros. After I presented to Steve in a class, I worked with him and his philanthropy team to figure out what it would take to offer afterschool programming to every kid in those three cities who wanted it.',
