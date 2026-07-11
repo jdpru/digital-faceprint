@@ -30,7 +30,7 @@ export const site = {
     prose: [
       'Trained as an economist and a cognitive scientist, I\'m interested in how you measure things that are hard to measure — public opinion, self-control, how accurate a poll actually is — and I like building the systems that make those measurements possible.',
       'At Stanford I work with Jon Krosnick on survey accuracy and with Russ Poldrack on the neuroscience of cognitive control. Today I lead ML systems at Varick.',
-      'I was lucky to have mentors who lived by open science, and I try to follow their lead — sharing code and data wherever I can. I like to write, do my best not to bury the point, and enjoy reading sci-fi, political philosophy, and playing semi-pro soccer in SFSL.',
+      'I was lucky to have mentors who lived by open science, and I try to follow their lead by sharing code and data wherever I can. I like to write, do my best not to bury the point, and enjoy reading sci-fi, political philosophy, and playing semi-pro soccer in SFSL.',
     ],
   },
 
@@ -205,6 +205,7 @@ export type Work = {
   summary: string;
   links: WorkLink[];
   video?: string; // YouTube video id, embedded when present
+  caption?: string; // short label shown on the pinned corkboard card
 };
 
 export const work: Work[] = [
@@ -335,11 +336,39 @@ export const personalProjects: Work[] = [
   {
     kind: 'iOS app · Side project',
     status: 'Prototype',
+    caption: 'dispatch app',
     title: 'A reader app for The Dispatch',
     summary:
       'A month-long fan project: an iOS reader for The Dispatch built entirely on their public RSS feed. Highlight any article to create an annotation, all saved in one place and shareable with the source link auto-appended. An AI feature I call “The Correspondent” recommends recent pieces to further or challenge a view, and can fact-check or add context as you read. Podcasts play inline in the background, plus dark mode, offline reading, and semantic search across full-article embeddings. I sent it to the founders on the off chance it was useful.',
     links: [{ label: 'Watch the walkthrough →', href: 'https://youtu.be/Qtjt9tDCQG8' }],
     video: 'Qtjt9tDCQG8',
+  },
+  {
+    kind: 'Not software',
+    status: 'Ongoing',
+    caption: 'my cows',
+    title: 'A herd of cattle',
+    summary:
+      'I own a small herd of cattle. It is, by a wide margin, the least digital thing I do — and probably the most grounding. A standing reminder that not every system worth tending runs on a computer.',
+    links: [],
+  },
+  {
+    kind: 'Proposal',
+    status: 'Shelved',
+    caption: 'nauru surveys',
+    title: 'Survey infrastructure for Nauru',
+    summary:
+      'A proposal to stand up national survey infrastructure for Nauru, one of the smallest countries in the world. It never quite went anywhere, but I still like some of the thinking in it, so I am sharing the doc anyway.',
+    links: [{ label: 'Read the proposal →' }],
+  },
+  {
+    kind: 'College',
+    status: '4× regional champs',
+    caption: 'ethics bowl',
+    title: 'Ethics Bowl',
+    summary:
+      'Competitive, collaborative philosophy: teams reason through moral dilemmas and are judged on the quality of their thinking rather than on beating the other side. Four years of it, four regional titles, and a national runner-up finish — some of the best arguing I have ever done.',
+    links: [],
   },
 ];
 
