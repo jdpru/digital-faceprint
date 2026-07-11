@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { reading } from '../../data/site';
 ---
 
 <Layout
@@ -13,15 +12,31 @@ import { reading } from '../../data/site';
       <p>some of my favorites</p>
     </section>
 
-    <div class="readlist">
-      {reading.map((b) => (
-        <div class="bookrow">
-          <div>
-            <span class="bookrow__title">{b.title}</span><span class="bookrow__author">{b.author}</span>
-          </div>
-          <div class="bookrow__note">{b.note}</div>
-        </div>
-      ))}
+    <div class="under-construction">
+      <svg class="uc__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 57 h46" />
+        <!-- hard hat -->
+        <path d="M22 22 a10 8 0 0 1 20 0" />
+        <path d="M18 22 h28" />
+        <path d="M32 14 v-3" />
+        <!-- head -->
+        <circle cx="32" cy="28" r="4.5" />
+        <!-- torso -->
+        <path d="M32 32.5 v10" />
+        <!-- legs -->
+        <path d="M32 42.5 l-6 12 M32 42.5 l6 12" />
+        <!-- left arm holding a plank -->
+        <path d="M32 35 l-9 5" />
+        <path d="M15 40 h16" />
+        <!-- right arm + hammer, swinging -->
+        <g class="uc__arm">
+          <path d="M32 35 l7 -3" />
+          <path d="M39 32 l7 -4" />
+          <path d="M43.5 24.5 l5.5 3.2" />
+        </g>
+      </svg>
+      <p class="uc__title">Under construction</p>
+      <p class="uc__text">I'm still building this shelf. Come back soon for books and papers worth your time.</p>
     </div>
   </main>
 </Layout>

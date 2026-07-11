@@ -498,6 +498,18 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow__desc p { margin: 0 0 0.7em; }
 .rrow__desc p:last-of-type { margin-bottom: 0; }
 
+/* reading page — under-construction placeholder */
+.under-construction {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 14px; padding: 56px 20px 84px;
+}
+.uc__icon { width: 66px; height: 66px; color: var(--ink-faint); }
+.uc__arm { transform-box: view-box; transform-origin: 32px 35px; animation: ucSwing 1.5s ease-in-out infinite; }
+@keyframes ucSwing { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-18deg); } }
+.uc__title { font-size: 23px; font-weight: 460; letter-spacing: -0.01em; color: var(--ink); margin: 4px 0 0; }
+.uc__text { font-style: italic; font-size: 16px; line-height: 1.5; color: var(--ink-soft); margin: 0; max-width: 40ch; }
+@media (prefers-reduced-motion: reduce) { .uc__arm { animation: none; } }
+
 /* "San Francisco" → hidden Golden Gate microinteraction */
 .u-vh {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -529,17 +541,16 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .sf-pop.is-shown { opacity: 1; transform: none; pointer-events: auto; }
-.sf-pop__bridge { display: block; width: 100%; height: auto; margin-bottom: 10px; }
-.sf-pop__bridge path { stroke: #C74A2C; stroke-linecap: round; fill: none; }
-.sf-pop__deck { stroke-width: 2.6; }
-.sf-pop__tower { stroke-width: 3; }
-.sf-pop__cable { stroke-width: 2; }
-.sf-pop__hangers { stroke-width: 1; opacity: 0.55; }
+.sf-pop__badge {
+  display: block; width: 72px; height: 72px; border-radius: 50%;
+  margin: 0 auto 11px; object-fit: cover;
+  box-shadow: 0 2px 8px -2px rgba(20, 24, 30, 0.18);
+}
 .sf-pop__title {
   font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px; text-align: center;
 }
-.sf-pop__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.sf-pop__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 9px; }
 /* The Social Study — thin tracked geometric, echoing their wordmark */
 .sf-pop__social {
   display: inline-block; font-family: 'Jost', var(--sans); font-weight: 300;
@@ -574,25 +585,10 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .edu__deg .deg { font-size: 17px; }
 .edu__deg .thesis { display: block; color: var(--ink-soft); font-size: 14.5px; margin-top: 2px; }
 .edu__deg .thesis em { font-style: italic; }
-.edu__papers { margin-top: 9px; }
-.edu__papers-label {
-  font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px;
-}
-.edu__papers ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
-.edu__papers li {
-  position: relative; padding-left: 14px; font-size: 13.5px; line-height: 1.45; color: var(--ink-soft);
-}
-.edu__papers li::before { content: "›"; position: absolute; left: 0; color: var(--ink-faint); }
-.edu__papers a {
-  color: var(--blue);
-  border-bottom: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-.edu__papers a:hover { color: var(--blue-2); border-color: var(--blue-2); }
 .edu__awards { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 7px; }
-.edu__deg .award { font-style: italic; font-size: 14px; color: var(--blue); }
+.edu__deg .award { font-size: 14px; color: var(--ink-soft); }
 .edu__deg .award a {
+  color: var(--blue);
   border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent);
   transition: color 0.2s ease, border-color 0.2s ease;
 }

@@ -173,12 +173,10 @@ export const education: Education[] = [
       {
         title:
           'Latent LSTM-VAE Representations of Cognitive Stability and Flexibility in the Task-Switching Paradigm',
-        href: '/projects/dynamic-reaction-time-modeling/',
       },
       {
         title:
           'Semi-Supervised MLP and GRU-Based Recurrent Variational Autoencoders for Antidepressant Response Prediction from EEG',
-        href: '/projects/antidepressant-response-eeg/',
       },
     ],
     gpa: 'GPA 4.0',

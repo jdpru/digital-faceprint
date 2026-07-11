@@ -1,26 +1,17 @@
 ---
 // A hidden Golden Gate microinteraction. Bringing the cursor near
-// "San Francisco, CA" sweeps International Orange across the words with a
+// "San Francisco, CA" sweeps International Orange across the text with a
 // slight wave; hovering the text itself reveals a couple of favorite SF spots.
 interface Props {
   place?: string;
 }
 const { place = 'San Francisco, CA' } = Astro.props;
-const word = 'San Francisco';
-const rest = place.replace('San Francisco', '');
-const letters = [...word];
+const letters = [...place];
 ---
 <span class="sf-place">
-  <span class="sf-hot"><span class="u-vh">San Francisco</span>{letters.map((ch, i) => (
-      <span class="sf-letter" style={`--d:${i * 26}ms`} aria-hidden="true">{ch === ' ' ? ' ' : ch}</span>
-    ))}</span><span class="sf-rest">{rest}</span>
+  <span class="sf-hot"><span class="u-vh">{place}</span>{letters.map((ch, i) => (<span class="sf-letter" style={`--d:${i * 22}ms`} aria-hidden="true">{ch === ' ' ? ' ' : ch}</span>))}</span>
   <span class="sf-pop" role="tooltip" aria-hidden="true">
-    <svg class="sf-pop__bridge" viewBox="0 0 220 72" fill="none" aria-hidden="true">
-      <path d="M0,60 H220" class="sf-pop__deck"/>
-      <path d="M52,60 V15 M168,60 V15" class="sf-pop__tower"/>
-      <path d="M3,58 Q52,15 110,33 Q168,15 217,58" class="sf-pop__cable"/>
-      <path d="M28,49 V60 M82,25 V60 M110,33 V60 M138,25 V60 M192,49 V60" class="sf-pop__hangers"/>
-    </svg>
+    <img class="sf-pop__badge" src="/gallery/sf/golden-gate.jpg" alt="" width="72" height="72" loading="lazy" />
     <p class="sf-pop__title">My favorite places in SF</p>
     <ul class="sf-pop__list">
       <li><a class="sf-pop__social" href="https://www.thesocialstudysf.com/" target="_blank" rel="noopener"><span class="sf-pop__the">the</span>Social Study</a></li>
