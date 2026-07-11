@@ -28,9 +28,9 @@ export const site = {
       { name: 'Steve Ballmer', href: 'https://en.wikipedia.org/wiki/Steve_Ballmer' },
     ],
     prose: [
-      'Trained as an economist and a cognitive scientist, I like to think about how we measure that which resists measurement: public opinion, self-control, the accuracy of a poll, and how we build the systems that make those measurements legible.',
-      'At Stanford I worked with Jon Krosnick on the methodology of survey accuracy, and with Russ Poldrack on the neuroscience of cognitive control. Today I build machine-learning systems and data pipelines, from neuroimaging on high-performance clusters to survey infrastructure.',
-      'I care about open, reproducible work, and enjoy the slow, occasionally painful process of communicating clarity.',
+      'Trained as an economist and a cognitive scientist, I\'m interested in how you measure things that are hard to measure — public opinion, self-control, how accurate a poll actually is — and I like building the systems that make those measurements possible.',
+      'At Stanford I work with Jon Krosnick on survey accuracy and with Russ Poldrack on the neuroscience of cognitive control. Today I lead ML systems at Varick.',
+      'I was lucky to have mentors who lived by open science, and I try to follow their lead — sharing code and data wherever I can. I like to write, do my best not to bury the point, and enjoy reading sci-fi, political philosophy, and playing semi-pro soccer in SFSL.',
     ],
   },
 
@@ -153,11 +153,13 @@ export const experience: ExperienceEntry[] = [
 
 export const educationSchool = 'Stanford University';
 
+export type EducationAward = { label: string; href?: string };
+export type EducationPaper = { title: string; href?: string };
 export type Education = {
   degree: string;
   thesis: string;
-  award?: string;
-  awardHref?: string;
+  awards?: EducationAward[];
+  papers?: EducationPaper[];
   gpa: string;
   year: string;
 };
@@ -167,15 +169,31 @@ export const education: Education[] = [
     degree: 'M.S. Neuroscience & AI',
     thesis:
       'Ontologies of Cognitive Control: Evidence from Self-Regulatory Interventions in Binge Eating & Smoking',
+    papers: [
+      {
+        title:
+          'Latent LSTM-VAE Representations of Cognitive Stability and Flexibility in the Task-Switching Paradigm',
+        href: '/projects/dynamic-reaction-time-modeling/',
+      },
+      {
+        title:
+          'Semi-Supervised MLP and GRU-Based Recurrent Variational Autoencoders for Antidepressant Response Prediction from EEG',
+        href: '/projects/antidepressant-response-eeg/',
+      },
+    ],
     gpa: 'GPA 4.0',
     year: '2025',
   },
   {
     degree: 'B.S. Economics, with Honors',
     thesis: 'Assessing Accuracy & Weighting Effects in Matched Sample Surveys',
-    award: 'Firestone Medal',
-    awardHref:
-      'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
+    awards: [
+      {
+        label: 'Firestone Medal',
+        href: 'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
+      },
+      { label: '4× Regional Ethics Bowl Champion · National Runner-Up' },
+    ],
     gpa: 'GPA 4.0',
     year: '2024',
   },

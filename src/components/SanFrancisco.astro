@@ -1,15 +1,20 @@
 ---
-// "San Francisco" with a Golden Gate microinteraction: hover the words
-// to tint them International Orange, draw a small bridge beneath, and
-// reveal a popover of favorite SF places.
+// A hidden Golden Gate microinteraction. Bringing the cursor near
+// "San Francisco, CA" sweeps International Orange across the words with a
+// slight wave; hovering the text itself reveals a couple of favorite SF spots.
 interface Props {
   place?: string;
 }
 const { place = 'San Francisco, CA' } = Astro.props;
+const word = 'San Francisco';
 const rest = place.replace('San Francisco', '');
+const letters = [...word];
 ---
 <span class="sf-place">
-  <span class="sf-hot">San Francisco<svg class="sf-hot__bridge" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path class="sf-hot__cable" d="M0,13 Q22,1 50,7 T100,13" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__deck" d="M0,13 H100" fill="none" vector-effect="non-scaling-stroke"/><path class="sf-hot__tower" d="M22,13 V2 M78,13 V2" fill="none" vector-effect="non-scaling-stroke"/></svg></span>{rest}<span class="sf-pop" role="tooltip" aria-hidden="true">
+  <span class="sf-hot"><span class="u-vh">San Francisco</span>{letters.map((ch, i) => (
+      <span class="sf-letter" style={`--d:${i * 26}ms`} aria-hidden="true">{ch === ' ' ? ' ' : ch}</span>
+    ))}</span><span class="sf-rest">{rest}</span>
+  <span class="sf-pop" role="tooltip" aria-hidden="true">
     <svg class="sf-pop__bridge" viewBox="0 0 220 72" fill="none" aria-hidden="true">
       <path d="M0,60 H220" class="sf-pop__deck"/>
       <path d="M52,60 V15 M168,60 V15" class="sf-pop__tower"/>
@@ -18,8 +23,8 @@ const rest = place.replace('San Francisco', '');
     </svg>
     <p class="sf-pop__title">My favorite places in SF</p>
     <ul class="sf-pop__list">
-      <li><a href="https://www.thesocialstudysf.com/" target="_blank" rel="noopener">The Social Study</a></li>
-      <li><a href="https://www.famsf.org/visit/de-young" target="_blank" rel="noopener">de Young</a></li>
+      <li><a class="sf-pop__social" href="https://www.thesocialstudysf.com/" target="_blank" rel="noopener"><span class="sf-pop__the">the</span>Social Study</a></li>
+      <li><span class="sf-pop__deyoung">de Young</span></li>
     </ul>
   </span>
 </span>

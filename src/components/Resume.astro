@@ -19,10 +19,7 @@ import { experience, education, educationSchool } from '../data/site';
                 : <span class="rrow__role">{e.role}</span>}
               <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
             </span>
-            <button class="rrow__ind" type="button" aria-pressed="false" aria-label={`Pin ${e.role} open`}>
-              <span class="rrow__pin" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
-              </span>
+            <button class="rrow__ind" type="button" aria-pressed="false" aria-label={`Keep ${e.role} open`}>
               <span class="rrow__toggle" aria-hidden="true"></span>
             </button>
           </div>
@@ -56,12 +53,28 @@ import { experience, education, educationSchool } from '../data/site';
           <div class="edu__deg">
             <span class="deg">{ed.degree}</span>
             <span class="thesis"><em>{ed.thesis}</em></span>
-            {ed.award && (
-              <span class="award">
-                {ed.awardHref
-                  ? <a href={ed.awardHref} target="_blank" rel="noopener">{ed.award}</a>
-                  : ed.award}
-              </span>
+            {ed.papers && ed.papers.length > 0 && (
+              <div class="edu__papers">
+                <p class="edu__papers-label">Papers</p>
+                <ul>
+                  {ed.papers.map((p) => (
+                    <li>{p.href
+                      ? <a href={p.href}>{p.title}</a>
+                      : p.title}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {ed.awards && ed.awards.length > 0 && (
+              <div class="edu__awards">
+                {ed.awards.map((a) => (
+                  <span class="award">
+                    {a.href
+                      ? <a href={a.href} target="_blank" rel="noopener">{a.label}</a>
+                      : a.label}
+                  </span>
+                ))}
+              </div>
             )}
           </div>
           <span class="meta">{ed.gpa} · {ed.year}</span>

@@ -422,19 +422,11 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow__org { display: block; color: var(--ink-soft); font-size: 15px; margin-top: 1px; }
 .rrow__org .place { font-style: italic; font-size: 14px; color: var(--ink-faint); margin-left: 8px; }
 
-/* pin control: a pin icon + a ＋/× expand indicator */
+/* ＋ / × expand-and-keep-open control */
 .rrow__ind {
-  display: inline-flex; align-items: center; gap: 9px; align-self: center;
-  background: none; border: 0; padding: 4px 2px; cursor: pointer;
+  display: inline-flex; align-items: center; align-self: center;
+  background: none; border: 0; padding: 6px 4px; cursor: pointer;
 }
-.rrow__pin {
-  display: inline-flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); opacity: 0.42; transition: color 0.2s ease, opacity 0.2s ease;
-}
-.rrow__pin svg { width: 13px; height: 13px; display: block; }
-.rrow__ind:hover .rrow__pin { opacity: 1; color: var(--blue); }
-.rrow.is-open .rrow__pin { opacity: 1; color: var(--blue); }
-.rrow.is-open .rrow__pin svg { fill: color-mix(in srgb, var(--blue) 18%, transparent); }
 .rrow__toggle {
   position: relative; width: 14px; height: 14px; flex: 0 0 auto;
   opacity: 0.4; transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.1, 1);
@@ -506,34 +498,38 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow__desc p { margin: 0 0 0.7em; }
 .rrow__desc p:last-of-type { margin-bottom: 0; }
 
-/* "San Francisco" → Golden Gate microinteraction */
+/* "San Francisco" → hidden Golden Gate microinteraction */
+.u-vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .sf-place { position: relative; display: inline-block; }
-.sf-hot {
-  position: relative; display: inline-block;
-  border-bottom: 1px dotted color-mix(in srgb, currentColor 50%, transparent);
-  transition: color 0.25s ease, border-color 0.25s ease;
+/* invisible proximity zone: sweeps in when the cursor gets close */
+.sf-place::before { content: ""; position: absolute; inset: -13px -22px; z-index: 0; }
+.sf-hot { position: relative; display: inline; }
+.sf-letter {
+  display: inline-block; white-space: pre; color: inherit;
+  transition: color 0.3s ease var(--d);
 }
-.sf-hot:hover { color: #C74A2C; border-bottom-color: transparent; }
-.sf-hot__bridge {
-  position: absolute; left: -4px; right: -4px; bottom: -7px; height: 12px; width: auto;
-  overflow: visible; pointer-events: none;
-  opacity: 0; transform: translateY(2px); transition: opacity 0.3s ease, transform 0.3s ease;
+.sf-place:hover .sf-letter {
+  color: #C74A2C;
+  animation: sfWave 0.55s cubic-bezier(0.4, 0, 0.2, 1) var(--d);
 }
-.sf-hot:hover .sf-hot__bridge { opacity: 1; transform: none; }
-.sf-hot__bridge path { stroke: #C74A2C; stroke-width: 1.4; }
-.sf-hot__cable { stroke-dasharray: 150; stroke-dashoffset: 150; transition: stroke-dashoffset 0.5s ease 0.05s; }
-.sf-hot:hover .sf-hot__cable { stroke-dashoffset: 0; }
+@keyframes sfWave {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-2.6px); }
+}
 
 .sf-pop {
-  position: absolute; z-index: 6; left: 0; top: calc(100% + 9px); width: 234px; max-width: 78vw;
-  padding: 13px 16px 15px;
+  position: absolute; z-index: 6; left: 0; top: calc(100% + 9px); width: 226px; max-width: 78vw;
+  padding: 13px 17px 15px;
   background: var(--paper); border: 1px solid var(--rule); border-radius: 11px;
   box-shadow: 0 14px 32px -14px rgba(20, 24, 30, 0.3), 0 2px 8px rgba(20, 24, 30, 0.07);
   opacity: 0; transform: translateY(-4px) scale(0.98); transform-origin: top left; pointer-events: none;
   transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .sf-pop.is-shown { opacity: 1; transform: none; pointer-events: auto; }
-.sf-pop__bridge { display: block; width: 100%; height: auto; margin-bottom: 9px; }
+.sf-pop__bridge { display: block; width: 100%; height: auto; margin-bottom: 10px; }
 .sf-pop__bridge path { stroke: #C74A2C; stroke-linecap: round; fill: none; }
 .sf-pop__deck { stroke-width: 2.6; }
 .sf-pop__tower { stroke-width: 3; }
@@ -541,14 +537,24 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .sf-pop__hangers { stroke-width: 1; opacity: 0.55; }
 .sf-pop__title {
   font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 9px;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px;
 }
-.sf-pop__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
-.sf-pop__list a {
-  font-family: var(--serif); font-style: italic; font-size: 16.5px; color: var(--blue);
+.sf-pop__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+/* The Social Study — thin tracked geometric, echoing their wordmark */
+.sf-pop__social {
+  display: inline-block; font-family: 'Jost', var(--sans); font-weight: 300;
+  text-transform: uppercase; letter-spacing: 0.2em; font-size: 13px; color: var(--ink);
   transition: color 0.2s ease;
 }
-.sf-pop__list a:hover { color: var(--blue-2); }
+.sf-pop__social:hover { color: #C74A2C; }
+.sf-pop__the {
+  text-transform: lowercase; letter-spacing: 0.04em; font-size: 0.72em; margin-right: 5px;
+  vertical-align: 0.15em; color: var(--ink-faint);
+}
+/* de Young — heavy tight grotesque, echoing their wordmark */
+.sf-pop__deyoung {
+  font-family: var(--sans); font-weight: 800; letter-spacing: -0.015em; font-size: 16px; color: var(--ink);
+}
 @media (prefers-reduced-motion: reduce) {
   .rrow::before, .rrow__main, .rrow__detail, .rrow__photo, .rrow__desc, .rrow__toggle { transition: none; }
 }
@@ -568,7 +574,24 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .edu__deg .deg { font-size: 17px; }
 .edu__deg .thesis { display: block; color: var(--ink-soft); font-size: 14.5px; margin-top: 2px; }
 .edu__deg .thesis em { font-style: italic; }
-.edu__deg .award { display: inline-block; margin-top: 5px; font-style: italic; font-size: 14px; color: var(--blue); }
+.edu__papers { margin-top: 9px; }
+.edu__papers-label {
+  font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px;
+}
+.edu__papers ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.edu__papers li {
+  position: relative; padding-left: 14px; font-size: 13.5px; line-height: 1.45; color: var(--ink-soft);
+}
+.edu__papers li::before { content: "›"; position: absolute; left: 0; color: var(--ink-faint); }
+.edu__papers a {
+  color: var(--blue);
+  border-bottom: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.edu__papers a:hover { color: var(--blue-2); border-color: var(--blue-2); }
+.edu__awards { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 7px; }
+.edu__deg .award { font-style: italic; font-size: 14px; color: var(--blue); }
 .edu__deg .award a {
   border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent);
   transition: color 0.2s ease, border-color 0.2s ease;
