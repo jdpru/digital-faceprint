@@ -585,7 +585,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .edu__deg .thesis { display: block; color: var(--ink-soft); font-size: 14.5px; line-height: 1.4; margin-top: 11px; }
 .edu__deg .thesis:first-of-type { margin-top: 3px; }
 .edu__deg .thesis em { font-style: italic; }
-.edu__awards { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 7px; }
+.edu__awards { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 7px; }
 .edu__deg .award { font-size: 14px; color: var(--ink-soft); }
 .edu__deg .award a {
   color: var(--blue);

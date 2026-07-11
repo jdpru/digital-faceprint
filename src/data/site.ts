@@ -192,11 +192,11 @@ export const education: Education[] = [
     degree: 'B.S. Economics, with Honors',
     thesis: 'Assessing Accuracy & Weighting Effects in Matched Sample Surveys',
     awards: [
+      { label: '4× Regional Ethics Bowl Champion · National Runner-Up' },
       {
         label: 'Firestone Medal',
         href: 'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
       },
-      { label: '4× Regional Ethics Bowl Champion · National Runner-Up' },
     ],
     gpa: 'GPA 4.0',
     year: '2024',
