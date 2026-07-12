@@ -4,11 +4,10 @@
 export const site = {
   name: 'JD Pruett', // display name in the hero
   wordmark: 'Jefferson Pruett', // top-left brand
-  eyebrow: 'Survey research · Neuroscience · Machine learning',
   lede: 'Neuro researcher and ML engineer, working across AI, cognition, and survey methods.',
   chips: ['Stanford · Econ & Neuro', 'Varick · Head of Engineering'],
   portrait: {
-    src: '/portrait.png',
+    src: '/portrait.jpg',
     alt: 'Painted portrait of JD Pruett',
   },
 
@@ -214,67 +213,6 @@ export type Work = {
   caption?: string; // short label shown on the pinned corkboard card
 };
 
-export const work: Work[] = [
-  {
-    kind: 'fMRI · Intervention',
-    status: 'Finalizing manuscript',
-    title: 'Ontologies of Cognitive Control',
-    summary:
-      'A two-stage fMRI study paired with a mobile intervention, testing whether self-control brain regions predict treatment efficacy. Integrates fMRI, task behavior, breathalyzer, Fitbit, and ecological momentary assessment.',
-    links: [{ label: 'PDF soon' }],
-  },
-  {
-    kind: 'Survey methodology',
-    status: 'Under review',
-    title: 'Accuracy & Weighting in Matched Sample Surveys',
-    summary:
-      'Seventeen years of YouGov Cooperative Election Study data, compared across weighting methods. Finds average error in election estimates exceeds 7% with no improvement over time — a challenge to nonprobability survey claims.',
-    links: [
-      { label: 'PDF →', href: '#' },
-      { label: 'GitHub →', href: '#' },
-    ],
-  },
-  {
-    kind: 'EEG · Deep learning',
-    status: 'Paper',
-    title: 'Predicting Antidepressant Response from EEG',
-    summary:
-      'Semi-supervised and recurrent variational autoencoders learn latent EEG representations, paired with logistic classifiers and dual-loss training. Evaluated with ROC-AUC against clinical and combined baselines.',
-    links: [
-      { label: 'PDF →', href: '#' },
-      { label: 'GitHub →', href: '#' },
-    ],
-  },
-  {
-    kind: 'Cognition · Deep learning',
-    status: 'Paper',
-    title: 'Dynamic Reaction-Time Modeling',
-    summary:
-      'LSTM and dynamical VAE models of human reaction times on cognitive tasks. Latent-space analysis suggests flexibility and stability are distinct cognitive processes — a data-driven framework consistent with recent psychology.',
-    links: [
-      { label: 'PDF →', href: '#' },
-      { label: 'GitHub →', href: '#' },
-      { label: 'Poster →', href: '#' },
-    ],
-  },
-  {
-    kind: 'Computational chem',
-    status: 'Paper',
-    title: 'Modeling Psychoactive Molecules at 5-HT2A',
-    summary:
-      'Binding analysis with SwissDock and PyMol, examining binding energies and the role of nonpolar interactions in stabilizing 5-HT2A bonding across ligands.',
-    links: [{ label: 'PDF →', href: '#' }],
-  },
-  {
-    kind: 'Energy · Econometrics',
-    status: 'Paper',
-    title: 'Marginal Emissions in the CA Power Grid',
-    summary:
-      'A Python scraper aggregating 5M data points over six years from CAISO, with an R simulation quantifying marginal emissions offset per MWh of renewable generation, plus a fixed-effects GLM and heterogeneity analysis.',
-    links: [{ label: 'PDF →', href: '#' }],
-  },
-];
-
 export type Publication = {
   title: string;
   venue: string;
@@ -322,7 +260,7 @@ export const explore: Shelf[] = [
     num: 'I',
     title: 'Projects & Papers',
     blurb: 'A mix of research and engineering.',
-    href: '/projects/',
+    href: '/projects/euterria/',
   },
   {
     num: 'II',

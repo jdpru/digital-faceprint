@@ -96,8 +96,6 @@
 </style>
 
 <script>
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   const ICONS: Record<string, string> = {
     program:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>',
@@ -159,14 +157,20 @@
     },
   ];
 
-  const bar = document.getElementById('eutBar') as HTMLElement;
-  const caret = document.getElementById('eutCaret') as HTMLElement;
-  const queryEl = document.getElementById('eutQuery') as HTMLElement;
-  const headlineEl = document.getElementById('eutHeadline') as HTMLElement;
-  const briefLabelEl = document.getElementById('eutBriefLabel') as HTMLElement;
-  const briefTextEl = document.getElementById('eutBriefText') as HTMLElement;
-  const tabsEl = document.getElementById('eutTabs') as HTMLElement;
-  const resultsEl = document.getElementById('eutResults') as HTMLElement;
+  // The <ClientRouter /> swaps the DOM on navigation but bundled module
+  // scripts run only once per session, so elements are re-queried in init()
+  // and stale animation loops are retired via a generation counter.
+  let generation = 0;
+  let io: IntersectionObserver | null = null;
+
+  let bar: HTMLElement;
+  let caret: HTMLElement;
+  let queryEl: HTMLElement;
+  let headlineEl: HTMLElement;
+  let briefLabelEl: HTMLElement;
+  let briefTextEl: HTMLElement;
+  let tabsEl: HTMLElement;
+  let resultsEl: HTMLElement;
 
   function wait(ms: number) {
     return new Promise<void>((r) => setTimeout(r, ms));
@@ -218,13 +222,14 @@
     [...resultsEl.children].forEach((c) => c.classList.remove('is-in'));
   }
 
-  async function typeQuery(text: string) {
+  async function typeQuery(text: string, gen: number) {
     queryEl.textContent = '';
     caret.classList.add('is-blinking');
     bar.classList.add('is-active');
     for (let i = 1; i <= text.length; i++) {
       queryEl.textContent = text.slice(0, i);
       await wait(28);
+      if (gen !== generation) return;
     }
     caret.classList.remove('is-blinking');
     bar.classList.remove('is-active');
@@ -242,17 +247,22 @@
     });
   }
 
-  async function playScenario(scenario: Scenario) {
+  async function playScenario(scenario: Scenario, gen: number) {
     queryEl.textContent = '';
     primeScenario(scenario);
-    await typeQuery(scenario.question);
+    await typeQuery(scenario.question, gen);
+    if (gen !== generation) return;
     await wait(200);
+    if (gen !== generation) return;
     headlineEl.classList.add('is-in');
     await wait(220);
+    if (gen !== generation) return;
     briefLabelEl.classList.add('is-in');
     await wait(200);
+    if (gen !== generation) return;
     briefTextEl.classList.add('is-in');
     await wait(scenario.brief.length * 45 + 400);
+    if (gen !== generation) return;
     tabsEl.classList.add('is-in');
     [...resultsEl.children].forEach((c, i) => {
       setTimeout(() => c.classList.add('is-in'), i * 150);
@@ -260,30 +270,54 @@
     await wait(scenario.results.length * 150 + 3400);
   }
 
-  async function loop() {
+  async function loop(gen: number) {
     let i = 0;
-    while (true) {
-      await playScenario(scenarios[i % scenarios.length]);
+    while (gen === generation) {
+      await playScenario(scenarios[i % scenarios.length], gen);
       i++;
     }
   }
 
-  const container = document.querySelector('.eut-demo');
-  if (container) {
-    if (reduced) {
+  function init() {
+    generation++;
+    io?.disconnect();
+    io = null;
+
+    const container = document.querySelector('.eut-demo');
+    if (!container) return;
+
+    bar = document.getElementById('eutBar') as HTMLElement;
+    caret = document.getElementById('eutCaret') as HTMLElement;
+    queryEl = document.getElementById('eutQuery') as HTMLElement;
+    headlineEl = document.getElementById('eutHeadline') as HTMLElement;
+    briefLabelEl = document.getElementById('eutBriefLabel') as HTMLElement;
+    briefTextEl = document.getElementById('eutBriefText') as HTMLElement;
+    tabsEl = document.getElementById('eutTabs') as HTMLElement;
+    resultsEl = document.getElementById('eutResults') as HTMLElement;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       revealStatic(scenarios[0]);
-    } else {
-      let started = false;
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !started) {
-            started = true;
-            loop();
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      io.observe(container);
+      return;
     }
+
+    const gen = generation;
+    let started = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          loop(gen);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    io = observer;
+    observer.observe(container);
   }
+
+  document.addEventListener('astro:before-swap', () => {
+    generation++;
+  });
+  document.addEventListener('astro:page-load', init);
+  init();
 </script>

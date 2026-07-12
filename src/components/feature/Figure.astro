@@ -1,4 +1,8 @@
 ---
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { imageSize } from 'image-size';
+
 interface Props {
   src?: string;
   caption?: string;
@@ -7,10 +11,23 @@ interface Props {
 }
 const { src, caption, label, align } = Astro.props;
 const cls = ['feature-fig', align ? `feature-fig--${align}` : ''].filter(Boolean).join(' ');
+
+// Intrinsic dimensions (local files only) so the browser reserves space.
+let width: number | undefined;
+let height: number | undefined;
+if (src && src.startsWith('/')) {
+  try {
+    const dims = imageSize(readFileSync(path.join(process.cwd(), 'public', src)));
+    width = dims.width;
+    height = dims.height;
+  } catch {
+    // missing file: omit the attributes
+  }
+}
 ---
 <figure class={cls}>
   {src
-    ? <img src={src} alt={caption ?? ''} />
+    ? <img src={src} alt={caption ?? ''} width={width} height={height} loading="lazy" decoding="async" />
     : <div class="feature-fig__ph"><span>{label ?? 'Figure'}</span></div>}
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

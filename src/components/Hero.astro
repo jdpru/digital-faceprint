@@ -6,7 +6,7 @@ import Socials from './Socials.astro';
 <header class="hero wrap">
   <div class="portrait" id="portrait">
     <div class="portrait__inner" id="portraitInner">
-      <img src={site.portrait.src} alt={site.portrait.alt} />
+      <img src={site.portrait.src} alt={site.portrait.alt} fetchpriority="high" />
     </div>
     <div class="portrait__frame"></div>
   </div>
@@ -36,20 +36,16 @@ import Socials from './Socials.astro';
   }
 
   // Subtle parallax: the portrait drifts slightly toward the cursor.
-  (function () {
-    const portrait = document.getElementById('portrait');
-    const inner = document.getElementById('portraitInner');
-    if (!portrait || !inner) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
+  function initParallax(portrait: HTMLElement, inner: HTMLElement) {
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
     const cur = { ix: 0, iy: 0 };
+    let visible = true;
+    let rafId = 0; // nonzero while the loop is running
 
-    window.addEventListener('mousemove', (ev) => {
-      mx = ev.clientX;
-      my = ev.clientY;
-    });
+    function render() {
+      inner.style.transform = `scale(1.06) translate(${cur.ix.toFixed(2)}px,${cur.iy.toFixed(2)}px)`;
+    }
 
     function loop() {
       const r = portrait.getBoundingClientRect();
@@ -59,11 +55,51 @@ import Socials from './Socials.astro';
       const dyp = (my - cy) / window.innerHeight;
       const tx = Math.max(-1, Math.min(1, dxp)) * 7;
       const ty = Math.max(-1, Math.min(1, dyp)) * 7;
+      // Converged: snap to the target, paint once, and stop burning frames.
+      if (Math.abs(tx - cur.ix) < 0.05 && Math.abs(ty - cur.iy) < 0.05) {
+        cur.ix = tx;
+        cur.iy = ty;
+        render();
+        rafId = 0;
+        return;
+      }
       cur.ix += (tx - cur.ix) * 0.08;
       cur.iy += (ty - cur.iy) * 0.08;
-      inner.style.transform = `scale(1.06) translate(${cur.ix.toFixed(2)}px,${cur.iy.toFixed(2)}px)`;
-      requestAnimationFrame(loop);
+      render();
+      rafId = requestAnimationFrame(loop);
     }
-    requestAnimationFrame(loop);
-  })();
+
+    function start() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function stop() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+
+    window.addEventListener('mousemove', (ev) => {
+      mx = ev.clientX;
+      my = ev.clientY;
+      if (visible) start();
+    });
+
+    // Pause the loop entirely while the portrait is offscreen.
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) start();
+      else stop();
+    }).observe(portrait);
+
+    start();
+  }
+
+  {
+    const portrait = document.getElementById('portrait');
+    const inner = document.getElementById('portraitInner');
+    if (portrait && inner && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      initParallax(portrait, inner);
+    }
+  }
 </script>

@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
@@ -13,5 +15,12 @@
   },
   "engines": {
     "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.3",
+    "image-size": "^2.0.2",
+    "sharp": "^0.35.3",
+    "typescript": "^6.0.3"
   }
 }

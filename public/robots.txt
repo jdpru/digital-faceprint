@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jdpruett.xyz/sitemap-index.xml
