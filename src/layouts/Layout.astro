@@ -7,17 +7,24 @@ interface Props {
   title?: string;
   description?: string;
   transitions?: boolean;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title = `${site.name} — survey research, neuroscience, machine learning`,
   description = 'Personal site for JD Pruett — survey methodology, neuroscience, and machine-learning systems.',
   transitions = false,
+  ogImage = '/portrait.jpg',
+  noindex = false,
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
 
 const nav = [
   { href: '/#resume', label: 'Work' },
-  { href: '/projects/', label: 'Projects' },
+  { href: '/projects/euterria/', label: 'Projects' },
 ];
 ---
 
@@ -30,10 +37,21 @@ const nav = [
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="JD Pruett" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
       rel="stylesheet"
     />
     {transitions && <ClientRouter />}

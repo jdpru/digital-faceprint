@@ -20,8 +20,8 @@ summary: One or two sentences — used on the index card and as the intro.
 tags:                                        # optional chips
   - fMRI
   - Python
-cover: /uploads/brain.jpg                    # optional photo at the top (see below)
-pdf: /uploads/paper.pdf                      # optional PDF link
+cover: /covers/brain.png                     # optional image at the top (see below)
+pdf: /papers/paper.pdf                       # optional PDF link
 links:                                       # optional buttons at the bottom
   - label: GitHub →
     href: https://github.com/you/repo
@@ -40,11 +40,14 @@ Only `title`, `kind`, `status`, `summary` are required; the rest are optional.
 4. Commit and push.
 
 ### Photos & PDFs
-Put the file in `public/uploads/`, then reference it with a path that starts at
-`/uploads/…`:
-- cover photo: `cover: /uploads/my-figure.png`
-- PDF: `pdf: /uploads/my-paper.pdf`
-- inside the write-up: `![caption](/uploads/chart.png)`
+All media lives under `public/` and is referenced by absolute path:
+- cover plots/figures: `public/covers/` → `cover: /covers/my-figure.png`
+- photos (per-project folders): `public/gallery/<project>/` → `/gallery/<project>/photo.jpg`
+  (full-size `name.jpg` plus a `name-thumb.jpg` for experience-row thumbnails)
+- papers: `public/papers/` → `pdf: /papers/my-paper.pdf`
+
+After adding an image, run `npm run optimize:images` — it resizes and
+re-encodes anything oversized in `public/` and is safe to re-run.
 
 ## Everything else — `src/data/site.ts`
 

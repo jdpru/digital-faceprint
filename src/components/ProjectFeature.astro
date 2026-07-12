@@ -1,4 +1,7 @@
 ---
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { imageSize } from 'image-size';
 import type { CollectionEntry } from 'astro:content';
 import EuterriaDemo from './feature/EuterriaDemo.astro';
 
@@ -10,10 +13,22 @@ interface Props {
 
 const { project, projects, Content } = Astro.props;
 const d = project.data;
+
+// Intrinsic cover dimensions (local files only) so the browser reserves space.
+let coverWidth: number | undefined;
+let coverHeight: number | undefined;
+if (d.cover && d.cover.startsWith('/')) {
+  try {
+    const dims = imageSize(readFileSync(path.join(process.cwd(), 'public', d.cover)));
+    coverWidth = dims.width;
+    coverHeight = dims.height;
+  } catch {
+    // missing file: omit the attributes
+  }
+}
 const eyebrow = d.kind;
 const byline = d.date;
-const bylineLink =
-  project.id === 'euterria' ? { label: 'euterria.org', href: 'https://euterria.org' } : null;
+const bylineLink = d.siteLink ?? null;
 ---
 
 <main class="wrap-wide pfeed">
@@ -59,11 +74,11 @@ const bylineLink =
       )}
     </header>
 
-    {project.id === 'euterria' && <EuterriaDemo />}
+    {d.demo === 'euterria' && <EuterriaDemo />}
 
     {d.cover && (
       <figure class="feature-fig feature-fig--hero">
-        <img src={d.cover} alt={d.title} />
+        <img src={d.cover} alt={d.title} width={coverWidth} height={coverHeight} />
         {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
       </figure>
     )}
@@ -87,7 +102,7 @@ const bylineLink =
             <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path fill="currentColor" d="M6 3h7v7h-1.5V5.56L4.56 13 3.5 11.94 10.94 4.5H6V3Z"/></svg>
           </a>
         </p>
-        <iframe src={d.pdf} title={`${d.title} — PDF`} />
+        <iframe src={d.pdf} title={`${d.title} — PDF`} loading="lazy" />
       </div>
     )}
   </article>

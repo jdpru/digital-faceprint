@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page not found — JD Pruett"
+  description="This page doesn't exist. Head back to the front page."
+  noindex
+>
+  <main class="wrap">
+    <section class="subhero">
+      <h1>Page <em>not found</em></h1>
+      <p>Whatever lived here has moved on, or never existed at all.</p>
+      <p class="notfound__back"><a href="/">Back to the front page</a></p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .subhero .notfound__back {
+    margin-top: 26px;
+    font-style: italic;
+    font-size: 17px;
+  }
+  .notfound__back a {
+    color: var(--blue);
+    border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent);
+    padding-bottom: 1px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  .notfound__back a:hover {
+    color: var(--blue-2);
+    border-color: var(--blue-2);
+  }
+</style>

@@ -40,7 +40,7 @@ import { personal, personalProjects } from '../../data/site';
             {w.links.map((l) => (
               l.href
                 ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                : <a class="dead">{l.label}</a>
+                : <span class="dead">{l.label}</span>
             ))}
           </div>
         </article>
