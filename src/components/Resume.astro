@@ -29,7 +29,12 @@ import { experience, education, educationSchool } from '../data/site';
                 <div class="rrow__photos">
                   {e.photos.map((p) => (
                     <div class="rrow__photo">
-                      <img src={p.src} alt={p.alt} loading="lazy" />
+                      <img
+                        src={p.src}
+                        alt={p.alt}
+                        loading="lazy"
+                        style={p.objectPosition ? `object-position: ${p.objectPosition}` : undefined}
+                      />
                     </div>
                   ))}
                 </div>
