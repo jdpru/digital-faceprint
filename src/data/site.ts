@@ -71,8 +71,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Nonprofits live in a strange collaboration ecosystem. They aren\'t supposed to compete, but the funding landscape makes them de-facto competitors, and unlike private companies they\'re not directly rewarded for differentiation, since duplicate services are often exactly what\'s needed. Collaboration is an ideal for nonprofits, but in practice the cost of it is usually too high to make it worth pursuing.',
-      'Euterria seeks to lower that cost for Bay Area climate nonprofits. We take the hard-won knowledge scattered across orgs, grant reports, program decks, institutional memory, and turn it into one organized, searchable platform, so finding a partner or a precedent is about as easy as a Google search. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
+      'Nonprofits live in a strange collaboration ecosystem. They aren\'t supposed to compete, but the funding landscape makes them de-facto competitors, and unlike private companies they\'re not directly rewarded for differentiation, since duplicate services are often desirable. Collaboration is an ideal for nonprofits, but in practice the cost of it is usually too high to make it worth pursuing.',
+      'Euterria seeks to lower that cost for Bay Area climate nonprofits. We take the hard-won knowledge scattered across orgs, grant reports, etc., and turn it into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
@@ -108,7 +108,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Stanford, CA',
     description: [
       'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science, studying the psychological underpinnings and consequences of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys.',
-      'I ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples, separating the error that comes from who\'s in the sample from the error weighting is meant to fix. I built the harmonization pipeline behind it and led a small team of undergraduates; the paper is under review and openly archived.',
+      'I ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples, separating the error that comes from who\'s in the sample from the error weighting is meant to fix.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
@@ -126,7 +126,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Stanford, CA',
     description: [
       'Russ\' lab studies the neural basis of adaptive behavior, and is a leader in open neuroscience. My corner of it was cognitive control: inhibitory control and cognitive flexibility, the machinery you use to stop yourself and to change course. It\'s the part of the mind that fails us in many of the behaviors we most want to change.',
-      'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with weaker cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our standard general linear models as well as a mediation analysis strategy to isolate the neural signals that actually carried the intervention\'s effect on behavior.',
+      'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with putative deficits in cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our standard general linear models as well as a mediation analysis strategy to isolate the neural signals that actually carried the intervention\'s effect on behavior.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
     photos: [
@@ -144,7 +144,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Seattle, WA',
     description: [
       'Steve Ballmer is the former CEO of Microsoft, and his foundation is one of the largest philanthropic funders in the LA, Detroit, and Seattle metros. After I presented to Steve in a class, I worked with him and his philanthropy team to figure out what it would take to offer afterschool programming to every kid in those three cities who wanted it.',
-      'I led a study of the afterschool landscape across all three cities, then developed the financial model to cost it out, ultimately designing a roughly $450M annual budget that leaned on existing public infrastructure.',
+      'I led a three-city study of the afterschool landscape in collaboration with local government and NGOs, and developed a model for afterschool education. The work culminated in a $450M annual budget that leaned on existing public infrastructure and a number of investments in youth extracurricular education.',
     ],
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
     photos: [
@@ -191,7 +191,6 @@ export const education: Education[] = [
     degree: 'B.S. Economics, with Honors',
     thesis: 'Assessing Accuracy & Weighting Effects in Matched Sample Surveys',
     awards: [
-      { label: '4× Regional Ethics Bowl Champion · National Runner-Up' },
       {
         label: 'Firestone Medal',
         href: 'https://economics.stanford.edu/undergraduate/honors-program/honors-prize-and-award-winners?custm_hs_thesis_award_title_value=&custm_hs_thesis_author_value=pruett&title=',
