@@ -90,7 +90,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Accra, Ghana',
     description: [
       'The Design & Technology Institute is a national vocational school in Accra training thousands of Ghanaians in skilled trades, with centers across the country surveying thousands of students every month.',
-      'As a SEED fellow, I worked to make sure DTI had the data management and technical systems in place to speed up its incredible work around the country. That meant partly finding the right off-the-shelf software and getting teams onboarded, and partly building custom tools for things like procurement, inventory, and student surveys. Just as important, I trained faculty and staff to keep all of it running after I left.',
+      'As a SEED fellow, I worked to make sure DTI had the data management and technical systems in place to speed up its incredible work around the country. That meant partly finding the right off-the-shelf software and getting teams onboarded, and partly building custom tools for things like procurement, inventory, and student surveys.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
@@ -108,7 +108,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Stanford, CA',
     description: [
       'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science, studying the psychological underpinnings and consequences of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys.',
-      'I ran one of the largest independent evaluations of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples, separating the error that comes from who\'s in the sample from the error weighting is meant to fix.',
+      'I ran a multi-year independent evaluation of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
