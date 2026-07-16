@@ -72,8 +72,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Nonprofits exist in a strange collaboration ecosystem. They compete for the same pool of funding, but that competition doesn\'t produce the usefulness typically attributed to competitive markets, namely differentiation and efficiency. So there is an incentive to collaborate, and often the virtuous sentiment to go along with it. But collaboration is ultimately hampered because the cost to nonprofits of doing so substantially outweighs the benefits. There\'s a missing collaboration mechanism.',
-      'Built exclusively for Bay Area climate nonprofits, Euterria seeks to lower the collaboration cost. We index the knowledge scattered across the whole network, like who\'s best at what, the best practices scattered across grant reports, failed experiments documented in an internal presentation but never shared, etc., and turn it into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and are piloting with around thirty organizations around the Bay.',
+      'Nonprofits compete for the same funding, but that competition doesn\'t reliably produce differentiation or efficiency. Collaboration would help, but the cost of finding partners and coordinating work generally outweighs the benefit. Euterria seeks to lower the collaboration cost.',
+      'Built for Bay Area climate nonprofits, Euterria indexes knowledge scattered across the network, from who\'s best at what to practices buried in grant reports and failed experiments in internal decks. It turns that knowledge into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
