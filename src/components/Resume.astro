@@ -40,7 +40,9 @@ import { experience, education, educationSchool } from '../data/site';
                 </div>
               )}
               <div class="rrow__desc">
-                {e.description.map((p) => <p>{p}</p>)}
+                {e.description.map((p) =>
+                  typeof p === 'string' ? <p>{p}</p> : <p set:html={p.html} />
+                )}
               </div>
             </div>
           </div>

@@ -53,12 +53,13 @@ export const site = {
 };
 
 export type ExperiencePhoto = { src: string; alt: string; objectPosition?: string };
+export type ExperienceDescription = string | { html: string };
 export type ExperienceEntry = {
   years: string;
   role: string;
   org: string;
   place: string;
-  description: string[];
+  description: ExperienceDescription[];
   tags: string[];
   photos?: ExperiencePhoto[]; // optional thumbnails shown in the expanded row
   href?: string; // link to the corresponding project feature
@@ -71,8 +72,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Euterria',
     place: 'San Francisco, CA',
     description: [
-      'Nonprofits live in a strange collaboration ecosystem. They aren\'t supposed to compete, but the funding landscape makes them de-facto competitors, and unlike private companies they\'re not directly rewarded for differentiation, since duplicate services are often desirable. Collaboration is an ideal for nonprofits, but in practice the cost of it is usually too high to make it worth pursuing.',
-      'Euterria seeks to lower that cost for Bay Area climate nonprofits. We take the hard-won knowledge scattered across orgs, grant reports, etc., and turn it into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
+      'Nonprofits exist in a strange collaboration ecosystem. They compete for the same pool of funding, but that competition doesn\'t produce the usefulness typically attributed to competitive markets, namely differentiation and efficiency. So there is an incentive to collaborate, and often the virtuous sentiment to go along with it. But collaboration is ultimately hampered because the cost to nonprofits of doing so substantially outweighs the benefits. There\'s a missing collaboration mechanism.',
+      'Built exclusively for Bay Area climate nonprofits, Euterria seeks to lower the collaboration cost. We index the knowledge scattered across the whole network, like who\'s best at what, the best practices scattered across grant reports, failed experiments documented in an internal presentation but never shared, etc., and turn it into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and are piloting with around thirty organizations around the Bay.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
@@ -89,8 +90,10 @@ export const experience: ExperienceEntry[] = [
     org: 'Design & Technology Institute',
     place: 'Accra, Ghana',
     description: [
-      'The Design & Technology Institute is a national vocational school in Accra training thousands of Ghanaians in skilled trades, with centers across the country surveying thousands of students every month.',
-      'As a SEED fellow, I worked to make sure DTI had the data management and technical systems in place to speed up its incredible work around the country. That meant partly finding the right off-the-shelf software and getting teams onboarded, and partly building custom tools for things like procurement, inventory, and student surveys.',
+      {
+        html: 'The Design & Technology Institute is a vocational school in Accra founded by the ever-inspirational <a href="https://dtiafrica.com/about/governance-leadership">Constance Swaniker</a>. DTI and its industry partners train thousands of young Ghanaians in skilled trades and are doing the hard work of scaling up their programming nationwide.',
+      },
+      'As a SEED fellow, I had the privilege of working with DTI to ensure they had the data management and technical systems in place to speed up its incredible work around the country. That meant a combination of finding the right off-the-shelf software and deploying it around the country, and building custom tools for things like procurement, inventory, and student surveys.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     photos: [
@@ -107,8 +110,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Political Psychology Research Group · PI Jon Krosnick',
     place: 'Stanford, CA',
     description: [
-      'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science, studying the psychological underpinnings and consequences of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys.',
-      'I ran a multi-year independent evaluation of the Cooperative Election Study, the flagship survey built on YouGov\'s matched-sample method, and one of the most cited datasets in political science. Across seventeen years of data, we tested whether that method really closes the accuracy gap between opt-in and random samples.',
+      'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science to study the psychological underpinnings of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys for social science.',
+      'I led a small team to do a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     photos: [
@@ -126,7 +129,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Stanford, CA',
     description: [
       'Russ\' lab studies the neural basis of adaptive behavior, and is a leader in open neuroscience. My corner of it was cognitive control: inhibitory control and cognitive flexibility, the machinery you use to stop yourself and to change course. It\'s the part of the mind that fails us in many of the behaviors we most want to change.',
-      'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with putative deficits in cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our standard general linear models as well as a mediation analysis strategy to isolate the neural signals that actually carried the intervention\'s effect on behavior.',
+      'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with putative deficits in cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our mediation analysis strategy to causally estimate the neural signals that actually carried the intervention\'s effect on behavior.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
     photos: [
@@ -144,8 +147,8 @@ export const experience: ExperienceEntry[] = [
     org: 'Ballmer Group',
     place: 'Seattle, WA',
     description: [
-      'Steve Ballmer is the former CEO of Microsoft, and his foundation is one of the largest philanthropic funders in the LA, Detroit, and Seattle metros. After I presented to Steve in a class, I worked with him and his philanthropy team to figure out what it would take to offer afterschool programming to every kid in those three cities who wanted it.',
-      'I led a three-city study of the afterschool landscape in collaboration with local government and NGOs, and developed a model for afterschool education. The work culminated in a $450M annual budget that leaned on existing public infrastructure and a number of investments in youth extracurricular education.',
+      'Steve Ballmer is the former CEO of Microsoft, and his foundation is a large philanthropic funder in the LA, Detroit, and Seattle metro areas. After I presented to Steve in a class, I worked with him and his philanthropy team to figure out what it would take to offer afterschool programming to every kid who wanted it across the three metros.',
+      'I led a three-city study of the afterschool landscape in collaboration with local government and NGOs, and developed a cost model for afterschool education. The work culminated in a $450M annual budget that leaned on existing public infrastructure and a number of investments in youth extracurricular education.',
     ],
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
     photos: [
