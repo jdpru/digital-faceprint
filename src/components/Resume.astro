@@ -1,5 +1,6 @@
 ---
 import { experience, education, educationSchool } from '../data/site';
+import EuterriaDemo from './feature/EuterriaDemo.astro';
 ---
 
 <div class="resume">
@@ -29,12 +30,16 @@ import { experience, education, educationSchool } from '../data/site';
                 <div class="rrow__photos">
                   {e.photos.map((p) => (
                     <div class="rrow__photo">
-                      <img
-                        src={p.src}
-                        alt={p.alt}
-                        loading="lazy"
-                        style={p.objectPosition ? `object-position: ${p.objectPosition}` : undefined}
-                      />
+                      {p.kind === 'euterria-search' ? (
+                        <EuterriaDemo compact />
+                      ) : (
+                        <img
+                          src={p.src}
+                          alt={p.alt}
+                          loading="lazy"
+                          style={p.objectPosition ? `object-position: ${p.objectPosition}` : undefined}
+                        />
+                      )}
                     </div>
                   ))}
                 </div>

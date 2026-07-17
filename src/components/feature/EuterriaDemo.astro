@@ -4,8 +4,10 @@
 // screenshot-in-motion rather than a mockup. Content for a scenario is
 // rendered in full (hidden) before typing starts, so the card holds a
 // fixed size and reveals into it rather than growing as it goes.
+const { compact = false } = Astro.props;
+const cls = ['eut-demo', compact ? 'eut-demo--compact' : ''].filter(Boolean).join(' ');
 ---
-<div class="eut-demo">
+<div class={cls} aria-label={compact ? 'Animated Euterria search interface' : undefined}>
   <div class="eut-card">
     <div class="eut-bar-row">
       <div class="eut-bar" id="eutBar">
@@ -26,7 +28,7 @@
       <div class="eut-results" id="eutResults"></div>
     </div>
   </div>
-  <p class="eut-demo-caption">Example search results from euterria.org.</p>
+  {!compact && <p class="eut-demo-caption">Example search results from euterria.org.</p>}
 </div>
 
 <style>
@@ -87,6 +89,47 @@
   .eut-results :global(.eut-result-tags) { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px; }
   .eut-results :global(.eut-result-tags span) { padding: 1px 7px; border-radius: 999px; border: 1px solid #DCD3C0; font-size: 9px; font-weight: 600; color: #2B313B; }
   .eut-demo-caption { margin: 9px 0 0; text-align: center; font-style: italic; font-size: 12px; color: var(--ink-faint, #8a8a8a); }
+  .eut-demo--compact {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 4px;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .eut-demo--compact .eut-card {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+  .eut-demo--compact .eut-bar-row { padding: 4px; gap: 4px; }
+  .eut-demo--compact .eut-bar { padding: 4px 6px; gap: 4px; border-radius: 6px; }
+  .eut-demo--compact .eut-icon { width: 9px; height: 9px; }
+  .eut-demo--compact #eutQuery { font-size: 7.5px; }
+  .eut-demo--compact .eut-caret { height: 8px; }
+  .eut-demo--compact .eut-search-btn { height: 18px; padding: 0 7px; font-size: 7px; }
+  .eut-demo--compact .eut-body { min-height: 0; padding: 6px 7px; }
+  .eut-demo--compact .eut-headline {
+    font-size: 8.5px;
+    line-height: 1.25;
+    min-height: 2.5em;
+  }
+  .eut-demo--compact .eut-brief-label { margin-top: 4px; gap: 3px; font-size: 5.8px; letter-spacing: .08em; }
+  .eut-demo--compact .eut-sparkle { width: 7px; height: 7px; }
+  .eut-demo--compact .eut-brief-text { display: none; }
+  .eut-demo--compact .eut-tabs { display: none; }
+  .eut-demo--compact .eut-results { margin-top: 2px; min-height: 0; }
+  .eut-demo--compact .eut-results :global(.eut-result) { gap: 5px; padding: 5px 0 0; border-bottom: 0; }
+  .eut-demo--compact .eut-results :global(.eut-result:nth-child(n+2)) { display: none; }
+  .eut-demo--compact .eut-results :global(.eut-result-icon) { width: 16px; height: 16px; border-radius: 5px; }
+  .eut-demo--compact .eut-results :global(.eut-result-icon svg) { width: 8px; height: 8px; }
+  .eut-demo--compact .eut-results :global(.eut-result-kind) { font-size: 5.5px; letter-spacing: .08em; }
+  .eut-demo--compact .eut-results :global(.eut-result-title) { margin-top: 1px; font-size: 7.5px; line-height: 1.1; }
+  .eut-demo--compact .eut-results :global(.eut-result-desc),
+  .eut-demo--compact .eut-results :global(.eut-result-tags) { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
     .eut-caret { animation: none !important; }

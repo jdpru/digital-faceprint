@@ -52,7 +52,12 @@ export const site = {
   },
 };
 
-export type ExperiencePhoto = { src: string; alt: string; objectPosition?: string };
+export type ExperiencePhoto = {
+  src?: string;
+  alt: string;
+  objectPosition?: string;
+  kind?: 'euterria-search';
+};
 export type ExperienceDescription = string | { html: string };
 export type ExperienceEntry = {
   years: string;
@@ -78,8 +83,8 @@ export const experience: ExperienceEntry[] = [
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
     photos: [
       {
-        src: '/gallery/euterria/map-thumb.jpg',
-        alt: 'Organizations across the Bay Area, mapped by what they work on.',
+        kind: 'euterria-search',
+        alt: 'Animated Euterria search interface.',
       },
     ],
     href: '/projects/euterria/',
