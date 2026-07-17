@@ -91,7 +91,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Accra, Ghana',
     description: [
       {
-        html: 'The Design & Technology Institute is a vocational school in Accra founded by the ever-inspirational <a href="https://dtiafrica.com/about/governance-leadership">Constance Swaniker</a>. DTI and its industry partners train thousands of young Ghanaians in skilled trades and are doing the hard work of scaling up their programming nationwide.',
+        html: 'The Design & Technology Institute is a vocational school in Accra founded by the ever-inspirational <a href="https://en.wikipedia.org/wiki/Constance_Swaniker">Constance Swaniker</a>. DTI and its industry partners train thousands of young Ghanaians in skilled trades and are doing the hard work of scaling up their programming nationwide.',
       },
       'As a SEED fellow, I had the privilege of working with DTI to ensure they had the data management and technical systems in place to speed up its incredible work around the country. That meant a combination of finding the right off-the-shelf software and deploying it around the country, and building custom tools for things like procurement, inventory, and student surveys.',
     ],
