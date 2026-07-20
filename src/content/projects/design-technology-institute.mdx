@@ -4,27 +4,42 @@ kind: Civic Tech
 status: Summer 2025
 order: 2
 summary: Building the data backbone for a national vocational school in Accra — and training the team to keep it running.
-dek: A summer in Accra, building the data backbone for a national vocational school — and the team to keep it running after I left.
+dek: Building software and data infrastructure for a national vocational school.
 date: Summer 2025
-heroCaption: Speaking at a Precision Quality session in Accra.
+heroCaption: Speaking at the Precision Quality cohort 2 launch in Accra.
 tags: [Data pipeline, Questionnaire design, Staff training]
 cover: "/gallery/design-technology-institute/precision-quality-talk.jpg"
 pdf: ""
 links: []
 ---
 import Figure from '../../components/feature/Figure.astro';
+import FigurePair from '../../components/feature/FigurePair.astro';
 import EndMark from '../../components/feature/EndMark.astro';
 
-I had the privilege of working under [Constance Swaniker](https://en.wikipedia.org/wiki/Constance_Swaniker) and [Bernice Gavor](https://dtiafrica.com/news/post/dti-precision-quality-internship-train-6000-youth-three-years-1800-trained-year-one-and-308-graduate-accras-inaugural-cohort) at DTI and A&A. Constance is an incredible woman, she took her studio and turned it into the driving force behind a national vocational training school, and now she's scaling it across a country where young people struggle to find rigorous training to actually get them work-ready. Bernice runs the Precision Quality internship that's at the center of that effort, a program aiming to train 6,000 youth over three years, with 1,800 trained and 308 graduating from Accra's inaugural cohort in year one alone. DTI is also the first institution in Africa to receive accreditation through the American Welding Society, which says a lot about how seriously they take the "rigorous" part.
+I had the immense privilege of working under [Constance Swaniker](https://en.wikipedia.org/wiki/Constance_Swaniker) and [Bernice Gavor](https://dtiafrica.com/news/post/dti-precision-quality-internship-train-6000-youth-three-years-1800-trained-year-one-and-308-graduate-accras-inaugural-cohort) at the Design & Technology Institute (DTI) and Accents & Art (A&A). Constance is an incredible woman; she took her studio, which she'd launched as a solopreneur, and turned it into the driving force behind a national vocational training school. Now she's scaling it across a country where young people struggle to find the rigorous training required to actually get them work-ready. Bernice runs the Precision Quality internship that's at the center of that effort, a program aiming to train 6,000 youth over three years, with 1,800 trained and 308 graduating from Accra's inaugural cohort in year one alone. DTI is also the first institution in Africa to receive [accreditation through the American Welding Society](https://thebftonline.com/article/dti-commissions-africas-first-aws-certified-welding-training-and-testing-centre), a testament to the talent and rigor they have brought to the program.
 
-<Figure src="/gallery/design-technology-institute/constance-bernice.jpg" align="right" caption="With Constance Swaniker and Bernice Gavor in Accra." />
+<Figure src="/gallery/design-technology-institute/constance-bernice.jpg" align="right" caption="With Constance and Bernice at A&A's 25th Anniversary Party." />
 
-My part was mostly technical. I built out the infrastructure to collect, analyze, and securely store survey data from 15,000 students across six campuses, designed the questionnaires, built the pipeline end to end, and worked with faculty and staff so they could keep running it after I left.
+While DTI is itself a school and a campus, a much larger number of students train with industry partners scattered around the country. This presents a serious logistical challenge, as the program is responsible for sending materials, including welding torches, safety equipment, sewing supplies, and more, across the country, tracking the progress of individual students, and coordinating training and curriculum for the industry partners. This challenge is compounded by the limited digital fluency of the implementation partners, and often of the students themselves.
 
-<Figure src="/gallery/design-technology-institute/cohort-group.jpg" align="left" caption="With the A&A team at the 25th-anniversary celebration." />
+My contribution was to embed easy-to-use software tools, both off-the-shelf and custom-built, to help DTI find an efficient way to manage the considerable complexity of its programs. A good portion of the work was finding open-source projects online or low-cost third-party services, configuring them to fit program needs, and deploying them around the country, which usually involved giving training sessions at different sites. I also helped build out the infrastructure to collect, analyze, and securely store survey data from roughly 12,000 students spread across six campuses.
 
-Threw in a couple lectures too, one on AI and one on personal and professional organization, because apparently I have opinions on that.
+<FigurePair
+  images={[
+    {
+      src: '/gallery/design-technology-institute/cohort-group.jpg',
+      alt: 'With the A&A team at the 25th-anniversary celebration.',
+    },
+    {
+      src: '/gallery/design-technology-institute/anniversary-event.jpg',
+      alt: 'The 25th-anniversary gathering in Accra.',
+    },
+  ]}
+  caption="With the A&A team celebrating the gift of a Peacock piece (right) to a church and community center."
+/>
 
-<Figure src="/gallery/design-technology-institute/anniversary-event.jpg" align="right" caption="The 25th-anniversary gathering in Accra." />
+The cultural curiosities of "doing business" in Ghana abounded. The warm, deeply respectful, and kind culture occasionally worked against the organization's need to administer its programs efficiently, a known problem I navigated while I was there.
 
-Wonderful summer. If you're ever in West Africa, go say hi to DTI and A&A. <EndMark />
+I gave a few talks, including a couple on AI in methods and economic impact, as well as one on personal organization and management.
+
+Youth unemployment can reach as high as 50% in some parts of the greater Accra region. A&A and DTI are addressing this problem directly, doing the difficult work of providing students with rigorous instruction, mentorship, and an environment that fosters excellence in craft. That is extremely difficult to do at scale, but it is what moves the needle for youth. It was an incredible summer, mostly because I got to bear witness to their work and its impact. If you're ever in West Africa, stop by the studio at A&A or the DTI campus. <EndMark />

@@ -1,0 +1,43 @@
+---
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { imageSize } from 'image-size';
+
+type PairImage = {
+  src: string;
+  alt: string;
+};
+
+interface Props {
+  images: PairImage[];
+  caption?: string;
+}
+
+const { images, caption } = Astro.props;
+const dims = images.map((image) => {
+  try {
+    const size = imageSize(readFileSync(path.join(process.cwd(), 'public', image.src)));
+    return { width: size.width, height: size.height };
+  } catch {
+    return { width: undefined, height: undefined };
+  }
+});
+---
+
+<figure class="feature-fig feature-fig--pair">
+  <div class="feature-pair">
+    {images.map((image, i) => (
+      <div class="feature-pair__frame">
+        <img
+          src={image.src}
+          alt={image.alt}
+          width={dims[i].width}
+          height={dims[i].height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
