@@ -745,7 +745,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .prose-body .feature-fig--left, .prose-body .feature-fig--right { width: min(44%, 320px); max-width: 44%; margin-top: 0.35em; margin-bottom: 20px; }
 .prose-body .feature-fig--left { float: left; margin-left: -7%; margin-right: 24px; }
 .prose-body .feature-fig--right { float: right; margin-left: 24px; margin-right: -7%; }
-.prose-body .feature-fig--pair { width: min(58%, 440px); max-width: 58%; }
+.prose-body .feature-fig--pair { float: none; clear: both; width: auto; max-width: 690px; margin-left: auto; margin-right: auto; }
 .prose-body .feature-fig--left img, .prose-body .feature-fig--right img { max-height: 440px; }
 .prose-body .feature-fig--left figcaption, .prose-body .feature-fig--right figcaption { text-align: left; }
 
