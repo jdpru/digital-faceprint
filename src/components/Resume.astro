@@ -42,6 +42,12 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                       )}
                     </div>
                   ))}
+                  {e.href && (
+                    <a class="rrow__project-link" href={e.href}>
+                      <span aria-hidden="true">↳</span>
+                      Read the project
+                    </a>
+                  )}
                 </div>
               )}
               <div class="rrow__desc">
