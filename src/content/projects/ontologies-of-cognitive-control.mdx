@@ -3,8 +3,8 @@ title: Ontologies of Cognitive Control
 kind: Cognitive Neuroscience
 status: Finalizing manuscript
 order: 1
-summary: A pre/post fMRI study wrapped around a four-week mobile intervention, asking whether the brain's canonical control regions actually drive real-world behavior change — or just track lab tasks that don't.
-dek: The field measures self-control with lab tasks that barely predict real behavior. This study inverts the logic — anchor on behavior people actually change, then ask which brain systems were responsible.
+summary: A pre/post fMRI study wrapped around a four-week mobile intervention, asking which brain systems actually move when a person's real-world behavior changes.
+dek: The field measures self-control with lab tasks that barely predict real behavior. This study starts from the behavior people actually change and works back to the brain systems responsible.
 date: March 2026
 heroCaption: Fig. 1 — A FreeSurfer reconstruction of one hemisphere's white-matter surface, lateral (left) and medial (right). Before any function is measured, each brain is rebuilt into anatomy like this.
 tags: [fMRI, GLM, mediation]
@@ -16,73 +16,87 @@ import Figure from '../../components/feature/Figure.astro';
 import Display from '../../components/feature/Display.astro';
 import EndMark from '../../components/feature/EndMark.astro';
 
-Self-control is the rare idea everyone believes in and no two people measure the same way. Psychologists give the underlying machinery a more precise name — *cognitive control*: the suite of functions, seated largely in the prefrontal cortex, that let you override an automatic impulse in the service of a slower goal. It is what stops your hand halfway to the second cigarette, or closes the app you opened out of habit. Most of behavior runs on autopilot; cognitive control is the brake you press when autopilot is about to cost you something.
+Self-control is the rare idea everyone believes in and no two people measure the same way. Psychologists give the underlying machinery a sharper name, cognitive control, meaning the set of functions seated largely in the prefrontal cortex that let you override an automatic impulse in the service of a slower goal. It is what stops your hand halfway to the second cigarette, or closes the app you opened out of habit. Most of behavior runs on autopilot. Cognitive control is the brake you press when autopilot is about to cost you something.
 
-How do you measure a brake? The lab's answer is to stage a small, timed contest between impulse and restraint and record, in milliseconds, who wins — a reaction time, a discount rate, a craving rating. The whole enterprise rests on one assumption: that these numbers stand in for the messy thing that governs real behavior.
+To measure a brake, the lab stages a small, timed contest between impulse and restraint and records who wins in milliseconds. Press a button the instant a shape appears, then cancel that press when a signal flashes. Choose twenty dollars now or more money in a month. Each paradigm hands back a tidy number, a reaction time or a discount rate, and for decades the field has treated those numbers as stand-ins for the messy thing that governs real behavior.
 
-They may not. In 2019, Eisenberg and colleagues put the assumption to a large test — 37 behavioral tasks against 22 self-report surveys, a data-driven attempt to map the ontology of self-regulation. Tasks and surveys, ostensibly measuring the same construct, barely related to each other. The bridge from lab to life is thinner than the field's methods assume.
+Those stand-ins turn out to be shaky. When researchers gave 522 people 37 of these tasks alongside 23 questionnaires, the tasks and the questionnaires barely agreed with each other, and the tasks did a poor job predicting real outcomes like smoking or weight (Eisenberg and colleagues, 2019). A follow-up traced part of the trouble to reliability. The same tasks that produce rock-solid averages across a group are surprisingly noisy within a single person, which makes them weak tools for telling one person apart from another (Enkavi and colleagues, 2019). The lab has a rich drawer of paradigms and a thin bridge from those paradigms to a life.
+
+That thin bridge matters most where control breaks down. Binge eating disorder is the most common eating disorder, and what defines it is a felt loss of control over eating, more than the amount any single meal contains (Hudson and colleagues, 2007). Daily cigarette smoking runs on the same machinery of wanting and restraint. In both, a treatment worth having is one aimed at the parts of the brain that truly move when a person starts to change. When the measures the field trusts fail to track that change, the aim drifts.
 
 ## Turning the question around
 
-The conventional move is task-first: let the paradigm define what "self-control" is, then test whether that definition generalizes outward. This study makes the opposite commitment. It anchors on ecologically valid behavior change — cravings that fall, cigarettes not smoked, steps actually taken — and works backward: did the canonical control regions reflect that change? Were they actually *responsible* for it? Did other regions turn out to explain it better?
+Most studies run the logic in one direction. A laboratory paradigm sets the definition of control, and researchers test whether that definition reaches out into the world. This project runs the logic the other direction. We take a real change in behavior as the fixed point and work backward to the brain, asking which neural systems moved alongside the change and which ones carried it.
 
-The stakes are practical. If the regions the field treats as the seat of control are not the ones that move when behavior actually improves, then a science of behavior change built on them — and every treatment aimed at them — is aimed slightly off.
-
-<Display>Rather than ask whether a lab measure of control predicts life, it asks which parts of the brain moved when life actually changed.</Display>
+<Display>We start from the behavior that changed in a person's life and follow it back into the brain.</Display>
 
 ## The study
 
-Two populations defined by self-regulatory failure — binge eating disorder and daily smoking — are scanned, sent home for four weeks with a mobile intervention (Laddr) that prompts them four times a day and delivers self-regulation training, then scanned again. The design stays close to real life: Fitbit step counts for the eating group, daily breath carbon-monoxide readings for the smokers, and momentary check-ins that catch a craving in the moment it strikes. Both scans run an identical five-task battery, described below.
+Two groups defined by self-regulatory struggle, people with binge eating disorder and people who smoke daily, come in for a brain scan, spend four weeks with a mobile intervention, and return for a second scan. The app, called Laddr, prompts them four times a day and delivers self-regulation training between sessions. The design stays close to real life. A Fitbit counts steps for the eating group, a daily breath test tracks carbon monoxide for the smokers, and the four-times-daily check-ins catch a craving in the moment it strikes. Both scans run the same five-task battery, described below.
 
-<Figure src="/gallery/ontologies-of-cognitive-control/freesurfer-segmentation.jpg" caption="Fig. 2 — One scan after FreeSurfer, in FSLeyes: the cortical ribbon and subcortical structures segmented from the raw T1 (left, in color; a grayscale label view at right). This anatomy is the coordinate frame every functional contrast is read against." />
+<Figure src="/gallery/ontologies-of-cognitive-control/freesurfer-segmentation.jpg" caption="Fig. 2 — One scan after FreeSurfer, seen in FSLeyes. The cortical ribbon and subcortical structures have been segmented from the raw T1 scan, shown in color at left and as a grayscale label map at right. This anatomy is the coordinate frame every functional measurement is read against." />
+
+## How it builds on earlier work
+
+Three lines of research make this design possible.
+
+The first is a quarter century of work by Lisa Marsch and colleagues at Dartmouth showing that behavior-change treatment can be delivered by software with results that rival a human clinician. Their Therapeutic Education System became reSET, the first prescription app the FDA cleared to treat a disease (Campbell and colleagues, 2014). Laddr grows from that lineage, and it carries a further advantage. Its steady stream of daily check-ins turns self-regulation into something measured out in the world, rather than guessed at from a single afternoon in a lab.
+
+The second line studies binge eating as it happens. Careful momentary-assessment work shows that a binge tends to follow a rising tide of negative feeling and a fall in good mood, a pattern visible hours before the episode and reversed once it passes (Haedt-Matt and Keel, 2011). Behavior like this leaves a trail, and the trail is exactly what a four-times-daily diary is built to record.
+
+The third line maps the brain during the act of resisting. When smokers were coached to focus on the long-term cost of a cue instead of its immediate pull, their craving fell, activity in reward circuitry dropped, and activity in prefrontal control regions rose, with the reward signal carrying the effect of prefrontal activity on craving (Kober and colleagues, 2010). The same prefrontal and striatal circuitry serves food and cigarettes alike, which is why one design can hold two disorders at once.
 
 ## Five windows on control
 
-No single task captures cognitive control, because control is not one move. So the battery samples several, each staging a different kind of conflict.
+No single task captures cognitive control, because control takes several forms. So the battery samples several of them, each staging a different kind of conflict.
 
-**Stopping an action already in motion.** In the *stop-signal task*, you press a key for a shape as fast as you can — but on a fraction of trials a signal flashes, meaning *abort*. A staircase keeps the signal timed right at the edge of the possible, so the measure is how quickly the brain can cancel a command it has already sent: the stop-signal reaction time. This is inhibition in its purest form, and it leans on a well-mapped circuit — the right inferior frontal gyrus, pre-supplementary motor area, and basal ganglia.
+**Stopping an action already in motion.** In the stop-signal task, you press a key for a shape as fast as you can, and on a fraction of trials a signal flashes that means stop. A staircase keeps the signal timed right at the edge of the possible, so the measure is how quickly the brain can cancel a command it has already sent. This is inhibition in its purest form, and it leans on a well-mapped circuit in the right inferior frontal gyrus, the pre-supplementary motor area, and the basal ganglia.
 
-**Stopping the right action, not every action.** Real restraint is rarely "freeze everything." The *motor-selective stop task* asks you to abort only when the signal belongs to one designated finger, and to keep going for the other. It isolates *selective* inhibition — canceling one specific impulse while the rest of behavior proceeds, which is what daily life actually demands.
+**Stopping the right action while letting another go.** Real restraint rarely means freezing everything. The motor-selective stop task asks you to cancel only when the signal belongs to one designated finger and to keep going for the other. It isolates selective inhibition, the everyday move of canceling one impulse while the rest of behavior proceeds.
 
-**Valuing later over sooner.** The *delay-discounting task* offers a choice: twenty dollars now, or more money weeks from now. Fit the pattern of choices and you recover a discount rate — how steeply a person's valuation of a reward decays as it recedes into the future. Here impulsivity is a matter of *value* rather than braking, and it engages the brain's valuation system: the ventromedial prefrontal cortex and ventral striatum.
+**Valuing later over sooner.** The delay-discounting task offers a choice between twenty dollars now and more money weeks from now. Fit the pattern of choices and you recover a discount rate, a measure of how steeply a reward loses its worth as it recedes into the future. Here impulsivity shows up in valuation rather than braking, and it engages the brain's valuation system in the ventromedial prefrontal cortex and ventral striatum.
 
-**Turning a craving down on purpose.** In the *craving-regulation task*, you view a tempting cue — food for the eating group, cigarettes for the smokers — under an instruction to dwell either on the immediate pleasure ("now") or the long-term cost ("later"), then rate the craving. This catches control in the act of reappraisal: the deliberate reframing that talks a want down a notch. It is also the study's lever — the one function the intervention explicitly trains, and the proximal point where control either holds or gives way.
+**Turning a craving down on purpose.** In the craving-regulation task you view a tempting cue, food for the eating group and cigarettes for the smokers, under an instruction to dwell either on the immediate pleasure or on the long-term cost, and then you rate the craving. This catches control in the act of reappraisal, the deliberate reframing that talks a want down a notch. It is also the study's lever, the one function the intervention explicitly trains.
 
-**Reacting to the world as it comes.** Finally, participants simply watch a *movie* seeded with food and smoking. No task, no instruction — just the brain's spontaneous reaction to cues in something close to their natural habitat, a check on whether the intervention cooled reactivity where it really happens.
+**Reacting to the world as it comes.** Finally, participants simply watch a movie seeded with food and smoking. No task and no instruction, just the brain's spontaneous reaction to cues in something close to their natural habitat, a check on whether the intervention cooled reactivity where it really happens.
 
-Each window catches a different facet — cancel, select, value, reframe, react. The field has long assumed these are facets of one underlying faculty. Whether they are is exactly what the study is built to test.
+Each window catches a different facet of control, the power to cancel, to select, to value, to reframe, and to react. The field has long assumed these are facets of one underlying faculty. Whether they are is the question the study is built to answer.
 
 ## If it's working, where is it working?
 
-There is no control group, so the design earns its causal claims a different way. Every participant gets an engagement score — a dose — and the analysis asks whether more of the intervention buys more change, in behavior and in the brain. The payoff is a mediation model: intervention engagement (X) acting on craving and behavior (Y) *through* a change in neural activity (M). The point is to separate a region that merely accompanied the change from one that carried it.
+There is no control group in this study, so its causal claims are earned a different way. Every participant gets an engagement score, a dose, and the analysis asks whether more of the intervention buys more change, in behavior and in the brain. The heart of it is a mediation model. Intervention engagement, call it X, acts on craving and behavior, call it Y, through a change in neural activity, call it M. The goal is to tell apart a region that merely came along for the ride from one that carried the change.
 
 ## The arithmetic of a pathway
 
-A path model splits X's effect on Y into two routes. The *total* effect, c, is what engagement does to behavior overall. The *direct* effect, c′, is what survives once the brain measure is held fixed. The difference between them is the part of the change that traveled through the brain — the product of the step from engagement to neural change (a) and the step from neural change to behavior, holding engagement constant (b):
+A path model splits the effect of X on Y into two routes. The total effect, written c, is what engagement does to behavior overall. The direct effect, written c prime, is what remains once the brain measure is held fixed. The gap between them is the part of the change that traveled through the brain, and it equals the product of two smaller steps, the step from engagement to neural change, written a, and the step from neural change to behavior with engagement held constant, written b.
 
 <Display>c − c′ = a · b</Display>
 
-That product, *ab*, is the estimand — the mediated effect. Because the sampling distribution of a product is skewed rather than normal, its significance is read from a bootstrap.
+That product, a times b, is the quantity the whole study is built to estimate. Because the spread of a product comes out lopsided rather than bell-shaped, its significance is read from a bootstrap rather than a standard table.
 
-The multilevel version — participants treated as a random effect, following Wager and colleagues — carries one term the single-level story hides. The group's mediated effect is *not* simply the product of the average paths:
+The multilevel version treats each participant as a small study of one and then pools them, and it carries an extra term the simple version hides. The group's mediated effect involves more than the product of the average steps. It also includes how those steps move together across people.
 
 <Display>mean(a · b) = mean(a) · mean(b) + cov(a, b)</Display>
 
-The covariance is the interesting part. A region can register as a genuine mediator even when its average a and average b each look unremarkable — so long as the people with a strong engagement-to-brain step tend to be the same people with a strong brain-to-behavior step. What makes the pathway real is sometimes the individual differences, not the group mean.
+That last term, the covariance, is where the insight lives. A region can count as a real pathway even when its average a and average b look ordinary, as long as the people with a strong engagement-to-brain step tend to be the same people with a strong brain-to-behavior step. Sometimes what makes a pathway real is the pattern across individuals rather than the group average.
 
-<Figure label="Figure — mediation path model" caption="Fig. 3 — The path model: engagement (X) acts on behavior (Y) both directly (c′) and through neural change (M), along paths a and b. The estimand is the indirect route a · b — not the endpoints alone." />
+<Figure label="Figure — mediation path model" caption="Fig. 3 — The path model. Engagement, X, acts on behavior, Y, both directly along path c prime and through neural change, M, along paths a and b. The quantity of interest is the indirect route, a times b, rather than the endpoints on their own." />
 
 ## What counts as control
 
-Here the title earns its weight. An *ontology* is a commitment about which categories are real. The sharpest test runs three candidate systems as parallel mediators — regulation, inhibition, and valuation — and apportions the behavioral change across them:
+Here the title earns its weight. An ontology is a commitment about which categories are real. The sharpest test in the study runs three candidate systems as parallel pathways, one for regulation, one for inhibition, and one for valuation, and it splits the behavioral change across them.
 
 <Display>indirect effect = a₁b₁ + a₂b₂ + a₃b₃</Display>
 
-If one term does the work, "self-control" survives as a unified thing. If the sum is spread across all three — inhibition here, valuation there, regulation somewhere else — then the tidy word was hiding a coalition all along. The design is built to be wrong in a way that tells you which. <EndMark />
+If a single term carries the weight, the word self-control names one thing. If the change spreads evenly across all three, the tidy word has been standing in for a committee all along. The design is built to be wrong in a way that tells you which. <EndMark />
 
 ## References & notes
 
-1. Preregistration and analysis plan on the Open Science Framework.
-2. Eisenberg et al. (2019), *Nature Communications* — the data-driven ontology of self-regulation that motivates the inversion.
-3. Multilevel, voxelwise mediation after Wager and colleagues (mediation effect parametric mapping).
-4. The larger eating-disorder sample anchors the mediation analysis. Manuscript in preparation — this feature is a plain-language companion, not the paper.
+1. Eisenberg, Bissett, Marsch, Poldrack and colleagues (2019), Nature Communications — a data-driven map of self-regulation showing that lab tasks and surveys barely relate.
+2. Enkavi and colleagues (2019), PNAS — the reliability limits of common self-regulation tasks.
+3. Hudson and colleagues (2007), Biological Psychiatry — binge eating disorder as the most common eating disorder, defined by loss of control.
+4. Kober and colleagues (2010), PNAS — the prefrontal-striatal pathway behind cognitive regulation of craving.
+5. Haedt-Matt and Keel (2011), Psychological Bulletin — a meta-analysis of momentary mood around binge episodes.
+6. Campbell and colleagues (2014), American Journal of Psychiatry — the multisite trial behind reSET, from Lisa Marsch's digital-therapeutics program at Dartmouth.
+7. Multilevel, voxelwise mediation follows the mediation effect parametric mapping approach of Wager and colleagues.
+8. Preregistration and analysis plan on the Open Science Framework. Manuscript in preparation. This feature is a plain-language companion to the study, written for a general reader.
