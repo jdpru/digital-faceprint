@@ -11,9 +11,11 @@ type PairImage = {
 interface Props {
   images: PairImage[];
   caption?: string;
+  align?: 'left' | 'right';
 }
 
-const { images, caption } = Astro.props;
+const { images, caption, align } = Astro.props;
+const cls = ['feature-fig', 'feature-fig--pair', align ? `feature-fig--${align}` : ''].filter(Boolean).join(' ');
 const dims = images.map((image) => {
   try {
     const size = imageSize(readFileSync(path.join(process.cwd(), 'public', image.src)));
@@ -24,7 +26,7 @@ const dims = images.map((image) => {
 });
 ---
 
-<figure class="feature-fig feature-fig--pair">
+<figure class={cls}>
   <div class="feature-pair">
     {images.map((image, i) => (
       <div class="feature-pair__frame">
