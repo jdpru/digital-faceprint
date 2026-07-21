@@ -755,6 +755,8 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   max-width: 22ch; margin: 1.5em auto;
 }
 .feature-display em { font-style: italic; }
+/* Higher specificity than `.prose-body p` so the quote stays centered, not pinned left. */
+.prose-body .feature-display { margin: 1.5em auto; }
 .feature-end { display: inline-block; width: 8px; height: 8px; border-radius: 1px; background: var(--blue); margin-top: 6px; }
 
 .feature-eq {
