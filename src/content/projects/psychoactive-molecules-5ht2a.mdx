@@ -3,10 +3,10 @@ title: Modeling Psychoactive Molecules at 5-HT2A
 kind: Computational Chemistry
 status: Paper
 order: 6
-summary: A docking study of six psychoactive molecules at the 5-HT2A serotonin receptor, benchmarked against a known antipsychotic and stress-tested with simulated mutations.
-dek: LSD, psilocybin, and an antipsychotic drug all reach for the same lock. This is what happens when you simulate, atom by atom, which ones actually turn the key.
+summary: A molecular docking study of six psychoactive molecules at the 5-HT2A serotonin receptor, benchmarked against risperidone and probed with simulated point mutations.
+dek: Several psychedelics and a common antipsychotic all bind the 5-HT2A receptor. Docking simulations estimate how well each one fits, and which contacts hold it in place.
 date: May 2024
-heroCaption: Fig. — Binding energy (ΔG) of six psychoactive ligands and risperidone at 5-HT2A. Lower is a tighter, more stable fit.
+heroCaption: Fig. Binding energies (ΔG) of six psychoactive ligands and risperidone at 5-HT2A. Lower values indicate a tighter, more stable fit.
 tags: [SwissDock, PyMol, ChimeraX, Molecular docking]
 cover: "/covers/psychoactive-molecules-5ht2a.png"
 pdf: "/papers/Pruett_ht2ra_serotonin_2024.pdf"
@@ -14,31 +14,31 @@ links: []
 ---
 import EndMark from '../../components/feature/EndMark.astro';
 
-LSD, psilocybin, DMT, mescaline, and MDMA all act on the same brain target as risperidone, a widely prescribed antipsychotic: the 5-HT2A serotonin receptor. But sharing a target isn't the same as sharing an effect, and the difference comes down to something very physical: how snugly a given molecule sits inside the receptor's binding pocket, and what, specifically, is holding it there. That's a question you can simulate on a computer, atom by atom, before ever touching a wet lab.
+LSD, psilocybin, DMT, mescaline, and MDMA act on the same brain target as risperidone, a widely prescribed antipsychotic. That target is the 5-HT2A serotonin receptor. Sharing a receptor does not mean sharing an effect, and part of the difference is physical. It depends on how well each molecule fits the receptor's binding pocket and on which interactions hold it there. This project estimates those quantities computationally, using molecular docking, as a first pass before any laboratory work.
 
-## Carving out a pocket to work with
+## Preparing the receptor
 
-The starting point was a real, experimentally solved structure of 5-HT2A from the Protein Data Bank, captured mid-bind with a prototypical hallucinogen still lodged inside. Stripping that molecule out leaves an empty pocket, which is what a docking simulation needs: a receptor with room to test new candidates.
+The starting point is an experimentally solved structure of 5-HT2A from the Protein Data Bank, captured mid-bind with a prototypical hallucinogen still in the pocket. Removing that ligand leaves an empty pocket for docking new candidates.
 
-There was a practical snag. The docking software used here, SwissDock, caps how large a target protein can be, and the full receptor, at over 18,000 atoms, was too big. The fix relies on how the receptor actually sits in a cell membrane: only the portion exposed outside the cell is ever reachable by a drug floating through the bloodstream, while a separate chunk buried inside the cell relays the resulting signal onward. That interior piece could be trimmed away entirely without touching the binding pocket, and a structural alignment against the original, untrimmed receptor confirmed the trim hadn't distorted the pocket's shape.
+One practical constraint shaped the setup. SwissDock, the docking software used here, limits the size of the target protein, and the full receptor of more than 18,000 atoms exceeded it. The receptor sits in a cell membrane, and only the portion exposed outside the cell is reachable by a drug in the bloodstream. A separate region inside the cell relays the resulting signal onward. That intracellular region was removed without touching the binding pocket, and a structural alignment against the full receptor confirmed the trim had not distorted the pocket.
 
-## Letting six molecules compete for the same seat
+## Docking six molecules
 
-With a properly sized pocket in hand, six psychoactive molecules, mescaline, DMT, LSD, MDMA, psilocin, and psilocybin, were each docked in separately, alongside risperidone as a benchmark. Docking works by scanning the receptor for cavities, dropping a candidate molecule into each one at many random orientations, and estimating the binding energy, ΔG, of every resulting pose. A more negative ΔG means a tighter, more thermodynamically stable fit, in the same way a ball settles more stably into a deep bowl than a shallow one.
+With an appropriately sized pocket, six psychoactive molecules were docked separately, alongside risperidone as a benchmark. The six were mescaline, DMT, LSD, MDMA, psilocin, and psilocybin. Docking scans the receptor for cavities, places a candidate in each one at many orientations, and estimates the binding energy, ΔG, of every resulting pose. A more negative ΔG indicates a tighter, more thermodynamically stable fit, much as a ball settles more stably into a deep bowl than a shallow one.
 
-Four of the six, LSD, DMT, psilocin, and mescaline, landed in the same pocket risperidone occupies, a good sign the simulation is behaving the way real biology does. Risperidone bound tightest, at roughly -10 kcal/mol, with mescaline as the closest competitor about 1.5 kcal/mol behind. In binding-energy terms that's a meaningful gap: each kcal/mol corresponds to a several-fold shift in how favored one pose is over another at body temperature, so 1.5 kcal/mol is the difference between "binds well" and "binds, but noticeably less happily."
+Four of the six, LSD, DMT, psilocin, and mescaline, settled into the same pocket that risperidone occupies, a reasonable indication that the simulation tracks the underlying biology. Risperidone bound most tightly at roughly -10 kcal/mol, with mescaline the closest of the group at about 1.5 kcal/mol behind. That gap is not trivial. Each kcal/mol corresponds to a several-fold shift in how favored one pose is over another at body temperature, so 1.5 kcal/mol separates a strong binder from a clearly weaker one.
 
-Two molecules missed the pocket entirely. Psilocybin's failure has a tidy explanation: it's a phosphorylated molecule that the body has to chemically strip down to psilocin before it can act on this receptor at all, so its inability to dock here isn't a bug, it's the expected negative control. MDMA's failure is less clean. It's known to act on 5-HT2A and shares real structural features with mescaline, so watching it dock instead to an exposed patch outside the pocket is either a genuine hint that MDMA binds somewhere unconventional, or a limit of what this particular docking algorithm can resolve. The paper is honest about not knowing which.
+Two molecules missed the pocket. Psilocybin is phosphorylated and must be dephosphorylated to psilocin before it can act on this receptor, so its failure to dock is an expected negative control rather than an error. MDMA is the harder case. It is known to act on 5-HT2A and shares structural features with mescaline, yet it docked to an exposed patch outside the pocket. That result is either a genuine sign that MDMA binds at an unconventional site or a limitation of this docking algorithm, and the paper does not claim to resolve which.
 
-## Testing which contacts are actually load-bearing
+## Which contacts hold the molecule in place
 
-Docking tells you where a molecule sits. It doesn't tell you why it stays there. To find out, the next step was to edit the receptor itself, swapping out three pocket-lining amino acids one at a time and re-running the docking simulation with mescaline, the strongest natural binder, each time.
+Docking indicates where a molecule sits but not why it stays. To probe that, three pocket-lining amino acids were each substituted one at a time, and the docking was re-run with mescaline, the strongest natural binder, after each substitution.
 
-Swapping out an aspartic acid thought to form a salt bridge with mescaline's amine group collapsed the binding almost entirely, matching what's already known about how this receptor grips its usual hallucinogenic partners: remove the charge, remove the anchor. A second swap, targeting a tryptophan expected to contribute a hydrophobic contact, did essentially nothing to the binding energy, directly contradicting prior published claims about that residue. That's not a failed experiment; it's useful, because it means the earlier claim deserves a second look. The third swap went the other direction, trading a hydrophobic residue for a polar one to manufacture a new hydrogen-bond opportunity, and it worked: binding tightened by just over 1 kcal/mol, closing most of the gap to risperidone.
+Replacing an aspartic acid thought to form a salt bridge with mescaline's amine group nearly eliminated binding, consistent with what is known about how this receptor holds its hallucinogenic ligands. Removing the charge removes the anchor. A second substitution, at a tryptophan expected to contribute a hydrophobic contact, changed the binding energy very little, which runs against prior published claims about that residue and suggests the earlier result warrants re-examination. The third substitution traded a hydrophobic residue for a polar one to create a new hydrogen-bond opportunity. Binding tightened by just over 1 kcal/mol, closing most of the gap to risperidone.
 
-## Why a simulation like this earns its keep
+## Why the method is useful
 
-None of this replaces an actual binding assay, and the method has a known failure mode: it occasionally proposes a pose that's geometrically impossible, which is exactly what happened with psilocybin and MDMA. But as a cheap first pass, before committing real lab time and money, this kind of in silico screen is a fast way to ask which residues in a receptor are actually doing the work, and which mutations might make a molecule bind tighter or looser on purpose. With renewed clinical interest in psychedelics for conditions like PTSD, being able to map, quickly and computationally, exactly which contacts a candidate molecule depends on is a reasonable way to prioritize where the expensive, slower experiments should look next. <EndMark />
+This does not replace a binding assay, and the method has a known failure mode. It occasionally proposes a geometrically implausible pose, which is what appears to have happened with psilocybin and MDMA. As an inexpensive first pass, though, docking is a fast way to ask which residues contribute most to binding and which substitutions might tighten or loosen a given molecule. Given renewed clinical interest in psychedelics for conditions such as PTSD, a quick computational map of the contacts a candidate depends on is a reasonable way to decide where the slower and more expensive experiments should look. <EndMark />
 
 ## References & notes
 
