@@ -485,6 +485,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   overflow: hidden;
   background: var(--paper-3);
 }
+.rrow__photo--contain { background: #292b43; }
 .rrow__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .rrow__project-link {
   width: fit-content;

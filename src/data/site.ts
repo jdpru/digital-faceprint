@@ -56,6 +56,7 @@ export type ExperiencePhoto = {
   src?: string;
   alt: string;
   objectPosition?: string;
+  objectFit?: 'cover' | 'contain';
   kind?: 'euterria-search';
 };
 export type ExperienceDescription = string | { html: string };
@@ -88,6 +89,7 @@ export const experience: ExperienceEntry[] = [
       {
         src: '/gallery/varick/ai-agents-maze-thumb.jpg',
         alt: 'Varick Agents illustration of a person navigating a maze-shaped brain.',
+        objectFit: 'contain',
       },
     ],
   },

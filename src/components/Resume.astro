@@ -35,7 +35,7 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
               {e.photos && e.photos.length > 0 && (
                 <div class="rrow__photos">
                   {e.photos.map((p) => (
-                    <div class="rrow__photo">
+                    <div class:list={['rrow__photo', p.objectFit === 'contain' && 'rrow__photo--contain']}>
                       {p.kind === 'euterria-search' ? (
                         <EuterriaDemo compact />
                       ) : (
@@ -43,7 +43,10 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                           src={p.src}
                           alt={p.alt}
                           loading="lazy"
-                          style={p.objectPosition ? `object-position: ${p.objectPosition}` : undefined}
+                          style={[
+                            p.objectPosition && `object-position: ${p.objectPosition}`,
+                            p.objectFit && `object-fit: ${p.objectFit}`,
+                          ].filter(Boolean).join('; ') || undefined}
                         />
                       )}
                     </div>
