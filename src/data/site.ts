@@ -73,6 +73,23 @@ export type ExperienceEntry = {
 export const experience: ExperienceEntry[] = [
   {
     years: '2025 — Now',
+    role: 'Head of Engineering',
+    org: 'Varick',
+    place: 'San Francisco, CA',
+    description: [
+      'I lead engineering at Varick, building the product and ML systems behind enterprise agent deployments.',
+      'The work is less about demos and more about reliability: making agents useful inside large companies, across real systems, uneven data, permissions, and the operational edge cases that appear at scale.',
+    ],
+    tags: ['Product engineering', 'ML systems', 'AI agents', 'Enterprise software'],
+    photos: [
+      {
+        src: '/gallery/varick/post-deployment-operations-thumb.jpg',
+        alt: 'Varick post-deployment operations dashboard.',
+      },
+    ],
+  },
+  {
+    years: '2025 — Now',
     role: 'Co-founder',
     org: 'Euterria',
     place: 'San Francisco, CA',
