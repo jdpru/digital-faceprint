@@ -48,6 +48,12 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                       Read the project
                     </a>
                   )}
+                  {e.orgHref && (
+                    <a class="rrow__project-link" href={e.orgHref} target="_blank" rel="noopener">
+                      <span aria-hidden="true">↗</span>
+                      {e.orgLinkLabel ?? `Visit ${e.org}`}
+                    </a>
+                  )}
                 </div>
               )}
               <div class="rrow__desc">

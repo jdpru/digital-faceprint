@@ -68,6 +68,8 @@ export type ExperienceEntry = {
   tags: string[];
   photos?: ExperiencePhoto[]; // optional thumbnails shown in the expanded row
   href?: string; // link to the corresponding project feature
+  orgHref?: string; // external organization link shown in the expanded row
+  orgLinkLabel?: string;
 };
 
 export const experience: ExperienceEntry[] = [
@@ -78,13 +80,14 @@ export const experience: ExperienceEntry[] = [
     place: 'San Francisco, CA',
     description: [
       'I lead engineering at Varick, building the product and ML systems behind enterprise agent deployments.',
-      'The work is less sexy than Twitter would have you believe. Building good ML systems in the enterprise is largely an engineering challenge, not an AI one: it means finding the right blend of durable execution, data science, permissions, and edge-case handling.',
+      'The work is less sexy than Twitter might have you believe. Building good ML systems in the enterprise is largely an engineering challenge, finding the right blend of durable execution, data science, permissions, and edge-case handling.',
     ],
     tags: ['Product engineering', 'ML systems', 'AI agents', 'Enterprise software'],
+    orgHref: 'https://www.varickagents.com/',
     photos: [
       {
-        src: '/gallery/varick/post-deployment-operations-thumb.jpg',
-        alt: 'Varick post-deployment operations dashboard.',
+        src: '/gallery/varick/ai-agents-maze-thumb.jpg',
+        alt: 'Varick Agents illustration of a person navigating a maze-shaped brain.',
       },
     ],
   },
@@ -98,6 +101,7 @@ export const experience: ExperienceEntry[] = [
       'Built for Bay Area climate nonprofits, Euterria indexes knowledge scattered across the network, from who\'s best at what to practices buried in grant reports and failed experiments in internal decks. It turns that knowledge into a network-wide internal search engine and collaboration platform. We\'re funded by Stanford\'s TomKat Center and piloting with around thirty organizations around the Bay.',
     ],
     tags: ['Community building', 'Nonprofit partnerships', 'Climate'],
+    orgHref: 'https://euterria.org/',
     photos: [
       {
         kind: 'euterria-search',
@@ -118,6 +122,8 @@ export const experience: ExperienceEntry[] = [
       'As a SEED fellow, I had the privilege of working with DTI to ensure they had the data management and technical systems in place to speed up its incredible work around the country. That meant a combination of finding the right off-the-shelf software and deploying it around the country, and building custom tools for things like procurement, inventory, and student surveys.',
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
+    orgHref: 'https://dtiafrica.com/',
+    orgLinkLabel: 'Visit DTI',
     photos: [
       {
         src: '/gallery/design-technology-institute/precision-quality-talk-thumb.jpg',
@@ -136,6 +142,8 @@ export const experience: ExperienceEntry[] = [
       'I led a small team to do a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
+    orgHref: 'https://pprg.stanford.edu/',
+    orgLinkLabel: 'Visit PPRG',
     photos: [
       {
         src: '/gallery/political-psychology-research-group/jon-krosnick-thumb.jpg',
@@ -154,6 +162,8 @@ export const experience: ExperienceEntry[] = [
       'I worked on a multimodal imaging study asking whether we could find the neural and behavioral markers that predict how people with putative deficits in cognitive control respond to an intervention meant to strengthen it. We ran it as a pre/post trial in people managing binge eating and nicotine dependence, pairing task-based fMRI with a mobile intervention. I designed our mediation analysis strategy to causally estimate the neural signals that actually carried the intervention\'s effect on behavior.',
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
+    orgHref: 'https://poldracklab.org/',
+    orgLinkLabel: 'Visit Poldrack Lab',
     photos: [
       {
         src: '/gallery/ontologies-of-cognitive-control/white-surface-thumb.jpg',
@@ -173,6 +183,7 @@ export const experience: ExperienceEntry[] = [
       'I led a three-city study of the afterschool landscape in collaboration with local government and NGOs, and developed a cost model for afterschool education. The work culminated in a $450M annual budget that leaned on existing public infrastructure and a number of investments in youth extracurricular education.',
     ],
     tags: ['Program design', 'Budgeting', 'Field study', 'Policy'],
+    orgHref: 'https://ballmergroup.org/',
     photos: [
       {
         src: '/gallery/ballmer/office-thumb.jpg',
