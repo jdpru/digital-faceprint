@@ -124,6 +124,7 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
       if (!row) return;
       const open = row.classList.toggle('is-open');
       btn.setAttribute('aria-pressed', open ? 'true' : 'false');
+      if (!open) btn.blur();
       syncExpandLabel();
     });
   });
