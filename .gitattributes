@@ -1,0 +1,2 @@
+# Keep captured third-party source byte-for-byte faithful to the original response.
+archive/feature-link-snapshots/**/response.html -whitespace

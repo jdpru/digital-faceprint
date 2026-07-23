@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://en.wikipedia.org/wiki/Constance_Swaniker",
+  "finalUrl": "https://en.wikipedia.org/wiki/Constance_Swaniker",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html; charset=UTF-8",
+  "contentLength": 140379,
+  "sha256": "8ccd9bc1a22cd2494add1414366e6205d941a64722beb8b02bd9156554a4047f",
+  "sourceFiles": [
+    "src/content/projects/design-technology-institute.mdx"
+  ],
+  "snapshot": "response.html"
+}

@@ -1,0 +1,156 @@
+{
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "snapshotDirectory": "2026-07-23",
+  "pages": [
+    {
+      "ok": true,
+      "originalUrl": "https://dtiafrica.com/news/post/dti-precision-quality-internship-train-6000-youth-three-years-1800-trained-year-one-and-308-graduate-accras-inaugural-cohort",
+      "finalUrl": "https://dtiafrica.com/news/post/dti-precision-quality-internship-train-6000-youth-three-years-1800-trained-year-one-and-308-graduate-accras-inaugural-cohort",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": 54241,
+      "sha256": "9831a97937b846e844fe5ce77773f9cdee4a267c80c17fea18f1051360ab6970",
+      "sourceFiles": [
+        "src/content/projects/design-technology-institute.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/dtiafrica-com-news-post-dti-precision-quality-internship-train-6000-yout-4b9a029c0e"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://en.wikipedia.org/wiki/Constance_Swaniker",
+      "finalUrl": "https://en.wikipedia.org/wiki/Constance_Swaniker",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": 140379,
+      "sha256": "8ccd9bc1a22cd2494add1414366e6205d941a64722beb8b02bd9156554a4047f",
+      "sourceFiles": [
+        "src/content/projects/design-technology-institute.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/en-wikipedia-org-wiki-constance-swaniker-5f2aabedac"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://euterria.org",
+      "finalUrl": "https://www.euterria.org/",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": 101517,
+      "sha256": "5245f1a509a09efd2fbd17cc58f8a86786ed1fdd739b7be662532248db303c86",
+      "sourceFiles": [
+        "src/content/projects/euterria.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/euterria-org-71909580ff"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://github.com/jdpru/CS-230-DynaRT",
+      "finalUrl": "https://github.com/jdpru/CS-230-DynaRT",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": 264949,
+      "sha256": "20071e8eefcd29ae4e6ae9f1a31038630ef6b44142af7b23b6e325e13decde20",
+      "sourceFiles": [
+        "src/content/projects/dynamic-reaction-time-modeling.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/github-com-jdpru-cs-230-dynart-ccd1f2635d"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://github.com/jdpru/iSPOT-Autoencoder",
+      "finalUrl": "https://github.com/jdpru/iSPOT-Autoencoder",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": 270029,
+      "sha256": "c043b8d90037f9fc28326729ab827c44ec2bf715d025a8355d92bfd1696ae6c2",
+      "sourceFiles": [
+        "src/content/projects/antidepressant-response-eeg.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/github-com-jdpru-ispot-autoencoder-ecc186430f"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://pprg.stanford.edu",
+      "finalUrl": "https://pprg.stanford.edu/",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": 26661,
+      "sha256": "471ab740e243c3b7afc2f55797d293b0478c7db93f0f6816e57f38539d3bc7e3",
+      "sourceFiles": [
+        "src/content/projects/political-psychology-research-group.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/pprg-stanford-edu-06caa936f8"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://profiles.stanford.edu/jon-krosnick",
+      "finalUrl": "https://profiles.stanford.edu/jon-krosnick",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html;charset=utf-8",
+      "contentLength": 262479,
+      "sha256": "59b030672ca5711df1ba1d44309925ced40ac1fc7c611bb59fda95ead8246a5c",
+      "sourceFiles": [
+        "src/content/projects/political-psychology-research-group.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/profiles-stanford-edu-jon-krosnick-eb99742f8d"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://thebftonline.com/article/dti-commissions-africas-first-aws-certified-welding-training-and-testing-centre",
+      "finalUrl": "https://thebftonline.com/article/dti-commissions-africas-first-aws-certified-welding-training-and-testing-centre",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": 289653,
+      "sha256": "0e3bc8a9f83c397fad1071c06a60d64e413ef52d9307129820c02c4588090406",
+      "sourceFiles": [
+        "src/content/projects/design-technology-institute.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/thebftonline-com-article-dti-commissions-africas-first-aws-certified-wel-9d32fb2b4a"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://tomkat.stanford.edu/innovation-transfer/euterria",
+      "finalUrl": "https://tomkat.stanford.edu/innovation-transfer/euterria",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": 37592,
+      "sha256": "72d28744f76f44e5dc46bbbd9c13ddec1d88a877e47c04b8dc2a3cd0bb998f90",
+      "sourceFiles": [
+        "src/content/projects/euterria.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/tomkat-stanford-edu-innovation-transfer-euterria-bb69d86d8c"
+    },
+    {
+      "ok": true,
+      "originalUrl": "https://www.euterria.org/under-the-hood",
+      "finalUrl": "https://www.euterria.org/under-the-hood",
+      "capturedAt": "2026-07-23T20:01:00.483Z",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": 123435,
+      "sha256": "aaaa9216cddc5922ced2d3f0f339ddddb97b81a8475a8aba1b9b8a48c579e47f",
+      "sourceFiles": [
+        "src/content/projects/euterria.mdx"
+      ],
+      "snapshot": "response.html",
+      "directory": "archive/feature-link-snapshots/2026-07-23/euterria-org-under-the-hood-b413eac7be"
+    }
+  ]
+}

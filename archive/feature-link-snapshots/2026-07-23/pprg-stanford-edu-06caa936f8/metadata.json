@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://pprg.stanford.edu",
+  "finalUrl": "https://pprg.stanford.edu/",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html; charset=UTF-8",
+  "contentLength": 26661,
+  "sha256": "471ab740e243c3b7afc2f55797d293b0478c7db93f0f6816e57f38539d3bc7e3",
+  "sourceFiles": [
+    "src/content/projects/political-psychology-research-group.mdx"
+  ],
+  "snapshot": "response.html"
+}

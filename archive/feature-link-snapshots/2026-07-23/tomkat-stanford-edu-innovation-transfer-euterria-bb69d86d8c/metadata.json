@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://tomkat.stanford.edu/innovation-transfer/euterria",
+  "finalUrl": "https://tomkat.stanford.edu/innovation-transfer/euterria",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html; charset=UTF-8",
+  "contentLength": 37592,
+  "sha256": "72d28744f76f44e5dc46bbbd9c13ddec1d88a877e47c04b8dc2a3cd0bb998f90",
+  "sourceFiles": [
+    "src/content/projects/euterria.mdx"
+  ],
+  "snapshot": "response.html"
+}

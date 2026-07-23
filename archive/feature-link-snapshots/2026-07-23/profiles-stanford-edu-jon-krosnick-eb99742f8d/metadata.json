@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://profiles.stanford.edu/jon-krosnick",
+  "finalUrl": "https://profiles.stanford.edu/jon-krosnick",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html;charset=utf-8",
+  "contentLength": 262479,
+  "sha256": "59b030672ca5711df1ba1d44309925ced40ac1fc7c611bb59fda95ead8246a5c",
+  "sourceFiles": [
+    "src/content/projects/political-psychology-research-group.mdx"
+  ],
+  "snapshot": "response.html"
+}

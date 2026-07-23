@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://www.euterria.org/under-the-hood",
+  "finalUrl": "https://www.euterria.org/under-the-hood",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html; charset=utf-8",
+  "contentLength": 123435,
+  "sha256": "aaaa9216cddc5922ced2d3f0f339ddddb97b81a8475a8aba1b9b8a48c579e47f",
+  "sourceFiles": [
+    "src/content/projects/euterria.mdx"
+  ],
+  "snapshot": "response.html"
+}

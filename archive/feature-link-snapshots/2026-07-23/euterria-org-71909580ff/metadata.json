@@ -1,0 +1,13 @@
+{
+  "originalUrl": "https://euterria.org",
+  "finalUrl": "https://www.euterria.org/",
+  "capturedAt": "2026-07-23T20:01:00.483Z",
+  "status": 200,
+  "contentType": "text/html; charset=utf-8",
+  "contentLength": 101517,
+  "sha256": "5245f1a509a09efd2fbd17cc58f8a86786ed1fdd739b7be662532248db303c86",
+  "sourceFiles": [
+    "src/content/projects/euterria.mdx"
+  ],
+  "snapshot": "response.html"
+}
