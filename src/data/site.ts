@@ -78,7 +78,7 @@ export const experience: ExperienceEntry[] = [
     place: 'San Francisco, CA',
     description: [
       'I lead engineering at Varick, building the product and ML systems behind enterprise agent deployments.',
-      'The work is less about demos and more about reliability: making agents useful inside large companies, across real systems, uneven data, permissions, and the operational edge cases that appear at scale.',
+      'The work is less sexy than Twitter would have you believe. Building good ML systems in the enterprise is largely an engineering challenge, not an AI one: it means finding the right blend of durable execution, data science, permissions, and edge-case handling.',
     ],
     tags: ['Product engineering', 'ML systems', 'AI agents', 'Enterprise software'],
     photos: [
