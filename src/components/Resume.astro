@@ -20,10 +20,7 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                 : <span class="rrow__role">{e.role}</span>}
               <span class="rrow__org">
                 {e.orgHref
-                  ? <span class="rrow__org-link-wrap">
-                      <a class="rrow__org-link" href={e.orgHref} target="_blank" rel="noopener">{e.org}</a>
-                      <span class="rrow__org-arrow" aria-hidden="true">↗</span>
-                    </span>
+                  ? <a class="rrow__org-link" href={e.orgHref} target="_blank" rel="noopener">{e.org}</a>
                   : e.org}
                 {e.orgDetail && <span class="rrow__org-detail"> · {e.orgDetail}</span>}
                 <span class="place">{e.place}</span>

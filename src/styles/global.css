@@ -404,23 +404,9 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.rrow__org-arrow {
-  display: inline-block;
-  margin-left: 2px;
-  font-family: var(--sans);
-  font-size: 0.65em;
-  line-height: 1;
-  vertical-align: super;
-  opacity: 0;
-  transform: translate(-1px, 1px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
 .rrow:hover .rrow__org-link,
 .rrow:focus-within .rrow__org-link,
 .rrow.is-open .rrow__org-link { color: var(--blue); border-bottom-color: color-mix(in srgb, var(--blue) 38%, transparent); }
-.rrow:hover .rrow__org-arrow,
-.rrow:focus-within .rrow__org-arrow,
-.rrow.is-open .rrow__org-arrow { opacity: 1; transform: none; }
 .rrow__org-link:hover,
 .rrow__org-link:focus-visible { color: var(--blue); border-bottom-color: color-mix(in srgb, var(--blue) 38%, transparent); }
 .rrow__org .place { font-style: italic; font-size: 14px; color: var(--ink-faint); margin-left: 8px; }
