@@ -399,6 +399,9 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow.is-open .rrow__yr { color: var(--blue-2); }
 .rrow__mid { min-width: 0; }
 .rrow__org { display: block; color: var(--ink-soft); font-size: 15px; margin-top: 1px; }
+.rrow__org-link { color: inherit; border-bottom: 1px solid transparent; transition: color 0.2s ease, border-color 0.2s ease; }
+.rrow__org-link:hover,
+.rrow__org-link:focus-visible { color: var(--blue); border-bottom-color: color-mix(in srgb, var(--blue) 38%, transparent); }
 .rrow__org .place { font-style: italic; font-size: 14px; color: var(--ink-faint); margin-left: 8px; }
 
 /* ＋ / × expand-and-keep-open control */

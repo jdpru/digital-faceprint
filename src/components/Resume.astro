@@ -18,7 +18,12 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
               {e.href
                 ? <a class="rrow__role rrow__role--link" href={e.href}>{e.role}</a>
                 : <span class="rrow__role">{e.role}</span>}
-              <span class="rrow__org">{e.org}<span class="place">{e.place}</span></span>
+              <span class="rrow__org">
+                {e.orgHref
+                  ? <a class="rrow__org-link" href={e.orgHref} target="_blank" rel="noopener">{e.org}</a>
+                  : e.org}
+                <span class="place">{e.place}</span>
+              </span>
             </span>
             <button class="rrow__ind" type="button" aria-pressed="false" aria-label={`Keep ${e.role} open`}>
               <span class="rrow__toggle" aria-hidden="true"></span>
@@ -46,12 +51,6 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                     <a class="rrow__project-link" href={e.href}>
                       <span aria-hidden="true">↳</span>
                       Read the project
-                    </a>
-                  )}
-                  {e.orgHref && (
-                    <a class="rrow__project-link" href={e.orgHref} target="_blank" rel="noopener">
-                      <span aria-hidden="true">↗</span>
-                      {e.orgLinkLabel ?? `Visit ${e.org}`}
                     </a>
                   )}
                 </div>

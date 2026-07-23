@@ -68,8 +68,7 @@ export type ExperienceEntry = {
   tags: string[];
   photos?: ExperiencePhoto[]; // optional thumbnails shown in the expanded row
   href?: string; // link to the corresponding project feature
-  orgHref?: string; // external organization link shown in the expanded row
-  orgLinkLabel?: string;
+  orgHref?: string; // external organization link
 };
 
 export const experience: ExperienceEntry[] = [
@@ -123,7 +122,6 @@ export const experience: ExperienceEntry[] = [
     ],
     tags: ['Questionnaire design', 'Data pipeline', 'Dashboards', 'Staff training'],
     orgHref: 'https://dtiafrica.com/',
-    orgLinkLabel: 'Visit DTI',
     photos: [
       {
         src: '/gallery/design-technology-institute/precision-quality-talk-thumb.jpg',
@@ -143,7 +141,6 @@ export const experience: ExperienceEntry[] = [
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     orgHref: 'https://pprg.stanford.edu/',
-    orgLinkLabel: 'Visit PPRG',
     photos: [
       {
         src: '/gallery/political-psychology-research-group/jon-krosnick-thumb.jpg',
@@ -163,7 +160,6 @@ export const experience: ExperienceEntry[] = [
     ],
     tags: ['fMRI', 'Python · SLURM', 'GLM', 'Preregistration'],
     orgHref: 'https://poldracklab.org/',
-    orgLinkLabel: 'Visit Poldrack Lab',
     photos: [
       {
         src: '/gallery/ontologies-of-cognitive-control/white-surface-thumb.jpg',
