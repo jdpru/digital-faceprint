@@ -22,6 +22,7 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
                 {e.orgHref
                   ? <a class="rrow__org-link" href={e.orgHref} target="_blank" rel="noopener">{e.org}</a>
                   : e.org}
+                {e.orgDetail && <span class="rrow__org-detail"> · {e.orgDetail}</span>}
                 <span class="place">{e.place}</span>
               </span>
             </span>

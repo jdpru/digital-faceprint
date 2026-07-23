@@ -400,18 +400,20 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow__mid { min-width: 0; }
 .rrow__org { display: block; color: var(--ink-soft); font-size: 15px; margin-top: 1px; }
 .rrow__org-link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
   color: inherit;
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 .rrow__org-link::after {
   content: "↗";
-  font-size: 0.9em;
+  display: inline-block;
+  margin-left: 2px;
+  font-family: var(--sans);
+  font-size: 0.65em;
+  line-height: 1;
+  vertical-align: super;
   opacity: 0;
-  transform: translate(-2px, 2px);
+  transform: translate(-1px, 1px);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .rrow:hover .rrow__org-link,

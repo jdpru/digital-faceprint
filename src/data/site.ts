@@ -63,6 +63,7 @@ export type ExperienceEntry = {
   years: string;
   role: string;
   org: string;
+  orgDetail?: string;
   place: string;
   description: ExperienceDescription[];
   tags: string[];
@@ -133,7 +134,8 @@ export const experience: ExperienceEntry[] = [
   {
     years: '2023 — Now',
     role: 'Researcher · Survey Methods',
-    org: 'Political Psychology Research Group · PI Jon Krosnick',
+    org: 'Political Psychology Research Group',
+    orgDetail: 'PI Jon Krosnick',
     place: 'Stanford, CA',
     description: [
       'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science to study the psychological underpinnings of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys for social science.',
@@ -152,7 +154,8 @@ export const experience: ExperienceEntry[] = [
   {
     years: '2024 — Now',
     role: 'Researcher · Cognitive Control',
-    org: 'Poldrack Lab · PI Russell A. Poldrack',
+    org: 'Poldrack Lab',
+    orgDetail: 'PI Russell A. Poldrack',
     place: 'Stanford, CA',
     description: [
       'Russ\' lab studies the neural basis of adaptive behavior, and is a leader in open neuroscience. My corner of it was cognitive control: inhibitory control and cognitive flexibility, the machinery you use to stop yourself and to change course. It\'s the part of the mind that fails us in many of the behaviors we most want to change.',
