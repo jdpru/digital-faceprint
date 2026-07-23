@@ -404,8 +404,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.rrow__org-link::after {
-  content: "↗";
+.rrow__org-arrow {
   display: inline-block;
   margin-left: 2px;
   font-family: var(--sans);
@@ -419,9 +418,9 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .rrow:hover .rrow__org-link,
 .rrow:focus-within .rrow__org-link,
 .rrow.is-open .rrow__org-link { color: var(--blue); border-bottom-color: color-mix(in srgb, var(--blue) 38%, transparent); }
-.rrow:hover .rrow__org-link::after,
-.rrow:focus-within .rrow__org-link::after,
-.rrow.is-open .rrow__org-link::after { opacity: 1; transform: none; }
+.rrow:hover .rrow__org-arrow,
+.rrow:focus-within .rrow__org-arrow,
+.rrow.is-open .rrow__org-arrow { opacity: 1; transform: none; }
 .rrow__org-link:hover,
 .rrow__org-link:focus-visible { color: var(--blue); border-bottom-color: color-mix(in srgb, var(--blue) 38%, transparent); }
 .rrow__org .place { font-style: italic; font-size: 14px; color: var(--ink-faint); margin-left: 8px; }
