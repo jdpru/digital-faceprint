@@ -713,6 +713,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .pin-card__img {
   display: block;
   width: 100%;
+  height: auto; /* override the img's height attribute so aspect-ratio governs the box */
   aspect-ratio: 5 / 4;
   object-fit: cover;
   border-radius: 1px;
