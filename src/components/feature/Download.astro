@@ -1,0 +1,17 @@
+---
+interface Props {
+  href: string;
+  label?: string;
+}
+
+const { href, label = 'Download the full proposal (PDF)' } = Astro.props;
+---
+
+<div class="feature-download">
+  <a href={href} download>
+    <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+      <path fill="currentColor" d="M7.25 1.5v6.69L4.78 5.72 3.72 6.78 8 11.06l4.28-4.28-1.06-1.06-2.47 2.47V1.5h-1.5ZM2.5 12.5V14h11v-1.5h-11Z" />
+    </svg>
+    <span>{label}</span>
+  </a>
+</div>

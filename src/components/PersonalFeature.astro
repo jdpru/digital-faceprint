@@ -1,0 +1,105 @@
+---
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { imageSize } from 'image-size';
+import type { CollectionEntry } from 'astro:content';
+import { funCoverGradient } from '../data/site';
+
+interface Props {
+  entry: CollectionEntry<'personal'>;
+  Content: any;
+}
+
+const { entry, Content } = Astro.props;
+const d = entry.data;
+
+// Intrinsic cover dimensions (local files only) so the browser reserves space.
+let coverWidth: number | undefined;
+let coverHeight: number | undefined;
+if (d.cover && d.cover.startsWith('/')) {
+  try {
+    const dims = imageSize(readFileSync(path.join(process.cwd(), 'public', d.cover)));
+    coverWidth = dims.width;
+    coverHeight = dims.height;
+  } catch {
+    // missing file: omit the attributes
+  }
+}
+const gradient = funCoverGradient(d.tint);
+---
+
+<main class="wrap feature-solo">
+  <a class="feature-back" href="/personal/">
+    <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+      <path fill="currentColor" d="M10.3 3.3 5.6 8l4.7 4.7-1.06 1.06L3.5 8l5.74-5.76z" />
+    </svg>
+    <span>Fun Stuff</span>
+  </a>
+
+  <article class="feature-article">
+    <header class="feature-head">
+      <p class="feature-eyebrow">{d.kind}</p>
+      <h1>{d.title}</h1>
+      {d.dek && <p class="feature-dek">{d.dek}</p>}
+      <p class="feature-byline">
+        {d.status}
+        {d.github && (
+          <>
+            <span class="feature-byline__dot" aria-hidden="true">·</span>
+            <a class="feature-github" href={d.github} target="_blank" rel="noopener" aria-label="View code on GitHub">
+              <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+              </svg>
+            </a>
+          </>
+        )}
+      </p>
+    </header>
+
+    {d.video && (
+      <div class="feature-video">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${d.video}`}
+          title={`${d.title} — walkthrough`}
+          loading="lazy"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    )}
+
+    {d.cover ? (
+      <figure class="feature-fig feature-fig--hero">
+        <img src={d.cover} alt={d.title} width={coverWidth} height={coverHeight} />
+        {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
+      </figure>
+    ) : (!d.video && (
+      <figure class="feature-fig feature-fig--hero">
+        <span class="feature-fig__grad" style={`background:${gradient}`} role="img" aria-label={`${d.title} — placeholder artwork`}></span>
+        {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
+      </figure>
+    ))}
+
+    <div class="prose-body">
+      <Content />
+    </div>
+
+    {d.links.length > 0 && (
+      <div class="feature-links">
+        {d.links.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+      </div>
+    )}
+
+    {d.pdf && (
+      <div class="feature-pdf">
+        <p class="feature-pdf__head">
+          <a class="feature-pdf__label" href={d.pdf} target="_blank" rel="noopener">
+            <span class="feature-pdf__label-text">Full document</span>
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path fill="currentColor" d="M6 3h7v7h-1.5V5.56L4.56 13 3.5 11.94 10.94 4.5H6V3Z"/></svg>
+          </a>
+        </p>
+        <iframe src={d.pdf} title={`${d.title} — PDF`} loading="lazy" />
+      </div>
+    )}
+  </article>
+</main>

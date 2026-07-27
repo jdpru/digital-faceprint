@@ -30,4 +30,27 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+// Personal "fun stuff": one MDX file per project, shown as a pinup-board
+// collage on /personal/ and opened as a stand-alone feature (no sidebar index).
+const personal = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/personal' }),
+  schema: z.object({
+    title: z.string(),
+    kind: z.string(),
+    status: z.string(),
+    order: z.number().default(0),
+    summary: z.string(), // brief blurb shown on the corkboard card
+    dek: z.string().optional(), // italic subtitle under the title
+    tint: z.number().default(210), // base hue for the placeholder cover gradient
+    cover: z.string().optional(), // real title image; falls back to a gradient
+    heroCaption: z.string().optional(),
+    video: z.string().optional(), // YouTube id, embedded above the article
+    pdf: z.string().optional(),
+    github: z.string().optional(),
+    links: z
+      .array(z.object({ label: z.string(), href: z.string() }))
+      .default([]),
+  }),
+});
+
+export const collections = { projects, personal };

@@ -239,16 +239,13 @@ export const education: Education[] = [
   },
 ];
 
-export type WorkLink = { label: string; href?: string };
-export type Work = {
-  kind: string;
-  status: string;
-  title: string;
-  summary: string;
-  links: WorkLink[];
-  video?: string; // YouTube video id, embedded when present
-  caption?: string; // short label shown on the pinned corkboard card
-};
+// Placeholder cover art for /personal/ features that lack a real image:
+// a muted, spectral conic gradient derived from a base hue.
+export function funCoverGradient(hue: number): string {
+  const h2 = (hue + 48) % 360;
+  const h3 = (hue + 302) % 360;
+  return `conic-gradient(from 208deg at 38% 32%, hsl(${hue} 34% 46%), hsl(${h2} 30% 40%), hsl(${h3} 32% 44%), hsl(${hue} 34% 46%))`;
+}
 
 export type Publication = {
   title: string;
@@ -311,52 +308,6 @@ export const explore: Shelf[] = [
     blurb: 'Some of my favorites.',
     href: '/reading/',
   },
-];
-
-export const personalProjects: Work[] = [
-  {
-    kind: 'iOS app · Side project',
-    status: 'Prototype',
-    caption: 'dispatch app',
-    title: 'A reader app for The Dispatch',
-    summary:
-      'A month-long fan project: an iOS reader for The Dispatch built entirely on their public RSS feed. Highlight any article to create an annotation, all saved in one place and shareable with the source link auto-appended. An AI feature I call “The Correspondent” recommends recent pieces to further or challenge a view, and can fact-check or add context as you read. Podcasts play inline in the background, plus dark mode, offline reading, and semantic search across full-article embeddings. I sent it to the founders on the off chance it was useful.',
-    links: [{ label: 'Watch the walkthrough →', href: 'https://youtu.be/Qtjt9tDCQG8' }],
-    video: 'Qtjt9tDCQG8',
-  },
-  {
-    kind: 'Not software',
-    status: 'Ongoing',
-    caption: 'my cows',
-    title: 'A herd of cattle',
-    summary:
-      'I own a small herd of cattle. It is, by a wide margin, the least digital thing I do — and probably the most grounding. A standing reminder that not every system worth tending runs on a computer.',
-    links: [],
-  },
-  {
-    kind: 'Proposal',
-    status: 'Shelved',
-    caption: 'nauru surveys',
-    title: 'Survey infrastructure for Nauru',
-    summary:
-      'A proposal to stand up national survey infrastructure for Nauru, one of the smallest countries in the world. It never quite went anywhere, but I still like some of the thinking in it, so I am sharing the doc anyway.',
-    links: [{ label: 'Read the proposal →' }],
-  },
-  {
-    kind: 'College',
-    status: '4× regional champs',
-    caption: 'ethics bowl',
-    title: 'Ethics Bowl',
-    summary:
-      'Competitive, collaborative philosophy: teams reason through moral dilemmas and are judged on the quality of their thinking rather than on beating the other side. Four years of it, four regional titles, and a national runner-up finish — some of the best arguing I have ever done.',
-    links: [],
-  },
-];
-
-export const personal: string[] = [
-  'Outside of work, I am interested in writing — especially essays that sit somewhere between cultural observation and personal narrative.',
-  'I keep circling back to questions about how people form beliefs, how norms move, and how individuals learn to navigate systems larger than themselves.',
-  'I also spend a lot of time thinking about interfaces and product design: how to make technically complex systems usable without smoothing over the parts that actually matter.',
 ];
 
 export type Book = { title: string; author: string; note: string };

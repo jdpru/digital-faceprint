@@ -647,36 +647,156 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .subhero h1 em { font-style: italic; font-weight: 340; }
 .subhero p { font-size: 21px; color: var(--ink-soft); max-width: 56ch; margin: 0; }
 
-/* project / paper rows (text-only) */
-.rows { padding: 24px 0 90px; display: flex; flex-direction: column; }
-.prow {
-  padding: 34px 0;
-  border-top: 1px solid var(--rule);
-}
-.prow:first-of-type { border-top: 0; }
-.prow__meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 12px; }
-.prow__kind { font-style: italic; font-size: 15px; color: var(--blue); }
-.prow__status { font-style: italic; font-size: 14px; color: var(--ink-faint); }
-.prow h2 { font-size: 30px; font-weight: 470; letter-spacing: -0.015em; line-height: 1.12; margin: 8px 0 12px; }
-.prow p { font-size: 17px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 16px; max-width: 64ch; }
-.prow__video { max-width: 620px; margin: 0 0 18px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); background: #000; }
-.prow__video iframe { display: block; width: 100%; height: 100%; border: 0; }
-.prow__links { display: flex; gap: 16px; flex-wrap: wrap; }
-.prow__links a,
-.prow__links .dead {
-  font-style: italic;
-  font-size: 15.5px;
-  color: var(--blue);
-  border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent);
-  padding-bottom: 1px;
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.prow__links a:hover { color: var(--blue-2); border-color: var(--blue-2); }
-.prow__links .dead { color: var(--ink-faint); border-color: var(--rule); cursor: default; }
+/* ---------- Fun Stuff: pinup-board collage ---------- */
+.funpage { padding-bottom: 24px; }
 
-/* personal prose intro */
-.prose-page { max-width: 64ch; padding: 8px 0 8px; }
-.prose-page p { margin: 0 0 1.1em; }
+.corkboard {
+  position: relative;
+  margin: 8px 0 96px;
+  padding: clamp(30px, 5vw, 66px) clamp(20px, 4vw, 54px) clamp(42px, 6vw, 74px);
+  border-radius: 14px;
+  background-color: #e7e0d0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(90, 74, 45, 0.05) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(0deg, rgba(90, 74, 45, 0.05) 0 1px, transparent 1px 5px),
+    radial-gradient(140% 120% at 50% -10%, rgba(255, 255, 255, 0.55), transparent 60%);
+  border: 1px solid rgba(120, 105, 80, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 70px rgba(90, 74, 45, 0.13),
+    0 1px 2px rgba(40, 30, 10, 0.05);
+}
+
+.pinboard {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: clamp(30px, 4vw, 54px) clamp(22px, 3vw, 44px);
+  justify-items: center;
+}
+.pin-item { display: flex; justify-content: center; width: 100%; }
+
+.pin-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding-top: 12px; /* room for the tack to overlap the frame */
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.35s var(--ease);
+}
+/* subtle scrapbook rotation, straightened on hover */
+.pin-item:nth-child(3n + 1) .pin-card { transform: rotate(-1.4deg); }
+.pin-item:nth-child(3n + 2) .pin-card { transform: rotate(0.9deg); }
+.pin-item:nth-child(3n + 3) .pin-card { transform: rotate(-0.5deg); }
+.pin-card:hover,
+.pin-card:focus-visible { transform: rotate(0deg) translateY(-5px); z-index: 2; }
+.pin-card:focus-visible { outline: none; }
+.pin-card:focus-visible .pin-card__frame { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.pin-card__frame {
+  display: block;
+  background: #fff;
+  padding: 12px 12px 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(40, 30, 10, 0.14), 0 10px 22px rgba(40, 30, 10, 0.16);
+  transition: box-shadow 0.35s var(--ease);
+}
+.pin-card:hover .pin-card__frame,
+.pin-card:focus-visible .pin-card__frame {
+  box-shadow: 0 2px 4px rgba(40, 30, 10, 0.18), 0 20px 38px rgba(40, 30, 10, 0.24);
+}
+
+.pin-card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 1px;
+  background: var(--paper-3);
+}
+.pin-card__img--ph { background-size: cover; }
+
+.pin-card__cap { display: block; padding: 13px 4px 2px; }
+.pin-card__title {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 490;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  color: var(--ink);
+  transition: color 0.25s ease;
+}
+.pin-card:hover .pin-card__title,
+.pin-card:focus-visible .pin-card__title { color: var(--blue); }
+.pin-card__desc {
+  display: block;
+  margin-top: 10px;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* brass thumbtack */
+.pin-card__tack {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  z-index: 3;
+  background: radial-gradient(circle at 35% 30%, #f6dd92, #cc9f3f 55%, #8a6a20 100%);
+  box-shadow:
+    0 2px 3px rgba(40, 30, 10, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.65),
+    inset 0 -1px 2px rgba(90, 60, 10, 0.4);
+}
+
+/* ---------- Fun Stuff: stand-alone feature ---------- */
+.feature-solo { padding: clamp(20px, 3.5vh, 40px) 0 96px; }
+.feature-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: clamp(20px, 3vh, 34px);
+  transition: color 0.2s ease;
+}
+.feature-back svg { transition: transform 0.2s ease; }
+.feature-back:hover { color: var(--blue); }
+.feature-back:hover svg { transform: translateX(-3px); }
+
+.feature-video {
+  max-width: 690px;
+  margin: 0 auto 32px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: #000;
+}
+.feature-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+.feature-fig__grad { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pin-card,
+  .pin-card__frame,
+  .pin-card__title,
+  .feature-back,
+  .feature-back svg { transition: none; }
+}
 
 /* ---------- projects: sticky index + feature article ---------- */
 .wrap-wide { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
@@ -943,3 +1063,28 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   .nav { gap: 16px; }
   .nav a { font-size: 16px; }
 }
+
+/* Download button rendered inside MDX features (placed after prose rules
+   so it overrides `.prose-body a`). */
+.feature-download { margin: 26px 0 34px; }
+.feature-download a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--blue);
+  padding: 11px 18px;
+  border: 1px solid color-mix(in srgb, var(--blue) 32%, var(--rule));
+  border-radius: 8px;
+  background: var(--paper);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.feature-download a:hover {
+  color: var(--blue-2);
+  border-color: var(--blue);
+  background: var(--blue-wash);
+}
+.feature-download svg { color: var(--blue); flex-shrink: 0; }

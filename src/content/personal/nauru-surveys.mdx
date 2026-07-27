@@ -1,0 +1,80 @@
+---
+title: Survey Infrastructure for Nauru
+kind: Proposal
+status: On hold
+order: 3
+tint: 32
+summary: A proposal to stand up national data infrastructure for one of the world's smallest countries.
+dek: A proposal for world-class, quality-of-life telemetry — national data infrastructure for one of the smallest countries on earth.
+---
+import Download from '../../components/feature/Download.astro';
+
+I was briefly involved with a United Nations team working on a development project in Nauru. Nauru is a fascinating case: it went from one of the wealthiest countries in the world per capita, on the back of phosphate mining, to one of the poorest. The government is ready to take big strides toward improving education, health, and living standards across the country, and it is successfully attracting the foreign investment to help drive those initiatives. I worked with the team responsible for setting up the country's data infrastructure. That drive to build a world-class, technologically enabled governance system is a rare opportunity to build something that keeps the government genuinely in touch with the status of its people. I made a proposal for the system and had secured funding for it, but those funds were subsequently redirected toward the crisis in Israel and Palestine, and the project remains on hold for the time being.
+
+<Download href="/papers/Pruett_nauru_data_infrastructure_2024.pdf" />
+
+> The convergence of high-speed fiber connectivity, Starlink redundancy, expanding 5G networks, and renewed engagement from development partners has created ideal conditions for a step-change in Nauru's national data infrastructure. This moment offers the opportunity to build a "digital twin" of the island: a living, integrated model that will underpin Nauru's priorities in revitalized economic governance, climate adaptation, and an efficient, resilient health system that enables all Nauruans to thrive. I propose a plan for establishing quality-of-life telemetry: a unified system that combines institutional data streams with real-time survey assessments, producing a continuously updated picture of whether development efforts are improving life on the island where it actually matters.
+
+My name is JD Pruett, and I recently completed my BS and MS at Stanford University, where I trained in economics and survey research. My experience spans running large-scale, multi-modal data projects at home and abroad (Ghana) in industrial and education settings. From what I understand, Nauru is entering a period of heightened international interest and investment from public and private partners. Over the past decade and a half, several nations that take the well-being of their citizens seriously have recognized that sustained progress depends on developing an interconnected, high-fidelity understanding of how government and private institutions function together to shape quality of life. With the completion of the East Micronesia Cable, the launch of nationwide 5G, and the deployment of Starlink, Nauru now possesses the technological foundation to join Singapore, Estonia, and other forward-looking nations in demonstrating what becomes possible when governance is guided by timely, data-driven insight into citizens' needs.
+
+## Why now?
+
+Over the past year the island's connectivity and partner engagement have materially changed, and that combination creates an opportunity to design national data systems now, as infrastructure, rather than patch them in later. If Nauru embeds data into governance from the outset, the country will gain a resilient capability to monitor economic, health, energy, trade, and environmental outcomes in near real time and to use those insights to make faster, better decisions. If the work is left until after systems are built and projects are underway, the resulting architecture will likely be siloed, costly to maintain, and slow to produce useful information for policymakers and citizens.
+
+## Long-term vision
+
+My central recommendation is to establish a small, permanent National Office of Data and Evaluation (NODE), staffed by Nauruans with technical and policy capability. Alternatively, these proposed responsibilities could be absorbed under the Nauru Bureau of Statistics. Unlike prior data initiatives that have largely focused on collecting, storing, or sharing static datasets, this project envisions a living, continuously updated system — a *digital twin* of Nauru's social and economic functioning. The goal is to move beyond one-off reports and periodic data uploads toward a fully integrated platform that automatically ingests, processes, and visualizes information from multiple domains — health, education, trade, energy, environment, and telecommunications — into a single, authoritative "source of truth." This will allow policymakers to detect patterns, track program effectiveness, and coordinate rapid responses across ministries in real time.
+
+The concept is not theoretical: similar national and city-level systems have been successfully implemented elsewhere. Estonia's X-Road, for instance, links government databases into a secure, interoperable backbone that allows real-time verification and service delivery across sectors. Singapore's Smart Nation initiative and Dubai's Digital Twin project likewise demonstrate the value of integrating physical infrastructure data with administrative and citizen-level indicators to inform planning and governance. In the Pacific region, Nauru's participation in the Pacific Data Hub already provides an initial foothold in this direction, but the Hub primarily serves as a regional repository. NODE would represent the next step: turning static data holdings into dynamic, decision-grade intelligence by enabling continuous, automated data exchange between national systems and regional partners.
+
+This office would be the steward of national data flows, the author of regular "quality of life" analytic briefs and dashboards, and the convener of a National Data Committee that sets standards, signs data-sharing agreements, and coordinates development partners. The office would not require a large payroll to be effective; in the first two years a compact team could stand up core capability.
+
+Technically, the system should be built as a federated, interoperable architecture that leverages existing regional platforms rather than hosting every capability locally. Ministries and agencies would retain custody of their operational databases, while a lightweight exchange layer and a small set of APIs would allow secure, auditable queries and data products. This structure minimizes single points of failure and keeps maintenance within the capacity of a small national team. Privacy and governance would be foundational: aggregated outputs should be open by default to promote transparency and accountability, while individual-level data would remain subject to stricter protection policies.
+
+## Beyond administrative feeds: measuring what matters
+
+In my research on similar systems across other nations (Pacific Islands and not), it appears that administrative telemetry — trade records, customs, health facility reports, energy meters, and environmental sensors — can provide much of the observable signal about how well a nation's key institutions are functioning. Open-source platforms already exist purpose-built for that kind of data.
+
+However, those data are blind to many fundamental determinants of quality of life. Social networks, mental health, coping strategies during food or income shocks, perceptions of public services, and changes in informal employment typically cannot be measured well by administrative feeds.
+
+To fill that gap, I propose creating a government-run, randomly sampled program of short, high-frequency mobile "pulse" surveys. This system would generate real-time insight into how citizens are experiencing daily life: Are households feeling financial strain? Are young people optimistic about their prospects? Are recent policy changes being felt in communities?
+
+Nauru's small population and high mobile penetration make statistically robust, nationally representative sampling both tractable and cost-effective. Panels should be designed to protect privacy (anonymous IDs, encryption, limited retention of identifiers) and to combine mobile smartphone delivery with SMS/USSD/IVR fallbacks to reach less connected residents. A careful public outreach campaign would be required for residents to understand the purpose, benefits, and privacy protections, which will maximize participation and build trust.
+
+## Proposal
+
+While the long-term goal is for this initiative to be fully governmental, the immediate opportunity lies in demonstrating what is possible through a focused, lean proof of concept. Given the pace of current development activity and the number of new projects launching simultaneously, it will be essential to begin capturing data early — before the systems and habits of reporting become fragmented. The proposed approach is to build an agile, working prototype of the national data and evaluation system that can evolve organically as government ownership and capacity expand. Government officials should be involved from the outset and invited to take increasing leadership as the system proves its value.
+
+### Phase 1 — Scoping and assessment (weeks 1–4)
+
+The first step would be a two-week diagnostic to map Nauru's current data landscape and identify where information already exists, where it is missing, and what technical systems are in place. This phase would include structured consultations with key government ministries as well as the leaders of new development initiatives to ensure that data systems are designed in parallel with ongoing investments rather than retrofitted after the fact. The goal is to produce a concise data ecosystem map and gap analysis that outlines the technical, institutional, and human capacity requirements for a functioning national data system.
+
+Core consultations would include the Nauru Bureau of Statistics (Acting Director Ramrakha Detenamo), Department of Finance (Secretary Novena Itsimaera), Planning and Aid Division (Director Samuel Grundler), and the ICT Department (Secretary Geoff Harris).
+
+Equally important, this phase would include outreach to newly appointed development consultants overseeing major national developments — such as the new school and any senior representatives of the medical system modernization. Engaging these figures early is essential: their projects will generate new streams of operational data, and their input will shape how data initiatives can both track near-term development outcomes and lay the groundwork for long-term, institutionalized data infrastructure.
+
+This on-site deep-dive would culminate in a stakeholder roundtable bringing together ministry officials, development partners, and project leads to align priorities, share early findings, and define the immediate next steps for system design and coordination.
+
+### Phase 2 — Quick wins and prototype dashboards (months 3–9)
+
+The second phase focuses on generating early, visible results through low-complexity projects that demonstrate practical value. This would include setting up simple data pipelines from key sectors, particularly the ones under new leadership for the time being (health and education), to deliver regular digital reports and automatically update lightweight dashboards. These dashboards would provide senior officials and partners with the first near–real-time overview of progress across core national priorities. The objective is to establish the workflow, cadence, and trust necessary for continuous data reporting.
+
+### Phase 3 — Capacity building and EMA pilot (months 6–18)
+
+As the system stabilizes, attention would shift to building local capability and piloting innovative data collection methods. This phase would include structured training for government staff in data management, visualization, and analysis, alongside the rollout of the social survey pilot — short, high-frequency mobile surveys designed to capture lived experiences and perceptions of change among Nauruans in real time. Together, these efforts would lay the groundwork for a sustainable, government-led monitoring ecosystem.
+
+### Phase 4 — Integration and scale-up (months 18–36)
+
+The final phase would fully integrate sectoral data systems into a unified national statistical and evaluation platform. This stage would focus on interoperability, legal frameworks for data sharing, and the establishment of permanent governance mechanisms within the proposed National Office of Data and Evaluation (NODE) or the Bureau of Statistics. By this stage, the system would transition from a proof of concept to a fully operational national asset.
+
+### Implementation and resourcing
+
+To accelerate development while keeping costs manageable, the core infrastructure could be built by one or two engineers working remotely, paired with one or two on-the-ground data fellows or interns based in Nauru. These fellows could be recent graduates to keep costs low and would manage field integration, liaise with ministries, and ensure that digital systems align with local realities. Weekly coordination between the local team and the offsite engineers would ensure steady technical progress, while transferring operational responsibility to Nauruan staff.
+
+## Final notes
+
+I have already proposed accompanying the mental health needs assessment team to Nauru. In that project, my role would be to design a system for logging and organizing assessment findings. This current proposal, however, goes beyond that scope — it aims to lay the groundwork for a national data infrastructure.
+
+I propose conducting the initial diagnostic phase during my first visit, alongside the mental health team, under the same travel budget. This would not be a resource-intensive addition but would allow me to expand the visit into the start of a data infrastructure audit. To strengthen this effort, I would recommend bringing one additional engineering advisor to support the technical assessment and planning. As part of this phase, I would also engage with data experts from other governments that have successfully implemented similar systems, to identify best practices and ensure a sustainable approach for Nauru.
+
+If this vision aligns with national priorities, I can prepare a more detailed proposal and budget for the subsequent phase, which would focus on building local capacity and piloting real-time, quality-of-life indicators.

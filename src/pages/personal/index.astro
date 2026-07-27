@@ -1,50 +1,75 @@
 ---
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { imageSize } from 'image-size';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { personal, personalProjects } from '../../data/site';
+import { funCoverGradient } from '../../data/site';
+
+const items = (await getCollection('personal')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+// Precompute intrinsic dimensions for any real cover images (local files only).
+const cards = items.map((it) => {
+  let width: number | undefined;
+  let height: number | undefined;
+  if (it.data.cover && it.data.cover.startsWith('/')) {
+    try {
+      const dims = imageSize(readFileSync(path.join(process.cwd(), 'public', it.data.cover)));
+      width = dims.width;
+      height = dims.height;
+    } catch {
+      // missing file: fall back to the gradient placeholder
+    }
+  }
+  return { entry: it, width, height };
+});
 ---
 
 <Layout
   title="Fun Stuff — JD Pruett"
   description="Time well spent, perhaps better spent elsewhere."
 >
-  <main class="wrap">
+  <main class="wrap funpage">
     <section class="subhero">
       <h1>Fun Stuff</h1>
-      <p>time well spent, though perhaps spent better elsewhere.</p>
+      <p>Time well spent, though perhaps spent better elsewhere.</p>
     </section>
 
-    <div class="prose-page">
-      {personal.map((p) => <p>{p}</p>)}
-    </div>
-
-    <div class="rows">
-      {personalProjects.map((w) => (
-        <article class="prow">
-          <div class="prow__meta">
-            <span class="prow__kind">{w.kind}</span><span class="prow__status">{w.status}</span>
-          </div>
-          <h2>{w.title}</h2>
-          <p>{w.summary}</p>
-          {w.video && (
-            <div class="prow__video">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${w.video}`}
-                title={`${w.title} — walkthrough`}
-                loading="lazy"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-          )}
-          <div class="prow__links">
-            {w.links.map((l) => (
-              l.href
-                ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                : <span class="dead">{l.label}</span>
-            ))}
-          </div>
-        </article>
-      ))}
+    <div class="corkboard">
+      <ul class="pinboard">
+        {cards.map(({ entry, width, height }) => (
+          <li class="pin-item">
+            <a class="pin-card" href={`/personal/${entry.id}/`}>
+              <span class="pin-card__tack" aria-hidden="true"></span>
+              <span class="pin-card__frame">
+                {entry.data.cover
+                  ? (
+                    <img
+                      class="pin-card__img"
+                      src={entry.data.cover}
+                      alt={entry.data.title}
+                      width={width}
+                      height={height}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span
+                      class="pin-card__img pin-card__img--ph"
+                      style={`background:${funCoverGradient(entry.data.tint)}`}
+                      aria-hidden="true"
+                    ></span>
+                  )}
+                <span class="pin-card__cap">
+                  <span class="pin-card__title">{entry.data.title}</span>
+                  <span class="pin-card__desc">{entry.data.summary}</span>
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </main>
 </Layout>

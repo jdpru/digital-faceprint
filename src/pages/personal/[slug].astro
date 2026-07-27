@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PersonalFeature from '../../components/PersonalFeature.astro';
+
+export async function getStaticPaths() {
+  const items = (await getCollection('personal')).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  return items.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} — JD Pruett`} description={entry.data.summary}>
+  <PersonalFeature entry={entry} Content={Content} />
+</Layout>
