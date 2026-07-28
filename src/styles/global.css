@@ -810,8 +810,9 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .feature-toc__list a:hover .feature-toc__num,
 .feature-toc__list a.is-active .feature-toc__num { color: var(--blue); }
 
-/* in-article figure that should match the hero figure's caption spacing/alignment */
-.prose-body .feature-fig--flush img { margin: 0 auto; border: 0; }
+/* in-article figure that should match the hero figure's caption spacing/alignment,
+   and fill the full text column (override the 420px height cap on feature images) */
+.prose-body .feature-fig--flush img { width: 100%; max-height: none; margin: 0; border: 0; }
 .prose-body .feature-fig--flush figcaption {
   margin-top: 10px;
   text-align: left;
