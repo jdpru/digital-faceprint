@@ -8,9 +8,12 @@ interface Props {
   caption?: string;
   label?: string;
   align?: 'left' | 'right';
+  variant?: string; // extra modifier, e.g. "flush" to match hero caption spacing
 }
-const { src, caption, label, align } = Astro.props;
-const cls = ['feature-fig', align ? `feature-fig--${align}` : ''].filter(Boolean).join(' ');
+const { src, caption, label, align, variant } = Astro.props;
+const cls = ['feature-fig', align ? `feature-fig--${align}` : '', variant ? `feature-fig--${variant}` : '']
+  .filter(Boolean)
+  .join(' ');
 
 // Intrinsic dimensions (local files only) so the browser reserves space.
 let width: number | undefined;
