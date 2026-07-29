@@ -1,0 +1,51 @@
+---
+// In-article herd ledger — a deadpan stud-book / cap table.
+// Styles live in global.css (.cattle-ledger*) because scoped styles are
+// unreliable for components rendered inside MDX. Pairs with CattleTimeline.
+import { herd, asOf, type CattleHead } from '../../data/cattleHerd';
+
+const usd = (n: number) =>
+  n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+const acquired = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+function status(a: CattleHead): { text: string; tone: 'accent' | 'muted' } {
+  if (a.bornIntoHerd) return { text: 'Born into herd', tone: 'accent' };
+  if (a.pregnant) return { text: 'Expecting', tone: 'accent' };
+  return { text: 'Holding', tone: 'muted' };
+}
+---
+
+<figure class="cattle-ledger">
+  <div class="cattle-ledger__head">
+    <span class="cattle-ledger__title">Sir Loin's Inc.</span>
+    <span class="cattle-ledger__sub">Stud book · {herd.length} head · as of {asOf}</span>
+  </div>
+  <table class="cattle-ledger__table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Sex · Breed</th>
+        <th scope="col">Acquired</th>
+        <th scope="col" class="num">Cost</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {herd.map((a) => {
+        const st = status(a);
+        return (
+          <tr>
+            <td class="cattle-ledger__name">{a.name}</td>
+            <td class="cattle-ledger__meta">{a.sex}{a.breed ? ` · ${a.breed}` : ''}</td>
+            <td class="cattle-ledger__meta">{acquired(a.acquired)}</td>
+            <td class="cattle-ledger__meta num">{a.investedUSD ? usd(a.investedUSD) : '—'}</td>
+            <td>
+              <span class={`cattle-ledger__chip cattle-ledger__chip--${st.tone}`}>{st.text}</span>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</figure>
