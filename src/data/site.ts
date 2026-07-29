@@ -293,7 +293,7 @@ export const explore: Shelf[] = [
   {
     num: 'I',
     title: 'Projects & Papers',
-    blurb: 'A mix of research and engineering.',
+    blurb: 'Research and engineering.',
     href: '/projects/euterria/',
   },
   {
