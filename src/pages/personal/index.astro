@@ -32,44 +32,41 @@ const cards = items.map((it) => {
   description="Time well spent, perhaps better spent elsewhere."
 >
   <main class="wrap funpage">
-    <section class="subhero">
+    <section class="subhero subhero--sm">
       <h1>Fun Stuff</h1>
       <p>Time well spent, though perhaps spent better elsewhere.</p>
     </section>
 
-    <div class="corkboard">
-      <ul class="pinboard">
-        {cards.map(({ entry, width, height }) => (
-          <li class="pin-item">
-            <a class="pin-card" href={`/personal/${entry.id}/`}>
-              <span class="pin-card__tack" aria-hidden="true"></span>
-              <span class="pin-card__frame">
-                {entry.data.cover
-                  ? (
-                    <img
-                      class="pin-card__img"
-                      src={entry.data.cover}
-                      alt={entry.data.title}
-                      width={width}
-                      height={height}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span
-                      class="pin-card__img pin-card__img--ph"
-                      style={`background:${funCoverGradient(entry.data.tint)}`}
-                      aria-hidden="true"
-                    ></span>
-                  )}
-                <span class="pin-card__cap">
-                  <span class="pin-card__title">{entry.data.title}</span>
-                  <span class="pin-card__desc">{entry.data.dek ?? entry.data.summary}</span>
-                </span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul class="funfeed">
+      {cards.map(({ entry, width, height }) => (
+        <li>
+          <a class="funcard" href={`/personal/${entry.id}/`}>
+            {entry.data.cover
+              ? (
+                <img
+                  class="funcard__cover"
+                  src={entry.data.cover}
+                  alt={entry.data.title}
+                  width={width}
+                  height={height}
+                  loading="lazy"
+                />
+              ) : (
+                <span
+                  class="funcard__cover funcard__cover--ph"
+                  style={`background:${funCoverGradient(entry.data.tint)}`}
+                  aria-hidden="true"
+                ></span>
+              )}
+            <h2 class="funcard__title">{entry.data.title}</h2>
+            <p class="funcard__desc">{entry.data.dek ?? entry.data.summary}</p>
+            <span class="funcard__meta">
+              <span class="funcard__tag">{entry.data.status}</span>
+              <span class="funcard__go">View <span aria-hidden="true">→</span></span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </main>
 </Layout>
