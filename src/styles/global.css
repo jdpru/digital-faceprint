@@ -607,27 +607,33 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 /* ---------- works: three shelf cards (text-only) ---------- */
 .works-head { margin-bottom: 24px; }
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); }
-.xcard { display: flex; flex-direction: column; }
-.xcard__num {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(64px, 7vw, 104px);
-  line-height: 1;
-  margin-bottom: 6px;
-  color: transparent;
-  -webkit-text-stroke: 1.2px color-mix(in srgb, var(--blue) 32%, transparent);
-  transition: -webkit-text-stroke-color 0.35s ease, color 0.35s ease;
+.xcard { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; }
+
+.xcard__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--paper-3);
+  box-shadow: 0 1px 2px rgba(40, 30, 10, 0.07);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.xcard:hover .xcard__num,
-.xcard:focus-visible .xcard__num {
-  -webkit-text-stroke-color: var(--blue);
-  color: var(--blue-wash);
+.xcard__cover--ph { background-size: cover; }
+.xcard__cover--contain { object-fit: contain; background: #000; box-sizing: border-box; padding: 0 5%; }
+.xcard:hover .xcard__cover,
+.xcard:focus-visible .xcard__cover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(40, 30, 10, 0.16);
 }
-.xcard h3 { font-size: 22px; font-weight: 480; letter-spacing: -0.01em; line-height: 1.15; margin: 12px 0 8px; transition: color 0.25s ease; }
+.xcard:focus-visible { outline: none; }
+.xcard:focus-visible .xcard__cover { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.xcard h3 { font-size: 22px; font-weight: 480; letter-spacing: -0.01em; line-height: 1.15; margin: 16px 0 0; transition: color 0.25s ease; }
 .xcard:hover h3,
 .xcard:focus-visible h3 { color: var(--blue); }
-.xcard p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+.xcard p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; margin: 8px 0 0; }
 
 /* ---------- subpages ---------- */
 .subhero { padding: clamp(40px, 7vh, 64px) 0 30px; }
@@ -812,6 +818,8 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .feature-fig__grad { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
+  .xcard__cover,
+  .xcard h3,
   .funcard__cover,
   .funcard__title,
   .funcard__go span,

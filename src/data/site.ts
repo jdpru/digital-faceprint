@@ -287,26 +287,37 @@ export const writing: Writing[] = [
   },
 ];
 
-export type Shelf = { num: string; title: string; blurb: string; href: string };
+export type Shelf = {
+  title: string;
+  blurb: string;
+  href: string;
+  cover?: string;
+  alt?: string;
+  tint?: number;
+  contain?: boolean;
+};
 
 export const explore: Shelf[] = [
   {
-    num: 'I',
     title: 'Projects & Papers',
     blurb: 'Research and engineering.',
     href: '/projects/euterria/',
+    cover: '/gallery/ontologies-of-cognitive-control/white-surface.jpg',
+    alt: 'A cortical surface reconstruction, both hemispheres, rendered on black — from the cognitive-control ontology work.',
+    contain: true,
   },
   {
-    num: 'II',
-    title: 'Fun Stuff',
+    title: 'Odds and Ends',
     blurb: 'Time well spent, though perhaps spent better elsewhere.',
     href: '/personal/',
+    cover: '/gallery/cattle/cattle-market.jpg',
+    alt: 'Two yoked oxen standing in a busy West African cattle market.',
   },
   {
-    num: 'III',
     title: 'Reading',
     blurb: 'Some of my favorites.',
     href: '/reading/',
+    tint: 248,
   },
 ];
 

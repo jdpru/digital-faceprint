@@ -1,11 +1,25 @@
 ---
-import { explore } from '../data/site';
+import { explore, funCoverGradient } from '../data/site';
 ---
 
 <div class="explore">
   {explore.map((card) => (
     <a class="xcard" href={card.href}>
-      <span class="xcard__num" aria-hidden="true">{card.num}</span>
+      {card.cover
+        ? (
+          <img
+            class:list={['xcard__cover', card.contain && 'xcard__cover--contain']}
+            src={card.cover}
+            alt={card.alt ?? card.title}
+            loading="lazy"
+          />
+        ) : (
+          <span
+            class="xcard__cover xcard__cover--ph"
+            style={`background:${funCoverGradient(card.tint ?? 248)}`}
+            aria-hidden="true"
+          ></span>
+        )}
       <h3>{card.title}</h3>
       <p>{card.blurb}</p>
     </a>
