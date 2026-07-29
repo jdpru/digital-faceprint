@@ -6,11 +6,12 @@ import { imageSize } from 'image-size';
 interface Props {
   src?: string;
   caption?: string;
+  alt?: string; // explicit alt text; falls back to the caption
   label?: string;
   align?: 'left' | 'right';
   variant?: string; // extra modifier, e.g. "flush" to match hero caption spacing
 }
-const { src, caption, label, align, variant } = Astro.props;
+const { src, caption, alt, label, align, variant } = Astro.props;
 const cls = ['feature-fig', align ? `feature-fig--${align}` : '', variant ? `feature-fig--${variant}` : '']
   .filter(Boolean)
   .join(' ');
@@ -30,7 +31,7 @@ if (src && src.startsWith('/')) {
 ---
 <figure class={cls}>
   {src
-    ? <img src={src} alt={caption ?? ''} width={width} height={height} loading="lazy" decoding="async" />
+    ? <img src={src} alt={alt ?? caption ?? ''} width={width} height={height} loading="lazy" decoding="async" />
     : <div class="feature-fig__ph"><span>{label ?? 'Figure'}</span></div>}
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

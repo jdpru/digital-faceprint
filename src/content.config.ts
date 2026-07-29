@@ -43,6 +43,7 @@ const personal = defineCollection({
     dek: z.string().optional(), // italic subtitle under the title
     tint: z.number().default(210), // base hue for the placeholder cover gradient
     cover: z.string().optional(), // real title image; falls back to a gradient
+    heroImage: z.boolean().default(true), // false: use cover for the card only, no hero on the feature
     heroCaption: z.string().optional(),
     video: z.string().optional(), // YouTube id, embedded above the article
     pdf: z.string().optional(),
