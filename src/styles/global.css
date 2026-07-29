@@ -785,7 +785,7 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   grid-template-columns: 210px minmax(0, 1fr);
   column-gap: 56px;
   align-items: start;
-  padding-top: clamp(20px, 3.5vh, 40px);
+  padding-top: clamp(24px, 4vh, 44px); /* match the project feature (.pfeed) top spacing */
   padding-bottom: 96px;
 }
 .feature-toc { position: sticky; top: calc(var(--bar-h) + 24px); align-self: start; }
@@ -847,7 +847,8 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 }
 
 /* ---------- projects: sticky index + feature article ---------- */
-.wrap-wide { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
+/* left/right longhands only, so a container's own top/bottom padding survives */
+.wrap-wide { max-width: 1240px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 .pfeed {
   display: grid;
   grid-template-columns: 224px minmax(0, 1fr);
@@ -1067,7 +1068,8 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 
 /* feature-specific prose: drop cap + numbered section labels */
 .feature-article .prose-body { counter-reset: sec; font-size: 18.5px; line-height: 1.72; }
-.feature-article .prose-body > p:first-of-type::first-letter {
+/* drop cap only on project features (personal/Fun Stuff features opt out) */
+.pfeed__article .prose-body > p:first-of-type::first-letter {
   float: left; font-family: var(--serif); font-size: 3.4em; line-height: 0.78;
   padding: 0.02em 0.09em 0 0; color: var(--blue); font-weight: 500;
 }

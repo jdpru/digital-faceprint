@@ -63,7 +63,7 @@ const cards = items.map((it) => {
                   )}
                 <span class="pin-card__cap">
                   <span class="pin-card__title">{entry.data.title}</span>
-                  <span class="pin-card__desc">{entry.data.summary}</span>
+                  <span class="pin-card__desc">{entry.data.dek ?? entry.data.summary}</span>
                 </span>
               </span>
             </a>

@@ -93,12 +93,12 @@ const gradient = funCoverGradient(d.tint);
       </div>
     )}
 
-    {d.cover ? (
+    {!d.video && (d.cover ? (
       <figure class="feature-fig feature-fig--hero">
         <img src={d.cover} alt={d.title} width={coverWidth} height={coverHeight} />
         {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
       </figure>
-    ) : (!d.video && (
+    ) : (
       <figure class="feature-fig feature-fig--hero">
         <span class="feature-fig__grad" style={`background:${gradient}`} role="img" aria-label={`${d.title} — placeholder artwork`}></span>
         {d.heroCaption && <figcaption>{d.heroCaption}</figcaption>}
