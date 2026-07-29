@@ -907,6 +907,11 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .feature-fig__ph { aspect-ratio: 16 / 9; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper-2); display: flex; align-items: center; justify-content: center; }
 .feature-fig__ph span { font-style: italic; font-size: 13px; color: var(--ink-faint); }
 .feature-fig figcaption { margin-top: 10px; font-style: italic; font-size: 13.5px; line-height: 1.5; color: var(--ink-faint); }
+/* in-prose feature figures should match the hero figure: left-aligned caption sitting
+   10px below the image. Overrides the generic .prose-body img bottom margin and the
+   centered .prose-body figcaption default. */
+.prose-body .feature-fig img { margin: 0 auto; }
+.prose-body .feature-fig figcaption { margin-top: 10px; text-align: left; }
 .feature-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .feature-pair__frame { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-2); }
 .feature-pair__frame img,
