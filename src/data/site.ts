@@ -308,7 +308,7 @@ export const explore: Shelf[] = [
   },
   {
     title: 'Odds and Ends',
-    blurb: 'Time well spent, though perhaps spent better elsewhere.',
+    blurb: 'Time well spent, though perhaps better spent elsewhere.',
     href: '/personal/',
     cover: '/gallery/cattle/cattle-market.jpg',
     alt: 'Two yoked oxen standing in a busy West African cattle market.',
