@@ -27,7 +27,7 @@ export const site = {
       { name: 'Steve Ballmer', href: 'https://en.wikipedia.org/wiki/Steve_Ballmer' },
     ],
     prose: [
-      'I\'m interested in techniques to measure that which resists measurement — self-control and cognitive flexibility, public opinion and survey trustworthiness — and I like building the systems that make those measurements possible.',
+      'I\'m interested in techniques to measure that which resists measurement — like cognitive flexibility, agent utility, and survey trustworthiness — and I like building the systems that make those measurements possible.',
       'At Stanford I work with Jon Krosnick on survey accuracy and with Russ Poldrack on the neuroscience of cognitive control. Today I lead ML systems at Varick.',
       'I was lucky to have mentors who lived by open science, and I try to follow their lead by sharing code and data wherever I can. I like to write, do my best not to bury the point, and enjoy reading sci-fi, political philosophy, and playing semi-pro soccer in SFSL.',
     ],
