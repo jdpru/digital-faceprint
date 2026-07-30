@@ -1196,6 +1196,9 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   .rrow__detail-in { flex-direction: column; gap: 14px; padding-left: 14px; }
   .rrow__photos { flex-direction: row; flex-wrap: wrap; flex-basis: auto; width: 100%; }
   .rrow__photo { width: 160px; max-width: 45%; height: 110px; }
+  /* photos sit in a wrapping row on mobile; force the link onto its own line so
+     it lands below the photo(s) as on desktop, not to their right. */
+  .rrow__project-link { flex-basis: 100%; }
   .explore { grid-template-columns: 1fr; }
   .funfeed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   /* .pfeed's desktop `padding: … 0 …` zeros the horizontal gutter that
