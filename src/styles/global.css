@@ -1153,9 +1153,15 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 /* feature-specific prose: drop cap + numbered section labels */
 .feature-article .prose-body { counter-reset: sec; font-size: 18.5px; line-height: 1.72; }
 /* drop cap only on project features (personal/Fun Stuff features opt out) */
+/* line-height:1 + the small margin-top drop the cap so its cap-top aligns with
+   the first line's cap-top (it then sinks over ~2 lines) rather than poking
+   above the first line and colliding with a section label above it. The
+   negative margin-bottom trims the float's reserved height back to two lines so
+   only the first two lines indent — otherwise a third line wraps against it. */
 .pfeed__article .prose-body > p:first-of-type::first-letter {
-  float: left; font-family: var(--serif); font-size: 3.4em; line-height: 0.78;
-  padding: 0.02em 0.09em 0 0; color: var(--blue); font-weight: 500;
+  float: left; font-family: var(--serif); font-size: 3.4em; line-height: 1;
+  margin-top: 0.1em; margin-bottom: -0.3em; padding: 0 0.09em 0 0;
+  color: var(--blue); font-weight: 500;
 }
 .feature-article .prose-body h2 {
   counter-increment: sec;
