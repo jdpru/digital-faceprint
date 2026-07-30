@@ -1138,6 +1138,10 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
 .prose-body figure { margin: 1.6em 0; }
 .prose-body figcaption { margin-top: 8px; font-style: italic; font-size: 14px; color: var(--ink-faint); text-align: center; }
 .prose-body hr { border: 0; border-top: 1px solid var(--rule); margin: 2em 0; }
+/* KaTeX display equations render at a fixed width and can be wider than a
+   phone; scroll them within their own box instead of widening the whole page
+   (which otherwise causes horizontal scroll on mobile). */
+.prose-body .katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
 .prose-body code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
 .prose-body pre { border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; overflow-x: auto; margin: 1.4em 0; font-size: 14.5px; line-height: 1.55; }
 .prose-body pre code { background: none; border: 0; padding: 0; font-size: inherit; }
@@ -1182,9 +1186,16 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   .rrow__photo { width: 160px; max-width: 45%; height: 110px; }
   .explore { grid-template-columns: 1fr; }
   .funfeed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pfeed { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 22px; }
+  /* .pfeed's desktop `padding: … 0 …` zeros the horizontal gutter that
+     .wrap-wide supplies; on desktop max-width + auto-margins hide that, but on
+     narrow screens it lets prose run to the screen edge. Restore the gutter. */
+  .pfeed { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 22px; padding-left: var(--gutter); padding-right: var(--gutter); }
   .pfeed__index { position: static; min-width: 0; }
-  .feature-article { max-width: none; min-width: 0; }
+  /* width:100% keeps the article filling its column. Without it, the desktop
+     `margin: 0 auto` makes the grid item hug its max-content, so nowrap content
+     (e.g. KaTeX display math) stretches it — and the page — past the viewport;
+     the equation then scrolls inside its own box (see .katex-display). */
+  .feature-article { max-width: none; min-width: 0; width: 100%; }
   .prose-body .feature-fig--left, .prose-body .feature-fig--right { float: none; clear: both; width: auto; max-width: 100%; margin-left: auto; margin-right: auto; }
   .prose-body .feature-fig--left img, .prose-body .feature-fig--right img { margin: 0 auto; }
   .feature-pair { grid-template-columns: 1fr; }

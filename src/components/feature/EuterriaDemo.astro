@@ -214,6 +214,10 @@ const cls = ['eut-demo', compact ? 'eut-demo--compact' : ''].filter(Boolean).joi
   let briefTextEl: HTMLElement;
   let tabsEl: HTMLElement;
   let resultsEl: HTMLElement;
+  let bodyEl: HTMLElement;
+  let resizeHandler: (() => void) | null = null;
+  let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+  let lastWidth = 0;
 
   function wait(ms: number) {
     return new Promise<void>((r) => setTimeout(r, ms));
@@ -263,6 +267,23 @@ const cls = ['eut-demo', compact ? 'eut-demo--compact' : ''].filter(Boolean).joi
     briefTextEl.classList.remove('is-in');
     tabsEl.classList.remove('is-in');
     [...resultsEl.children].forEach((c) => c.classList.remove('is-in'));
+  }
+
+  // The card holds a fixed size so the reveal doesn't grow it. The min-heights
+  // in CSS are tuned for the 460px-wide desktop card; on a narrow phone the copy
+  // wraps taller AND differs between scenarios, so the card would visibly resize
+  // each loop. Measure the tallest scenario at the current width and pin the body
+  // to it so the box stays put. Re-run on resize (e.g. orientation change).
+  function reserveHeight() {
+    if (!bodyEl) return;
+    bodyEl.style.minHeight = '';
+    let max = 0;
+    for (const s of scenarios) {
+      primeScenario(s);
+      max = Math.max(max, bodyEl.offsetHeight);
+    }
+    bodyEl.style.minHeight = `${Math.ceil(max)}px`;
+    lastWidth = window.innerWidth;
   }
 
   async function typeQuery(text: string, gen: number) {
@@ -337,6 +358,19 @@ const cls = ['eut-demo', compact ? 'eut-demo--compact' : ''].filter(Boolean).joi
     briefTextEl = document.getElementById('eutBriefText') as HTMLElement;
     tabsEl = document.getElementById('eutTabs') as HTMLElement;
     resultsEl = document.getElementById('eutResults') as HTMLElement;
+    bodyEl = document.getElementById('eutBody') as HTMLElement;
+
+    if (resizeHandler) window.removeEventListener('resize', resizeHandler);
+    reserveHeight();
+    resizeHandler = () => {
+      // Only re-measure when the width changes. Mobile browsers fire `resize`
+      // when the URL bar shows/hides on scroll (height-only); re-priming there
+      // would flicker the running animation.
+      if (window.innerWidth === lastWidth) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(reserveHeight, 150);
+    };
+    window.addEventListener('resize', resizeHandler);
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       revealStatic(scenarios[0]);
@@ -360,6 +394,10 @@ const cls = ['eut-demo', compact ? 'eut-demo--compact' : ''].filter(Boolean).joi
 
   document.addEventListener('astro:before-swap', () => {
     generation++;
+    if (resizeHandler) {
+      window.removeEventListener('resize', resizeHandler);
+      resizeHandler = null;
+    }
   });
   document.addEventListener('astro:page-load', init);
   init();
