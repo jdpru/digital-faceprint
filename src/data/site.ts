@@ -5,7 +5,7 @@ export const site = {
   name: 'JD Pruett', // display name in the hero
   wordmark: 'Jefferson Pruett', // top-left brand
   lede: 'Neuro researcher and ML engineer, working across AI, cognition, and survey methods.',
-  chips: ['Stanford · Econ & Neuro', 'Varick · Head of Engineering'],
+  chips: ['Stanford · Econ & Neuro', 'Varick · Founding Engineer'],
   portrait: {
     src: '/portrait.jpg',
     alt: 'Painted portrait of JD Pruett',
@@ -76,7 +76,7 @@ export type ExperienceEntry = {
 export const experience: ExperienceEntry[] = [
   {
     years: '2025 — Now',
-    role: 'Head of Engineering',
+    role: 'Founding Engineer',
     org: 'Varick',
     place: 'San Francisco, CA',
     description: [
