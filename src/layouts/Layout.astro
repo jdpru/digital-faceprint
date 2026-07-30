@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import { site } from '../data/site';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -55,6 +56,7 @@ const nav = [
       rel="stylesheet"
     />
     {transitions && <ClientRouter />}
+    <Analytics />
   </head>
   <body>
     <header class="topbar">
