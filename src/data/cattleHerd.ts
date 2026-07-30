@@ -35,7 +35,7 @@ export const herd: CattleHead[] = [
   { name: 'Dairy Queen', sex: 'Female', breed: 'Gudali', acquired: '2025-08-29', priceGHS: 8000, investedUSD: 791.01, pregnant: true, tag: '09926' },
   { name: 'Benjamin Netanyamoo', sex: 'Male', breed: 'Gudali', acquired: '2025-09-02', priceGHS: 4500, investedUSD: 440.68, pregnant: false },
   { name: 'Troomp', sex: 'Male', breed: 'Gudali', acquired: '2025-09-05', priceGHS: 5200, investedUSD: 485.84, pregnant: false },
-  { name: 'King Henry the Beef', sex: 'Female', breed: 'Gudali', acquired: '2026-01-09', priceGHS: 9000, investedUSD: 934.58, pregnant: true },
+  { name: 'King Henry the Steak', sex: 'Female', breed: 'Gudali', acquired: '2026-01-09', priceGHS: 9000, investedUSD: 934.58, pregnant: true },
   { name: 'Kim Jong Moon', sex: 'Male', breed: 'Gudali', acquired: '2026-01-09', priceGHS: 7000, investedUSD: 747.66, pregnant: false },
   // The two most recent — still awaiting names.
   { name: 'Awaiting name', sex: 'Calf', breed: 'Gudali', acquired: '2026-02-01', investedUSD: 0, pregnant: false, bornIntoHerd: true },

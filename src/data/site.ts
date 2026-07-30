@@ -81,7 +81,7 @@ export const experience: ExperienceEntry[] = [
     place: 'San Francisco, CA',
     description: [
       'I lead engineering at Varick, building the product and ML systems behind enterprise agent deployments.',
-      'The work is less sexy than Twitter might have you believe. Building good ML systems in the enterprise is largely an engineering challenge, finding the right blend of durable execution, data science, permissions, and edge-case handling.',
+      'The work is less sexy than Twitter might have you believe. Building good ML systems in the enterprise is largely an engineering challenge, finding the right blend of durable execution, data science, and governance.',
     ],
     tags: ['Product engineering', 'ML systems', 'AI agents', 'Enterprise software'],
     orgHref: 'https://www.varickagents.com/',
@@ -141,7 +141,7 @@ export const experience: ExperienceEntry[] = [
     place: 'Stanford, CA',
     description: [
       'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science to study the psychological underpinnings of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys for social science.',
-      'I led a small team to do a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
+      'I led a small team conducting a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
     ],
     tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
     orgHref: 'https://pprg.stanford.edu/',
