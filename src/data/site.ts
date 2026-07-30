@@ -134,26 +134,6 @@ export const experience: ExperienceEntry[] = [
     href: '/projects/design-technology-institute/',
   },
   {
-    years: '2023 — Now',
-    role: 'Researcher · Survey Methods',
-    org: 'Political Psychology Research Group',
-    orgDetail: 'PI Jon Krosnick',
-    place: 'Stanford, CA',
-    description: [
-      'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science to study the psychological underpinnings of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys for social science.',
-      'I led a small team conducting a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
-    ],
-    tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
-    orgHref: 'https://pprg.stanford.edu/',
-    photos: [
-      {
-        src: '/gallery/political-psychology-research-group/jon-krosnick-thumb.jpg',
-        alt: 'With Jon Krosnick at my Stanford thesis medal ceremony.',
-      },
-    ],
-    href: '/projects/political-psychology-research-group/',
-  },
-  {
     years: '2024 — Now',
     role: 'Researcher · Cognitive Control',
     org: 'Poldrack Lab',
@@ -173,6 +153,26 @@ export const experience: ExperienceEntry[] = [
       },
     ],
     href: '/projects/ontologies-of-cognitive-control/',
+  },
+  {
+    years: '2023 — Now',
+    role: 'Researcher · Survey Methods',
+    org: 'Political Psychology Research Group',
+    orgDetail: 'PI Jon Krosnick',
+    place: 'Stanford, CA',
+    description: [
+      'The Political Psychology Research Group is a cross-disciplinary lab bringing together economics, psychology, and political science to study the psychological underpinnings of political behavior. Jon\'s group publishes heavily on the deceptively difficult practice of running and analyzing reliable surveys for social science.',
+      'I led a small team conducting a multi-year independent evaluation of sample matching, an emerging method of nonprobabilistic (non-random) survey sampling beginning to consume the industry. Across 17 years of data, we systematically examined one of the most cited datasets in political science, testing for changes in accuracy over time and deconstructing the error to reveal how good this kind of survey really is.',
+    ],
+    tags: ['R', 'Survey error', 'Weighting', 'Reproducibility', 'AAPOR'],
+    orgHref: 'https://pprg.stanford.edu/',
+    photos: [
+      {
+        src: '/gallery/political-psychology-research-group/jon-krosnick-thumb.jpg',
+        alt: 'With Jon Krosnick at my Stanford thesis medal ceremony.',
+      },
+    ],
+    href: '/projects/political-psychology-research-group/',
   },
   {
     years: '2022 — 23',

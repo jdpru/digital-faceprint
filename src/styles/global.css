@@ -1106,8 +1106,10 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   font-family: var(--sans); font-size: 10.5px; font-weight: 600; color: #4A5260;
 }
 .rrk-legend i { width: 7px; height: 7px; border-radius: 50%; }
-.rrk figcaption {
-  margin-top: 12px; text-align: center; font-style: italic; font-size: 13.5px;
+/* .prose-body qualifier so these win over the generic centered
+   `.prose-body figcaption` (same specificity, defined later). */
+.prose-body .rrk figcaption {
+  margin-top: 12px; text-align: left; font-style: italic; font-size: 13.5px;
   line-height: 1.5; color: var(--ink-faint);
 }
 @media (max-width: 620px) {
