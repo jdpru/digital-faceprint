@@ -126,6 +126,24 @@ import EuterriaDemo from './feature/EuterriaDemo.astro';
     });
   });
 
+  // Touch devices have no hover preview, so tapping a row's date/empty area
+  // toggles it open/closed. Links (the title's project link and the org link)
+  // navigate, and the pin button uses its own handler above — so taps on those
+  // are left alone.
+  if (window.matchMedia('(hover: none)').matches) {
+    document.querySelectorAll<HTMLElement>('.rrow__main').forEach((main) => {
+      main.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('a') || target.closest('.rrow__ind')) return;
+        const row = main.closest('.rrow');
+        if (!row) return;
+        const open = row.classList.toggle('is-open');
+        row.querySelector('.rrow__ind')?.setAttribute('aria-pressed', open ? 'true' : 'false');
+        syncExpandLabel();
+      });
+    });
+  }
+
   expandBtn?.addEventListener('click', () => {
     const all = rows();
     const shouldOpen = !all.every((r) => r.classList.contains('is-open'));

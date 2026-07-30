@@ -438,7 +438,6 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.1, 1);
 }
-.rrow:hover .rrow__detail,
 .rrow:focus-within .rrow__detail,
 .rrow.is-open .rrow__detail { grid-template-rows: 1fr; }
 .rrow__detail-in {
@@ -459,7 +458,6 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   transform: translateY(8px);
   transition: opacity 0.45s ease 0.08s, transform 0.45s cubic-bezier(0.4, 0, 0.1, 1) 0.08s;
 }
-.rrow:hover .rrow__photos,
 .rrow:focus-within .rrow__photos,
 .rrow.is-open .rrow__photos { opacity: 1; transform: none; }
 .rrow__photo {
@@ -499,10 +497,18 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   transform: translateY(8px);
   transition: opacity 0.45s ease 0.14s, transform 0.45s cubic-bezier(0.4, 0, 0.1, 1) 0.14s;
 }
-.rrow:hover .rrow__desc,
 .rrow:focus-within .rrow__desc,
 .rrow.is-open .rrow__desc { opacity: 1; transform: none; }
 .rrow__desc p { margin: 0 0 0.7em; }
+
+/* Hover-to-preview a work row only on devices that actually hover. On touch
+   there is no hover, so expansion is driven by tapping the row (see Resume.astro)
+   and by the pin button; :focus-within and .is-open above stay active for both. */
+@media (hover: hover) {
+  .rrow:hover .rrow__detail { grid-template-rows: 1fr; }
+  .rrow:hover .rrow__photos { opacity: 1; transform: none; }
+  .rrow:hover .rrow__desc { opacity: 1; transform: none; }
+}
 .rrow__desc a { color: var(--blue); border-bottom: 1px solid color-mix(in srgb, var(--blue) 35%, transparent); }
 .rrow__desc p:last-of-type { margin-bottom: 0; }
 
@@ -1211,6 +1217,13 @@ a.rrow__role--link:hover { border-bottom-color: color-mix(in srgb, var(--blue) 4
   .nav { gap: 16px; }
   .nav a { font-size: 16px; }
   .funfeed { grid-template-columns: minmax(0, 1fr); }
+  /* Stack the hero chips: side by side they hug the screen edges on wider
+     phones (~414–430px). Stacked and centered they read cleanly at any width. */
+  .hero__meta { flex-direction: column; align-items: center; }
+  /* The place (e.g. "Stanford, CA") sits inline after the org name on desktop;
+     when the org wraps on a phone it lands orphaned on its own line, indented by
+     its inline margin. Make it a clean flush-left location line instead. */
+  .rrow__org .place { display: block; margin-left: 0; margin-top: 2px; }
 }
 
 /* Download button rendered inside MDX features (placed after prose rules
