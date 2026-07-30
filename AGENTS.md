@@ -35,7 +35,13 @@ npm run preview               # serve the production build
 npm run check                 # Astro type and diagnostic check
 npm run optimize:images       # safe, in-place media optimization
 npm run archive:feature-links # dated backup of project-feature external links
+npm run shots                 # cross-device screenshots to .shots/ (mobile + desktop)
 ```
+
+`npm run shots` starts its own dev server, captures the home page across phone,
+tablet, and desktop viewports (add paths as args, e.g. `-- /projects/euterria/`),
+then tears the server down. Output is gitignored. First run needs the Playwright
+browser once: `npx playwright install chromium`.
 
 ## Content and feature pages
 

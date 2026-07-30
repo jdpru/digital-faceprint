@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "archive:feature-links": "node scripts/archive-feature-links.mjs"
+    "archive:feature-links": "node scripts/archive-feature-links.mjs",
+    "shots": "node scripts/shots.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
@@ -26,6 +27,7 @@
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.3",
     "image-size": "^2.0.2",
+    "playwright": "^1.62.0",
     "sharp": "^0.35.3",
     "typescript": "^6.0.3"
   }
