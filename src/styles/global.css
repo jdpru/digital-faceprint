@@ -30,6 +30,37 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* ---------- dark theme ----------
+   Same editorial character, inverted: a warm charcoal paper, warm off-white
+   ink, and a lifted blue accent that keeps contrast on the dark ground. The
+   active theme is resolved to an explicit data-theme attribute on <html> by the
+   inline script in Layout.astro (system preference on first visit, then the
+   visitor's saved choice), so every rule below keys off that one attribute. */
+:root[data-theme="dark"] {
+  --paper: #1a1917;
+  --paper-2: #211f1c;
+  --paper-3: #2a2724;
+  --ink: #ece9e3;
+  --ink-soft: #b1aaa0;
+  --ink-faint: #7e776c;
+  --rule: #322e29;
+  --rule-soft: #26231f;
+  --blue: #7ba3e9;
+  --blue-2: #99b8f0;
+  --blue-wash: rgba(123, 163, 233, 0.14);
+}
+
+/* card depth: the warm light-mode shadows all but vanish on a dark ground, so
+   the hover-lift cue would be lost. Restore it with darker, stronger shadows. */
+:root[data-theme="dark"] .xcard__cover,
+:root[data-theme="dark"] .funcard__cover { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45); }
+:root[data-theme="dark"] .xcard:hover .xcard__cover,
+:root[data-theme="dark"] .xcard:focus-visible .xcard__cover,
+:root[data-theme="dark"] .funcard:hover .funcard__cover,
+:root[data-theme="dark"] .funcard:focus-visible .funcard__cover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.55);
+}
+
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -113,6 +144,10 @@ em { font-style: italic; }
 .brand .dot { color: var(--blue); font-size: 1.6em; line-height: 1; vertical-align: baseline; position: relative; top: 0; }
 .brand__home {
   display: inline-flex; align-items: center; color: var(--blue);
+  /* optical nudge: the house sits a hair above true center so it *feels*
+     centered against the wordmark's weight. `top` (not transform) so the hover
+     translateY stays independent. */
+  position: relative; top: -0.5px;
   transition: transform 0.25s var(--ease), color 0.2s ease;
 }
 .brand__home svg { width: 17px; height: 17px; display: block; }
@@ -138,6 +173,33 @@ em { font-style: italic; }
 }
 .nav a:hover { color: var(--ink); }
 .nav a:hover::after { right: 0; }
+
+/* theme toggle — bare icon control sitting at the end of the nav, centered
+   against the nav links (no chip/circle) */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  cursor: pointer;
+  /* optical nudge up so the moon/sun feels centered on the nav text row.
+     `top` (not transform) so the hover lift on the svg stays independent. */
+  position: relative;
+  top: -1.5px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.theme-toggle:hover { color: var(--blue); }
+.theme-toggle:hover svg { transform: translateY(-1px); }
+.theme-toggle svg { width: 19px; height: 19px; display: block; transition: transform 0.2s ease; }
+/* the lamp switches on: its blue glow fades in under the shade in dark mode */
+.theme-toggle__glow { opacity: 0; transition: opacity 0.4s ease; }
+:root[data-theme="dark"] .theme-toggle__glow { opacity: 1; }
 
 /* ---------- portrait (color, subtle parallax) ---------- */
 .portrait {

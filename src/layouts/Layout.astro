@@ -35,6 +35,48 @@ const nav = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    {/* Resolve and apply the theme before first paint to avoid a flash of the
+        wrong theme (FOUC). Saved choice wins; otherwise follow the OS. is:inline
+        so it ships verbatim and runs synchronously in <head>. */}
+    <script is:inline>
+      (function () {
+        var KEY = 'theme';
+        function preferred() {
+          try {
+            var saved = localStorage.getItem(KEY);
+            if (saved === 'light' || saved === 'dark') return saved;
+          } catch (e) {}
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        function apply(theme) {
+          var root = document.documentElement;
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#1a1917' : '#ffffff');
+          var btn = document.querySelector('[data-theme-toggle]');
+          if (btn) {
+            btn.setAttribute('aria-pressed', String(theme === 'dark'));
+            btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+          }
+        }
+        apply(preferred());
+        // Re-apply after view-transition swaps (project pages) reset <html>,
+        // and once the toggle button exists on the initial full-page load.
+        document.addEventListener('astro:after-swap', function () { apply(preferred()); });
+        document.addEventListener('DOMContentLoaded', function () { apply(preferred()); });
+        // Delegated so a single listener on the persistent document survives
+        // view-transition DOM swaps.
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('[data-theme-toggle]') : null;
+          if (!btn) return;
+          var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          try { localStorage.setItem(KEY, next); } catch (e) {}
+          apply(next);
+        });
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -72,6 +114,19 @@ const nav = [
         </a>
         <nav class="nav" aria-label="Primary">
           {nav.map((item) => <a href={item.href} data-astro-reload>{item.label}</a>)}
+          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark theme">
+            <svg class="theme-toggle__lamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <g class="theme-toggle__glow">
+                <polygon points="6.5,10.5 17.5,10.5 20,17 4,17" fill="var(--blue)" fill-opacity="0.16" stroke="none" />
+                <line x1="12" y1="12.4" x2="12" y2="14.6" stroke="var(--blue)" />
+                <line x1="8.6" y1="12.4" x2="7.8" y2="14.2" stroke="var(--blue)" />
+                <line x1="15.4" y1="12.4" x2="16.2" y2="14.2" stroke="var(--blue)" />
+              </g>
+              <path d="M9 4 H15 L17.5 10.5 H6.5 Z" />
+              <line x1="12" y1="10.5" x2="12" y2="18" />
+              <path d="M8.6 20 L9.5 18 H14.5 L15.4 20 Z" />
+            </svg>
+          </button>
         </nav>
       </div>
     </header>
