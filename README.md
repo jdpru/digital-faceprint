@@ -14,10 +14,3 @@ npm run dev
 ```bash
 npm run build
 ```
-
-## Notes
-
-Prototype direction:
-- visual feel inspired by jamie-wong.com
-- richer section structure inspired by taniarascia.com/me
-- intended for deployment on Vercel
