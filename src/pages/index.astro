@@ -24,7 +24,19 @@ const profileLd = {
     knowsAbout: site.about.methods.split(', '),
     worksFor: { '@type': 'Organization', name: 'Varick', url: 'https://www.varickagents.com/' },
     alumniOf: { '@type': 'CollegeOrUniversity', name: educationSchool },
-    sameAs: [site.links.github, site.links.linkedin, site.links.twitter],
+    identifier: {
+      '@type': 'PropertyValue',
+      propertyID: 'ORCID',
+      value: site.links.orcid,
+    },
+    // ORCID first: it is the only identifier that resolves to a record naming
+    // both "Jefferson" and "JD", which is what ties the two name forms together.
+    sameAs: [
+      site.links.orcid,
+      site.links.github,
+      site.links.linkedin,
+      site.links.twitter,
+    ],
   },
 };
 ---
