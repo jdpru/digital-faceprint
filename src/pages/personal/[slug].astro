@@ -12,8 +12,31 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const cover = entry.data.cover?.trim() || undefined;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Odds and Ends',
+      item: new URL('/personal/', Astro.site).href,
+    },
+    { '@type': 'ListItem', position: 3, name: entry.data.title },
+  ],
+};
 ---
 
-<Layout title={`${entry.data.title} — JD Pruett`} description={entry.data.summary}>
+<Layout
+  title={`${entry.data.title} — JD Pruett`}
+  description={entry.data.summary}
+  ogImage={cover}
+  ogCard={cover ? 'summary_large_image' : 'summary'}
+  jsonLd={breadcrumbLd}
+>
   <PersonalFeature entry={entry} Content={Content} headings={headings} />
 </Layout>

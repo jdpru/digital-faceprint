@@ -1,10 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+// noindex while this is a stub: a page with no real content reads to crawlers
+// as thin or a soft 404. Drop `noindex` here and the `/reading/` sitemap
+// filter in astro.config.mjs once the shelf is real.
 ---
 
 <Layout
   title="Reading — JD Pruett"
   description="A running shelf of books and papers worth your time."
+  noindex
 >
   <main class="wrap">
     <section class="subhero subhero--sm">

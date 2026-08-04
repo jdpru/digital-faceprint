@@ -49,8 +49,9 @@ browser once: `npx playwright install chromium`.
   over generic praise, hype, or résumé inflation.
 - Keep frontmatter valid and complete. `order` controls sidebar order; the
   lowest-order project is the default `/projects/` destination. If that
-  project changes, update `astro.config.mjs`, `Layout.astro`, and the home
-  page's `explore` link together. `/projects/` is a redirect, not an index page.
+  project changes, update `vercel.json`, `Layout.astro`, and the home page's
+  `explore` link together. `/projects/` is a redirect, not an index page; it is
+  a platform 308 in `vercel.json`, not an Astro route.
 - Use existing MDX feature components (`Figure`, `FigurePair`, `Display`,
   `EndMark`) before inventing a one-off markup pattern.
 - Preserve meaningful alt text and figure captions. Never use an image only as

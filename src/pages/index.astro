@@ -4,10 +4,32 @@ import Hero from '../components/Hero.astro';
 import Resume from '../components/Resume.astro';
 import Explore from '../components/Explore.astro';
 import SanFrancisco from '../components/SanFrancisco.astro';
-import { site } from '../data/site';
+import { site, educationSchool } from '../data/site';
+
+// Ties the two name forms ("JD Pruett" in the hero, "Jefferson Pruett" in the
+// wordmark) to one entity, and points at the profiles linked in the hero.
+// Every property below restates something visible on this page, per
+// https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+const profileLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': new URL('/#person', Astro.site).href,
+    name: site.name,
+    alternateName: site.wordmark,
+    description: site.lede,
+    url: new URL('/', Astro.site).href,
+    image: new URL(site.portrait.src, Astro.site).href,
+    knowsAbout: site.about.methods.split(', '),
+    worksFor: { '@type': 'Organization', name: 'Varick', url: 'https://www.varickagents.com/' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: educationSchool },
+    sameAs: [site.links.github, site.links.linkedin, site.links.twitter],
+  },
+};
 ---
 
-<Layout>
+<Layout jsonLd={profileLd}>
   <Hero />
 
   <main class="wrap">
