@@ -5,8 +5,10 @@
 This is JD Pruett's personal site: a static **Astro 6** site, deployed by
 Vercel from `main`. Its canonical domain is `https://jdpruett.xyz` (configured
 as `site` in `astro.config.mjs`). Preserve the site's restrained, editorial character:
-warm paper background, Newsreader serif display text, IBM Plex Mono metadata,
-thin rules, and blue used as an accent—not a default decorative color.
+warm paper background, Newsreader serif throughout with italic serif for small
+labels, thin rules, and blue used as an accent—not a default decorative color.
+There is no mono typeface: `--sans` is a system stack, so Newsreader is the only
+webfont the site loads.
 
 ## Where changes belong
 
@@ -91,6 +93,13 @@ browser once: `npx playwright install chromium`.
 
 - Add media under `public/` with descriptive, stable names. Gallery thumbnails
   use the `name-thumb.jpg` convention; cover plots are PNGs in `public/covers/`.
+- Newsreader is self-hosted in `public/fonts/`; the `@font-face` rules sit at
+  the top of `global.css`. The six `woff2` files are the exact subsets Google
+  Fonts served, so their `unicode-range` values must stay paired with the file
+  they came from. Do not re-add a `fonts.googleapis.com` link. `Layout.astro`
+  preloads only `newsreader-normal-latin.woff2`; preload more only if the extra
+  subset is genuinely above the fold, since preload downloads unconditionally.
+  Fonts are excluded from `npm run optimize:images`.
 - After adding or changing images, run `npm run optimize:images`. It is
   idempotent and preserves quality safeguards for plots (portrait: 480px;
   gallery: ≤1400px; thumbnails: ≤510px; covers: ≤1380px).
