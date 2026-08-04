@@ -7,8 +7,11 @@ import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   site: 'https://jdpruett.xyz',
-  // Match Vercel, which serves every page at a trailing slash. Keeping dev and
-  // production on one URL shape avoids two indexable URLs per page.
+  // Dev-server guardrail only: this has NO effect on build output (verified by
+  // diffing a build with and without it). The production 308 comes from
+  // "trailingSlash": true in vercel.json. Both are kept on purpose — this one
+  // makes `npm run dev` 404 on a slashless URL, so a missing trailing slash in
+  // a new link surfaces locally instead of becoming a redirect in production.
   trailingSlash: 'always',
   integrations: [
     mdx(),
