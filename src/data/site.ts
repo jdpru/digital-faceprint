@@ -1,5 +1,8 @@
 // Single source of truth for site content.
-// NOTE: copy below is placeholder — swap with real content when ready.
+// Some blocks are staged for pages that do not exist yet and are intentionally
+// unrendered: `site.contact`, `publications`, `writing`, and `site.links.cv`
+// (whose PDF is not in public/ yet). Keep them; do not delete on the grounds
+// that nothing imports them.
 
 export const site = {
   name: 'JD Pruett', // display name in the hero
@@ -37,7 +40,7 @@ export const site = {
     blurb:
       'Open to research collaborations, survey work, and conversations about building things that measure the unmeasurable.',
     colophon: [
-      'Drawn, set, and built in Newsreader & IBM Plex Mono — 2026.',
+      'Drawn, set, and built in Newsreader — 2026.',
       'The portrait is a pencil study rendered from a photograph; it watches the cursor, and only the cursor.',
     ],
   },
