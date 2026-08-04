@@ -13,7 +13,15 @@ const projects = defineCollection({
     order: z.number().default(0),
     summary: z.string(),
     dek: z.string().optional(), // italic subtitle under the title
-    date: z.string().optional(), // e.g. "March 2026"
+    date: z.string().optional(), // display string, e.g. "March 2026"
+    // Machine-readable counterpart to `date`, emitted as Article.datePublished.
+    // ISO 8601, month precision allowed: "2026-03" or "2026-03-14". Leave unset
+    // for ongoing work — a range like "2023 – present" has no publication date,
+    // and Google ignores dates it judges inaccurate.
+    datePublished: z
+      .string()
+      .regex(/^\d{4}-\d{2}(-\d{2})?$/, 'Use YYYY-MM or YYYY-MM-DD')
+      .optional(),
     heroCaption: z.string().optional(), // caption under the hero figure
     tags: z.array(z.string()).default([]),
     // media/paths live under /public (CMS-friendly); optional for now

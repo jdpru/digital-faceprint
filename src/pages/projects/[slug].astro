@@ -25,6 +25,23 @@ const breadcrumbLd = {
     { '@type': 'ListItem', position: 2, name: project.data.title },
   ],
 };
+
+// `datePublished` is omitted for ongoing work rather than guessed; Article has
+// no required properties, so a dateless feature is still valid markup.
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: project.data.title,
+  description: project.data.summary,
+  author: {
+    '@type': 'Person',
+    '@id': new URL('/#person', Astro.site).href,
+    name: 'JD Pruett',
+    url: new URL('/', Astro.site).href,
+  },
+  ...(project.data.datePublished ? { datePublished: project.data.datePublished } : {}),
+  ...(cover ? { image: new URL(cover, Astro.site).href } : {}),
+};
 ---
 
 <Layout
@@ -32,7 +49,7 @@ const breadcrumbLd = {
   description={project.data.summary}
   ogImage={cover}
   ogCard={cover ? 'summary_large_image' : 'summary'}
-  jsonLd={breadcrumbLd}
+  jsonLd={[articleLd, breadcrumbLd]}
   transitions
 >
   <ProjectFeature project={project} projects={projects} Content={Content} />

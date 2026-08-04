@@ -47,7 +47,6 @@ export const site = {
     linkedin: 'https://www.linkedin.com/in/jd-pruett-4033b8194',
     github: 'https://github.com/jdpru',
     twitter: 'https://x.com/jdpruett4',
-    osf: 'https://osf.io/',
     cv: '/JD-Pruett-CV.pdf', // placeholder — add the PDF to /public when ready
   },
 };
