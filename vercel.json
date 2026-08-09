@@ -4,7 +4,7 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "digital-faceprint.vercel.app" }],
+      "has": [{ "type": "header", "key": "host", "value": "digital-faceprint.vercel.app" }],
       "destination": "https://jdpruett.xyz/:path*",
       "permanent": true
     }
