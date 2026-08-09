@@ -18,6 +18,8 @@ export default defineConfig({
     // /reading/ is noindex while it is a stub; keep it out of the sitemap too.
     sitemap({ filter: (page) => page !== 'https://jdpruett.xyz/reading/' }),
   ],
+  // /projects/ redirects to the lowest-order project. It lives in vercel.json
+  // so the platform serves a real 308 rather than a meta-refresh HTML page.
   markdown: {
     shikiConfig: { theme: 'github-light', wrap: false },
     processor: unified({

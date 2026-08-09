@@ -16,14 +16,13 @@ const { Content } = await render(project);
 // Several projects carry an empty cover string rather than omitting the field.
 const cover = project.data.cover?.trim() || undefined;
 
-// Home › Projects › this feature. /projects/ is a real index page.
+// Two levels: there is no /projects/ index page to point at — it redirects.
 const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: 'Projects', item: new URL('/projects/', Astro.site).href },
-    { '@type': 'ListItem', position: 3, name: project.data.title },
+    { '@type': 'ListItem', position: 2, name: project.data.title },
   ],
 };
 

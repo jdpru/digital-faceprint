@@ -1,4 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/projects/", "destination": "/projects/euterria/", "permanent": true }
+  ]
 }
