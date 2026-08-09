@@ -1,12 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true,
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "header", "key": "host", "value": "digital-faceprint.vercel.app" }],
-      "destination": "https://jdpruett.xyz/:path*",
-      "permanent": true
-    }
-  ]
+  "trailingSlash": true
 }
