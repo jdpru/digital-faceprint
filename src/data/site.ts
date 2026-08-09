@@ -304,7 +304,7 @@ export const explore: Shelf[] = [
   {
     title: 'Projects & Papers',
     blurb: 'Research and engineering.',
-    href: '/projects/euterria/',
+    href: '/projects/',
     cover: '/gallery/ontologies-of-cognitive-control/white-surface.jpg',
     alt: 'A cortical surface reconstruction, both hemispheres, rendered on black — from the cognitive-control ontology work.',
     contain: true,

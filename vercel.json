@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
   "redirects": [
-    { "source": "/projects/", "destination": "/projects/euterria/", "permanent": true }
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "digital-faceprint.vercel.app" }],
+      "destination": "https://jdpruett.xyz/:path*",
+      "permanent": true
+    }
   ]
 }
