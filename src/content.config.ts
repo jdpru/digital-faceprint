@@ -15,9 +15,11 @@ const projects = defineCollection({
     dek: z.string().optional(), // italic subtitle under the title
     date: z.string().optional(), // display string, e.g. "March 2026"
     // Machine-readable counterpart to `date`, emitted as Article.datePublished.
-    // ISO 8601, month precision allowed: "2026-03" or "2026-03-14". Leave unset
-    // for ongoing work — a range like "2023 – present" has no publication date,
-    // and Google ignores dates it judges inaccurate.
+    // ISO 8601, month precision allowed: "2026-03" or "2026-03-14". Set it to
+    // the real first-published month even for ongoing work — a range like
+    // "2023 – present" still has a start, and the display `date` keeps showing
+    // the range. Only leave unset when the date is genuinely unknown; never
+    // invent one, since Google distrusts dates it judges inaccurate.
     datePublished: z
       .string()
       .regex(/^\d{4}-\d{2}(-\d{2})?$/, 'Use YYYY-MM or YYYY-MM-DD')
