@@ -39,9 +39,23 @@ const profileLd = {
     ],
   },
 };
+
+// Anchors the domain as a named entity (the "site name" Google shows in
+// results) and ties it back to the Person above by @id. name/alternateName
+// mirror the two name forms already visible in the hero and wordmark.
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': new URL('/#website', Astro.site).href,
+  url: new URL('/', Astro.site).href,
+  name: site.name,
+  alternateName: site.wordmark,
+  inLanguage: 'en',
+  author: { '@id': new URL('/#person', Astro.site).href },
+};
 ---
 
-<Layout jsonLd={profileLd}>
+<Layout jsonLd={[profileLd, websiteLd]}>
   <Hero />
 
   <main class="wrap">
